@@ -1,4 +1,4 @@
-package center.action;
+package center.join;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import center.flowers.JoinDAO;
+import center.action.SuperAction;
 
 public class MemListAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {

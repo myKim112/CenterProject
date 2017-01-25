@@ -1,11 +1,10 @@
-package center.action;
+package center.join;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import center.flowers.JoinDAO;
-import center.flowers.JoinDTO;
+import center.action.SuperAction;
 
 public class MemInfAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
