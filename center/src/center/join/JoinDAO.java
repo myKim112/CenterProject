@@ -104,7 +104,7 @@ public class JoinDAO {
 		 	if(conn != null)try{conn.close();}catch(SQLException ex){}
 		}
 	}	
-	
+//	
 	public int confirmId(String id) throws Exception { // 아이디 중복 확인
 		int x = -1;
 		
