@@ -13,7 +13,7 @@ import center.lesson.ClassDAO;
 
 public class ClassListAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response){
-		
+	
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("centerId");
 		

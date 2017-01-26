@@ -44,7 +44,6 @@
    </td></tr>
 </table>
 </c:if>
-
 <c:if test="${count > 0}">
 <c:forEach var="dto" items="${articleList }">
 <table border="0" width="850" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
