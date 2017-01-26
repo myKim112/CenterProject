@@ -36,12 +36,12 @@ TEACHER LIST</font>
 
 <c:if test="${count > 0}">
 <table align="center" width="500">
-<c:forEach var="staff" items="${staffList}">
+<c:forEach var="staff" items="${staffList}" varStatus="i">
 	<tr>
-	<td>
+	<td>${i.count}
 		<c:out value="${num}"/>
-		<c:set var="num" value="${num-1}" />
-	<%--	<input type="hidden" name="num" value="${num}"/> --%></td>
+<%--	<c:set var="num" value="${num-1}" />
+		<input type="hidden" name="num" value="${num}"/> --%></td>
 	<td><a href="teacherInf.kiki?id=${staff.id}&num=${num}">${staff.id}</a></td>
 	<td>${staff.name}</td>
 	</tr>

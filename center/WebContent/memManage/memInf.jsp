@@ -39,7 +39,7 @@ MEMBER INFORMATION</font>
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="탈퇴" onclick="document.location.href='deleteForm.kiki?id=${article.id}'" />
+		<input type="button" value="탈퇴" onclick="document.location.href='memDelete.kiki?id=${article.id}'" />
 		<input type="button" value="정보수정" onclick="document.location.href='modify.kiki?id=${article.id}'"/>
 	</td></tr>
 	<tr>
