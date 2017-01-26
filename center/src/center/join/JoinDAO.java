@@ -104,7 +104,7 @@ public class JoinDAO {
 		 	if(conn != null)try{conn.close();}catch(SQLException ex){}
 		}
 	}	
-	
+//	
 	public int confirmId(String id) throws Exception { // 아이디 중복 확인
 		int x = -1;
 		
@@ -248,4 +248,26 @@ public class JoinDAO {
 		}
 		return articleList;
 	}
+
+	public String idFind(String name,String phone) {
+		String sql = null;
+		String id =null;
+		try {
+			conn = getConnection();
+			sql = "select id from join where name=? and phone=?"; 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery(); // 실행
+			if(rs.next()){
+				id = rs.getString("id");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
 }
+
+
+
