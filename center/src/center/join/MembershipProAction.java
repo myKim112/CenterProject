@@ -21,7 +21,7 @@ public class MembershipProAction implements SuperAction {
 			dto.setPhone(Integer.parseInt(request.getParameter("phone")));
 			dto.setAddress(request.getParameter("address"));
 			dto.setEmail(request.getParameter("email"));
-			dto.setLev(request.getParameter("lev"));
+			dto.setLev(Integer.parseInt(request.getParameter("lev")));
 			dto.setRegDate(new Timestamp(System.currentTimeMillis()));
 			
 			JoinDAO manager = JoinDAO.getInstance();

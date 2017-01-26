@@ -50,7 +50,7 @@ public class StaffDAO {
 				teacher.setEmail(rs.getString("email"));
 				teacher.setBankName(rs.getString("bankName"));
 				teacher.setBankAccount(rs.getInt("bankAccount"));
-				teacher.setLev(rs.getString("lev"));
+				teacher.setLev(rs.getInt("lev"));
 				teacher.setRegDate(rs.getTimestamp("regDate"));
   				
   				pstmt.executeQuery();
@@ -115,7 +115,7 @@ public class StaffDAO {
 					article.setEmail(rs.getString("email"));
 					article.setBankName(rs.getString("bankName"));
 					article.setBankAccount(rs.getInt("bankAccount"));
-					article.setLev(rs.getString("lev"));
+					article.setLev(rs.getInt("lev"));
 					article.setRegDate(rs.getTimestamp("regDate"));
 					staffList.add(article);
 				} while(rs.next());

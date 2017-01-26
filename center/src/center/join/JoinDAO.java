@@ -40,7 +40,7 @@ public class JoinDAO {
 			pstmt.setInt(5,dto.getPhone());
 			pstmt.setString(6,dto.getAddress());
 			pstmt.setString(7,dto.getEmail());
-			pstmt.setString(8,dto.getLev());
+			pstmt.setInt(8,dto.getLev());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class JoinDAO {
   				dto.setPhone(rs.getInt("phone"));
   				dto.setAddress(rs.getString("address"));  					
   				dto.setEmail(rs.getString("email"));
-  				dto.setLev(rs.getString("lev"));
+  				dto.setLev(rs.getInt("lev"));
   				dto.setRegDate(rs.getTimestamp("regDate"));
   				
   				pstmt.executeQuery();
@@ -95,7 +95,7 @@ public class JoinDAO {
 			pstmt.setInt(4, dto.getPhone());
 			pstmt.setString(5, dto.getAddress());
 			pstmt.setString(6, dto.getEmail());
-			pstmt.setString(7, dto.getLev());
+			pstmt.setInt(7, dto.getLev());
 			pstmt.setString(8, dto.getId());
 			pstmt.executeUpdate();
 		} catch(Exception e){
@@ -235,7 +235,7 @@ public class JoinDAO {
 					article.setPhone(rs.getInt("phone"));
 					article.setAddress(rs.getString("address"));
 					article.setEmail(rs.getString("email"));
-					article.setLev(rs.getString("lev"));
+					article.setLev(rs.getInt("lev"));
 					article.setRegDate(rs.getTimestamp("regDate"));
 					articleList.add(article);
 				}while(rs.next());

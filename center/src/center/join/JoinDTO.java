@@ -10,7 +10,7 @@ public class JoinDTO {
 	private int phone = 0;
 	private String address = null;
 	private String email = null;
-	private String lev = null;
+	private int lev = 0;
 	private Timestamp regDate= null;
 	
 	public String getId() {return id;}
@@ -34,8 +34,8 @@ public class JoinDTO {
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
 	
-	public String getLev() {return lev;}
-	public void setLev(String lev) {this.lev = lev;}
+	public int getLev() {return lev;}
+	public void setLev(int lev) {this.lev = lev;}
 	
 	public Timestamp getRegDate() {return regDate;}
 	public void setRegDate(Timestamp regDate) {this.regDate = regDate;}

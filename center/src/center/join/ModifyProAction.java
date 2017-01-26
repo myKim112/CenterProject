@@ -22,7 +22,7 @@ public class ModifyProAction implements SuperAction {
 	        dto.setPhone(Integer.parseInt(request.getParameter("phone")));
 	        dto.setEmail(request.getParameter("email"));
 	        dto.setAddress(request.getParameter("addresS"));
-	        dto.setLev(request.getParameter("lev"));
+	        dto.setLev(Integer.parseInt(request.getParameter("lev")));
 	        
 	        JoinDAO dao = JoinDAO.getInstance();
 	        dao.updateJoin(dto);			
