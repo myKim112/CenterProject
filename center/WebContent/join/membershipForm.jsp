@@ -64,7 +64,7 @@ Membership Application</font>
 	<td align="left">
 		<input type="text" name="id" placeholder="아이디" />
 		&nbsp;&nbsp;
-		<input type="button" value="중복확인" />
+		<input type="button" value="중복확인" OnClick="openConfirmId(this.form)"/>
 		<br><br>
 	</td></tr>
 	<tr>
@@ -76,7 +76,7 @@ Membership Application</font>
 	<tr>
 	<td width="150">비밀번호 재입력</td>
 	<td align="left">
-		<input type="password" name="pwcheck" />
+		<input type="password" name="pwcheck" /> *동일한 비밀번호를 입력하시오.
 		<br><br>
 	</td>></tr>
 	<tr>
@@ -88,13 +88,13 @@ Membership Application</font>
 	<tr>
 	<td width="150">생년월일</td>
 	<td align="left">
-		<input type="text" name="birth" />
+		<input type="text" name="birth" placeholder="ex>19990909"/>
 		<br><br>
 	</td></tr>
 	<tr>
 	<td width="150">전화번호</td>
 	<td align="left">
-		<input type="text" name="phone" />
+		<input type="text" name="phone" placeholder="숫자만 입력해주세요"/>
 		<br><br>
 	</td></tr>
 	<tr>

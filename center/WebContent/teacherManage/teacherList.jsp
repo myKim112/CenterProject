@@ -13,10 +13,12 @@ TEACHER LIST</font>
 </center>
 
 <body>
-<table align="center" width="500">
+<table align="center" width="500" border="1">
 	<tr>
 	<td align="center">전체 직원 수(${count})</td>
 	</tr>
+</table>
+<table align="center" width="500" border="1">
 	<tr>
 	<td>번호</td>
 	<td>ID</td>
@@ -37,9 +39,9 @@ TEACHER LIST</font>
 <c:forEach var="staff" items="${staffList}">
 	<tr>
 	<td>
-		<c:out value="${number}"/>
+		<c:out value="${num}"/>
 		<c:set var="num" value="${num-1}" />
-		<input type="hidden" name="num" value="${num}"/></td>
+	<%--	<input type="hidden" name="num" value="${num}"/> --%></td>
 	<td><a href="teacherInf.kiki?id=${staff.id}&num=${num}">${staff.id}</a></td>
 	<td>${staff.name}</td>
 	</tr>

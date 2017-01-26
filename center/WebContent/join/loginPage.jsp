@@ -77,7 +77,7 @@
 
 <%	} else { %>
 
-<form action="logout.kiki" method="post">
+<form action="logOut.kiki" method="post">
 <table align="center">
 	<tr>
 	<td align="center">

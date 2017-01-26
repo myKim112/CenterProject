@@ -18,7 +18,7 @@
 	</td></tr>
 	<tr>
 	<td align="center">갑세<br/>
-	<meta http-equiv="Refresh" content="0;url=main.kiki">
+	<meta http-equiv="Refresh" content="5;url=main.kiki">
 	</td></tr>
 	<tr>
 	<td align="right">

@@ -34,13 +34,13 @@ MEMBER INFORMATION</font>
 	</tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="회원 글보기" onclick="document.location.href='/memWriteList.kiki?writer=${article.id}'" />
-		<input type="button" value="회원 수강내역" onclick="document.loaction.href='/memClassList.kiki?writer=${article.id}'" />
+		<input type="button" value="회원 글보기" onclick="document.location.href='memWriteList.kiki?writer=${article.id}'" />
+		<input type="button" value="회원 수강내역" onclick="document.loaction.href='memClassList.kiki?writer=${article.id}'" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="탈퇴" onclick="document.location.href=''" />
-		<input type="button" value="정보수정" onclick="document.location.href=''"/>
+		<input type="button" value="탈퇴" onclick="document.location.href='deleteForm.kiki?id=${article.id}'" />
+		<input type="button" value="정보수정" onclick="document.location.href='modify.kiki?id=${article.id}'"/>
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">

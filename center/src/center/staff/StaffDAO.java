@@ -103,7 +103,7 @@ public class StaffDAO {
 			if(rs.next()) {
 				staffList = new ArrayList(end);
 					
-				while(rs.next()) {
+				do {
 					StaffDTO article = new StaffDTO();
 					
 					article.setId(rs.getString("id"));
@@ -118,7 +118,7 @@ public class StaffDAO {
 					article.setLev(rs.getString("lev"));
 					article.setRegDate(rs.getTimestamp("regDate"));
 					staffList.add(article);
-				}
+				} while(rs.next());
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

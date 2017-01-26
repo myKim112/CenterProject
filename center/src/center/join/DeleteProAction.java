@@ -22,4 +22,4 @@ public class DeleteProAction implements SuperAction {
 		
 		return "/join/deletePro.jsp";
 	}
-	}
+}

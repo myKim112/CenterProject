@@ -10,7 +10,6 @@ public class MemInfAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
 		String pageNum = request.getParameter("pageNum");
-		int num = Integer.parseInt(request.getParameter("num"));
 		
 		JoinDAO dbPro = JoinDAO.getInstance();
 		JoinDTO article = null;
@@ -22,8 +21,7 @@ public class MemInfAction implements SuperAction {
 		}
 		
 		request.setAttribute("id", id);
-		request.setAttribute("pageNum", new Integer(pageNum));
-		request.setAttribute("num", new Integer(num));
+		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("article", article);
 		
 		return "/memManage/memInf.jsp";

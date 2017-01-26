@@ -12,6 +12,7 @@ import center.action.SuperAction;
 public class MemListAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		int pageSize=10;
+//		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -26,7 +27,6 @@ public class MemListAction implements SuperAction {
 		int count = 0;
 		int number = 0;
 		List articleList = null;
-		int num = Integer.parseInt(request.getParameter("num"));
 		
 		JoinDAO dbPro = JoinDAO.getInstance();
 		
@@ -51,7 +51,8 @@ public class MemListAction implements SuperAction {
         request.setAttribute("pageSize", new Integer(pageSize));
 		request.setAttribute("number", new Integer(number));
         request.setAttribute("articleList", articleList);
-        request.setAttribute("num", new Integer(num));
+        request.setAttribute("pageNum", pageNum);
+//		request.setAttribute("num", new Integer(num));
 		
 		return "/memManage/memList.jsp";
 	}

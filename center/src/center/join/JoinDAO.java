@@ -64,6 +64,7 @@ public class JoinDAO {
 					
 				dto.setId(rs.getString("id"));
   				dto.setPw(rs.getString("pw"));
+  				dto.setName(rs.getString("name"));
   				dto.setBirth(rs.getInt("birth"));	
   				dto.setPhone(rs.getInt("phone"));
   				dto.setAddress(rs.getString("address"));  					
@@ -104,7 +105,7 @@ public class JoinDAO {
 		 	if(conn != null)try{conn.close();}catch(SQLException ex){}
 		}
 	}	
-//	
+	
 	public int confirmId(String id) throws Exception { // 아이디 중복 확인
 		int x = -1;
 		
@@ -224,7 +225,7 @@ public class JoinDAO {
 			if(rs.next()) {
 				articleList = new ArrayList(end);
 				
-				while(rs.next()) {
+				do {
 					JoinDTO article = new JoinDTO();
 					
 					article.setId(rs.getString("id"));
@@ -237,7 +238,7 @@ public class JoinDAO {
 					article.setLev(rs.getString("lev"));
 					article.setRegDate(rs.getTimestamp("regDate"));
 					articleList.add(article);
-				}
+				}while(rs.next());
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
