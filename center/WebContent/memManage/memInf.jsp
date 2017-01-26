@@ -29,10 +29,6 @@ MEMBER INFORMATION</font>
 	<td>주소</td><td colspan="3">${article.address}</td>
 	</tr>
 	<tr>
-	<td>은행명</td><td>${article.bankName}</td>
-	<td>계죄번호</td><td>${article.bankAccount}</td>
-	</tr>
-	<tr>
 	<td>가입일</td><td>${article.regDate}</td>
 	<td>level</td><td>${article.lev}</td>
 	</tr>

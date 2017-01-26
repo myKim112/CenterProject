@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import center.lesson.ClassDTO;
+
 public class StaffDAO {
 	private static StaffDAO instance = new StaffDAO();
 	
@@ -26,6 +28,41 @@ public class StaffDAO {
 		DataSource ds = (DataSource)env.lookup("jdbc/orcl");
 		
 		return ds.getConnection();
+	}
+	
+	public StaffDTO getTeacher(String id) throws Exception { // 입력받은 id에 해당하는 내용 가져오기
+		StaffDTO teacher = null;
+		
+		try{
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from staff where id =?");
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+		
+			if(rs.next()){
+				teacher=new StaffDTO();
+					
+				teacher.setId(rs.getString("id"));
+				teacher.setPw(rs.getString("pw"));
+				teacher.setBirth(rs.getInt("birth"));	
+				teacher.setPhone(rs.getInt("phone"));
+				teacher.setAddress(rs.getString("address"));  					
+				teacher.setEmail(rs.getString("email"));
+				teacher.setBankName(rs.getString("bankName"));
+				teacher.setBankAccount(rs.getInt("bankAccount"));
+				teacher.setLev(rs.getString("lev"));
+				teacher.setRegDate(rs.getTimestamp("regDate"));
+  				
+  				pstmt.executeQuery();
+  			}
+  		} catch(Exception e){
+  			e.printStackTrace();
+  		} finally{
+  			if(rs != null)try{rs.close();}catch(SQLException ex){}
+  			if(pstmt != null)try{pstmt.close();}catch(SQLException ex){}
+  			if(conn != null)try{conn.close();}catch(SQLException ex){}
+  		}
+  		return teacher;
 	}
 	
 	// 관리자
@@ -91,5 +128,27 @@ public class StaffDAO {
 			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
 		}
 		return staffList;
+	}
+	
+	public int getTeacherClassCount(String id) throws Exception { // 해당 강사의 강좌 수
+		int x = 0;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from class where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return x;
 	}
 }

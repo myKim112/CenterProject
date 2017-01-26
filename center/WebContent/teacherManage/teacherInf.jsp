@@ -47,7 +47,7 @@ TEACHER INFORMATION</font>
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="목록" onclick="document.location.href='/teacherList.kiki?pageNum=${pageNum}'" />
+		<input type="button" value="목록" onclick="document.location.href='teacherList.kiki?pageNum=${pageNum}'" />
 	</td></tr>
 </table>
 </body>
