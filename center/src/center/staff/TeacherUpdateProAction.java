@@ -12,6 +12,7 @@ public class TeacherUpdateProAction implements SuperAction {
 			
 			StaffDTO staff = new StaffDTO();
 			
+			staff.setId(request.getParameter("id"));
 			staff.setPw(request.getParameter("pw"));
 			staff.setName(request.getParameter("name"));
 			staff.setBirth(Integer.parseInt(request.getParameter("birth")));
@@ -20,7 +21,6 @@ public class TeacherUpdateProAction implements SuperAction {
 			staff.setEmail(request.getParameter("email"));
 			staff.setBankName(request.getParameter("bankName"));
 			staff.setBankAccount(Integer.parseInt(request.getParameter("bankAccount")));
-			staff.setLev(Integer.parseInt(request.getParameter("lev")));
 			
 			StaffDAO manage = StaffDAO.getInstance();
 			manage.updateTeacher(staff);

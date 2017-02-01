@@ -8,8 +8,12 @@ import center.action.SuperAction;
 
 public class TeacherUpdateFormAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("centerId");
+		String id = request.getParameter("id");
+		
+		if(id == null) {
+			HttpSession session = request.getSession();
+			id = (String)session.getAttribute("centerId");
+		}
 		
 		StaffDTO staff = null;
 		
@@ -21,6 +25,7 @@ public class TeacherUpdateFormAction implements SuperAction {
 		}
 		
 		request.setAttribute("staff", staff);
+		request.setAttribute("id", id);
 		
 		return "/teacher/teacherUpdateForm.jsp";
 	}
