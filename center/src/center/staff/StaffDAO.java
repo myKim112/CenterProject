@@ -210,27 +210,4 @@ public class StaffDAO {
 			if(conn != null)try{conn.close();}catch(SQLException ex){}
 		}
 	}
-	
-	public int teacherConfirmId(String id) throws Exception { // 사원번호 중복확인
-		int x = 0;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select id from staff where id = ?");
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				x = 1;
-			} else {
-				x = -1;
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-		}
-		return x;
-	}
 }

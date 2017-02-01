@@ -80,17 +80,6 @@ Membership Modify</font>
 	    <br><br>
 	</td></tr>
 	<tr>
-	<td width="150">등급</td>
-	<td align="left">
-		<select name="lev" value="${dto.lev}">
-			<option value="주니어">주니어</option>
-			<option value="어덜트">어덜트</option>
-			<option value="실버">실버</option>
-			<option value="선택안함">선택안함</option>
-		</select>
-		<br><br>
-	</td></tr>
-	<tr>
 	<td align="right" colspan="2">
 	<br><br>
 		<input type="submit" value="회원수정" />

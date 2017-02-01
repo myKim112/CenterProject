@@ -20,6 +20,10 @@
 		<input type="text" size="10" maxlength="12" name="id" /> &nbsp;
 		<input type="submit" value="중복확인" />
 	</td></tr>
+	<tr>
+	<td align="center">
+		<input type="button" value="닫기" onclick="setId()" />
+	</td></tr>
 </table>
 </form>
 </c:if>

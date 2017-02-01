@@ -32,7 +32,7 @@ Teacher Modify</font>
 <table  border="0" align="center">
 	<tr>
 	<td width="150">ID</td>
-	<td align="left">${dto.id}<br><br>
+	<td align="left">${staff.id}<br><br>
 	</td></tr>
 	<tr>
 	<td width="150">비밀번호</td>

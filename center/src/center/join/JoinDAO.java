@@ -32,7 +32,7 @@ public class JoinDAO {
 	public void insertJoin(JoinDTO dto) throws Exception { // 회원가입
 		try {
 			conn = getConnection();
-			pstmt=conn.prepareStatement("insert into join values(?,?,?,?,?,?,?,?,sysdate)");
+			pstmt=conn.prepareStatement("insert into join values(?,?,?,?,?,?,?,10,sysdate)");
 			pstmt.setString(1,dto.getId());
 			pstmt.setString(2,dto.getPw());
 			pstmt.setString(3,dto.getName());
@@ -40,7 +40,6 @@ public class JoinDAO {
 			pstmt.setInt(5,dto.getPhone());
 			pstmt.setString(6,dto.getAddress());
 			pstmt.setString(7,dto.getEmail());
-			pstmt.setInt(8,dto.getLev());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -111,12 +110,16 @@ public class JoinDAO {
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select id from join where id = ?");
+			pstmt = conn.prepareStatement("select j.id jid,s.id sid from join j , staff s where s.id=? or j.id=?");
 			pstmt.setString(1, id);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) x=1;
-			else x=-1;
+			if(rs.next()) {
+				x=1;
+			} else {
+				x=-1;
+			}
 		} catch(Exception e) { 
 			e.printStackTrace();	
 		}
@@ -161,22 +164,29 @@ public class JoinDAO {
 	}
 	
 	public int userCheck(String id, String pw) throws Exception { // 로그인시 id, pw 확인
-		String dbpw="";
+		String dbpw_staff ="";
+		String dbpw_join ="";
 		int result = -1;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select pw from join where id = ?");
+			pstmt = conn.prepareStatement("select j.pw jpw,s.pw spw from join j , staff s where s.id=? or j.id=?");
 			pstmt.setString(1, id);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next())
 			{
-				dbpw = rs.getString("pw");
-				if(pw.equals(pw)) {
+				dbpw_join = rs.getString("jpw");
+				dbpw_staff = rs.getString("spw");
+				if(dbpw_join.equals(pw)) {
+					result = 1;
+				} else if(dbpw_staff.equals(pw)) {
 					result = 1;
 				} else {
 					result = 0;
 				}
+			} else {
+				result = -1;
 			}
 		} catch(Exception e) { e.printStackTrace(); }
 		 finally {

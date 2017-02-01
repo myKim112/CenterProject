@@ -30,7 +30,7 @@ MEMBER INFORMATION</font>
 	</tr>
 	<tr>
 	<td>가입일</td><td>${article.regDate}</td>
-	<td>level</td><td>${article.lev}</td>
+	<td>직급</td><td>${article.lev}</td>
 	</tr>
 	<tr>
 	<td colspan="4" align="right">

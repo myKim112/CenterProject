@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import center.action.SuperAction;
+import center.join.JoinDAO;
 
 public class TeahcerConfirmIdAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
@@ -13,8 +14,8 @@ public class TeahcerConfirmIdAction implements SuperAction {
 		try {
 			request.setCharacterEncoding("UTF-8");
 						
-			StaffDAO manager = StaffDAO.getInstance();
-			check = manager.teacherConfirmId(id);
+			JoinDAO manager = JoinDAO.getInstance();
+			check = manager.confirmId(id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

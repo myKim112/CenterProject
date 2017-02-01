@@ -36,6 +36,10 @@
        <input type="submit" value="ID중복확인">
     </td>
   </tr>
+  <tr>
+  <td align="center">
+  	<input type="button" value="닫기" onclick="setId()" />
+  </td></tr>
 </table>
 </form>
 <%
@@ -45,7 +49,7 @@
   <tr> 
     <td align="center"> 
       <p>입력하신 "${id}" 는 사용하실 수 있는 ID입니다. </p>
-      <input type="button" value="닫기" onclick="setid()">
+      <input type="button" value="닫기" onclick="setId()">
     </td>
   </tr>
 </table>
@@ -56,7 +60,7 @@
 </html>
 <script language="javascript">
 
-  function setid() // 창을 총료 시키는 메소드
+  function setId() // 창을 총료 시키는 메소드
     {		
     	opener.document.userinput.id.value="${id}";
     	/* document만 붙어있으면 전체 페이지를 의미하는데,

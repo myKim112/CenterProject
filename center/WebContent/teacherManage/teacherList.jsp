@@ -38,7 +38,7 @@
 					<td>${i.count}
 					 <%--	<c:set var="num" value="${num-1}" />
 					<input type="hidden" name="num" value="${num}"/> --%></td>
-					<td><a href="teacherInf.kiki?id=${staff.id}&num=${num}">${staff.id}</a></td>
+					<td><a href="teacherInf.kiki?id=${staff.id}&pageNum=${pageNumn}">${staff.id}</a></td>
 					<td>${staff.name}</td>
 				</tr>
 			</c:forEach>

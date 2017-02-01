@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import center.action.SuperAction;
 import center.join.*;
+import center.staff.StaffDAO;
 
 public class LoginProAction implements SuperAction {
 	
@@ -14,16 +15,16 @@ public class LoginProAction implements SuperAction {
 		String id = request.getParameter("id");
 		String pw  = request.getParameter("pw"); 
 		JoinDAO manager = JoinDAO.getInstance(); 
+		
 		try {
-			int check= manager.userCheck(id,pw);
+			int check= manager.userCheck(id, pw);
+			
 			if(check==1){ 
-				
 				HttpSession session = request.getSession(); 
 				session.setAttribute("centerId",id);
-			}	
-			request.setAttribute("check", new Integer(check)); 
+			}
 			
-		
+			request.setAttribute("check", new Integer(check)); 		
 		} catch (Exception e) {
 		
 			e.printStackTrace();
