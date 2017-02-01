@@ -12,3 +12,18 @@
 <input type="button" value="로그인" onclick="window.location='loginPage.kiki'" />
 
 <input type="button" value="정보수정" onclick="window.location='modify.kiki'" />
+
+<br/>
+===== 관리자 모드로 넣을거 ========
+<br/>
+<input type="button" value="직원 등록" onclick="window.location='teacherInputForm.kiki'" />
+
+
+<br/>
+
+===== 강사에게 줄 것들 =====
+
+<br/>
+<input type="button" value="정보 수정" onclick="window.location='teacherUpdateForm.kiki'" />
+<br/>
+<input type="button" value="강의 신청" onclick="window.location=''" />

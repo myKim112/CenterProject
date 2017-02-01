@@ -65,6 +65,28 @@ public class StaffDAO {
   		return teacher;
 	}
 	
+	public void updateTeacher(StaffDTO staff) throws Exception { // 정보 수정
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("update staff set pw=?, name=?, birth=?. phone=?, address=?, email=?, bankName=?, bankAccount=? where id=?");
+			pstmt.setString(1, staff.getPw());
+			pstmt.setString(2, staff.getName());
+			pstmt.setInt(3, staff.getBirth());
+			pstmt.setInt(4, staff.getPhone());
+			pstmt.setString(5, staff.getAddress());
+			pstmt.setString(6, staff.getEmail());
+			pstmt.setString(7, staff.getBankName());
+			pstmt.setInt(8, staff.getBankAccount());
+			pstmt.setString(9, staff.getId());
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException e) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException e) { } }
+		}
+	}
+	
 	// 관리자
 	public int getTeacherCount() throws Exception { // 전체 강사 수
 		int x = 0;
@@ -135,7 +157,7 @@ public class StaffDAO {
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select count(*) from class where id=?");
+			pstmt = conn.prepareStatement("select count(*) from class where teacher=?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
@@ -148,6 +170,66 @@ public class StaffDAO {
 			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
 			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
 			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return x;
+	}
+	
+	public void updateTeacherLev(StaffDTO staff) throws Exception { // 권한 수정하기
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("update staff set lev=? where id=?");
+			pstmt.setInt(1, staff.getLev());
+			pstmt.setString(2, staff.getId());
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null)try{pstmt.close();}catch(SQLException ex){}
+		 	if(conn != null)try{conn.close();}catch(SQLException ex){}
+		}
+	}
+	
+	public void insertTeacher(StaffDTO staff) throws Exception { // 직원 등록
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("insert into staff values(?,?,?,?,?,?,?,?,?,20,sysdate)");
+			pstmt.setString(1, staff.getId());
+			pstmt.setString(2, staff.getPw());
+			pstmt.setString(3, staff.getName());
+			pstmt.setInt(4, staff.getBirth());
+			pstmt.setInt(5, staff.getPhone());
+			pstmt.setString(6, staff.getAddress());
+			pstmt.setString(7, staff.getEmail());
+			pstmt.setString(8, staff.getBankName());
+			pstmt.setInt(9, staff.getBankAccount());
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null)try{pstmt.close();}catch(SQLException ex){}
+			if(conn != null)try{conn.close();}catch(SQLException ex){}
+		}
+	}
+	
+	public int teacherConfirmId(String id) throws Exception { // 사원번호 중복확인
+		int x = 0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select id from staff where id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x = 1;
+			} else {
+				x = -1;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 		return x;
 	}
