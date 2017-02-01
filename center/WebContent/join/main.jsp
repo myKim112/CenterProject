@@ -18,7 +18,8 @@
 <br/>
 <input type="button" value="직원 등록" onclick="window.location='teacherInputForm.kiki'" />
 
-
+<br/>
+<input type="button" value="직원 목록" onclick="window.location='teacherList.kiki'" />
 <br/>
 
 ===== 강사에게 줄 것들 =====

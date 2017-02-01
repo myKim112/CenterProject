@@ -7,7 +7,7 @@ import center.action.SuperAction;
 
 public class TeacherUpdateProAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		try {
+		try{
 			request.setCharacterEncoding("UTF-8");
 			
 			StaffDTO staff = new StaffDTO();
@@ -22,13 +22,11 @@ public class TeacherUpdateProAction implements SuperAction {
 			staff.setBankName(request.getParameter("bankName"));
 			staff.setBankAccount(Integer.parseInt(request.getParameter("bankAccount")));
 			
-			StaffDAO manage = StaffDAO.getInstance();
-			manage.updateTeacher(staff);
-			
+			StaffDAO dbPro = StaffDAO.getInstance();
+			dbPro.updateTeacher(staff);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return "/teacher/teacherUpdatePro.jsp";
 	}
 }

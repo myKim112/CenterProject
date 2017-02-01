@@ -44,6 +44,7 @@ public class StaffDAO {
 					
 				teacher.setId(rs.getString("id"));
 				teacher.setPw(rs.getString("pw"));
+				teacher.setName(rs.getString("name"));
 				teacher.setBirth(rs.getInt("birth"));	
 				teacher.setPhone(rs.getInt("phone"));
 				teacher.setAddress(rs.getString("address"));  					
@@ -68,7 +69,7 @@ public class StaffDAO {
 	public void updateTeacher(StaffDTO staff) throws Exception { // 정보 수정
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("update staff set pw=?, name=?, birth=?. phone=?, address=?, email=?, bankName=?, bankAccount=? where id=?");
+			pstmt = conn.prepareStatement("update staff set pw=?, name=?, birth=?, phone=?, address=?, email=?, bankName=?, bankAccount=? where id=?");
 			pstmt.setString(1, staff.getPw());
 			pstmt.setString(2, staff.getName());
 			pstmt.setInt(3, staff.getBirth());

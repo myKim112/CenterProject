@@ -87,15 +87,14 @@ public class JoinDAO {
 		
 		try{
 			conn=getConnection();
-			pstmt=conn.prepareStatement("update join set pw=?, name=?, birth=?, phone=?, address=?, email=?, lev=? where id=?");
+			pstmt=conn.prepareStatement("update join set pw=?, name=?, birth=?, phone=?, address=?, email=? where id=?");
 			pstmt.setString(1, dto.getPw());
 			pstmt.setString(2, dto.getName());
 			pstmt.setInt(3, dto.getBirth());
 			pstmt.setInt(4, dto.getPhone());
 			pstmt.setString(5, dto.getAddress());
 			pstmt.setString(6, dto.getEmail());
-			pstmt.setInt(7, dto.getLev());
-			pstmt.setString(8, dto.getId());
+			pstmt.setString(7, dto.getId());
 			pstmt.executeUpdate();
 		} catch(Exception e){
 			e.printStackTrace();

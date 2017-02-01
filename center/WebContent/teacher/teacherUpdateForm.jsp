@@ -8,7 +8,7 @@
 
 <script>
 	function checkIt() {
-		var userinput = evl("document.userinput");
+		var userinput = eval("document.userinput");
 		
 		if(!userinput.pw.value){
 			alert("비밀번호를 입력하세요");
@@ -28,7 +28,7 @@ Teacher Modify</font>
 </center>
 
 <body>
-<form action="teacherUpdatePro.kiki" method="post" name="userinput">
+<form action="teacherUpdatePro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
 <table  border="0" align="center">
 	<tr>
 	<td width="150">ID</td>
