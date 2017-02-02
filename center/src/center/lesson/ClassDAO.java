@@ -13,143 +13,333 @@ import javax.sql.DataSource;
 
 public class ClassDAO {
 	private static ClassDAO instance = new ClassDAO();
-	
-	public static ClassDAO getInstance(){
+
+	public static ClassDAO getInstance() {
 		return instance;
 	}
+
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	
-	private Connection getConnection()throws Exception{
-		Context ctx =new InitialContext();
-		Context env = (Context)ctx.lookup("java:comp/env");
-		DataSource ds = (DataSource)env.lookup("jdbc/orcl");
-		
+
+	private Connection getConnection() throws Exception {
+		Context ctx = new InitialContext();
+		Context env = (Context) ctx.lookup("java:comp/env");
+		DataSource ds = (DataSource) env.lookup("jdbc/orcl");
+
 		return ds.getConnection();
 	}
-	
-	public ClassDTO getClass(int num)throws Exception { // °­ÁÂ ºÒ·¯¿À±â
-		ClassDTO dto=null;
-		
-		try{
-			conn=getConnection();
-			pstmt=conn.prepareStatement("select * from class where num=?");
+
+	public ClassDTO getClass(int num) throws Exception { // ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+		ClassDTO dto = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from class where num=?");
 			pstmt.setInt(1, num);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()){
-				dto=new ClassDTO();
-				dto.setNum(rs.getInt("num"));
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dto = new ClassDTO();
+				dto.setNum(rs.getInt("num"));				
 				dto.setCenter(rs.getString("center"));
 				dto.setClassCode(rs.getString("classCode"));
-				dto.setClassName(rs.getString("classname"));
+				dto.setClassName(rs.getString("className"));
 				dto.setTeacher(rs.getString("teacher"));
 				dto.setClassDate(rs.getString("classDate"));
 				dto.setClassTime(rs.getString("classTime"));
-				dto.setClassPay(rs.getInt("classPay"));
+				dto.setClassPay(rs.getString("classPay"));
 				dto.setPerson(rs.getInt("person"));
-				dto.setLev(rs.getString("lev"));	
-				dto.setAsk(rs.getString("ask"));	
+				dto.setLev(rs.getString("lev"));
+				dto.setState(rs.getString("state"));
+				dto.setClassSummary(rs.getString("classSummary"));
+				dto.setClassPlan(rs.getString("classPlan"));
+				dto.setReference(rs.getString("reference"));
+				dto.setPw(rs.getString("pw"));
+				dto.setOrgName(rs.getString("orgName"));
+				dto.setSysName(rs.getString("sysName"));
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(conn!=null)try{conn.close();}catch(SQLException ex){}
-		}return dto;
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return dto;
 	}
-	
-	// °ü¸®ÀÚ	
-	public void insertClass(ClassDTO dto) throws Exception { // °­ÁÂ °³¼³
-		try{
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public void insertClass(ClassDTO dto) throws Exception { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int num = dto.getNum();
+		String sql = "";
+		try {
 			conn = getConnection();
-			pstmt=conn.prepareStatement("insert into class values(?,?,?,?,?,?,?,?,?,?,?)");
-			pstmt.setInt(1,dto.getNum());
-			pstmt.setString(2,dto.getCenter());
-			pstmt.setString(3,dto.getClassCode());
-			pstmt.setString(4,dto.getClassName());
-			pstmt.setString(5,dto.getTeacher());
-			pstmt.setString(6,dto.getClassDate());
-			pstmt.setString(7,dto.getClassTime());
-			pstmt.setInt(8,dto.getClassPay());
-			pstmt.setInt(9,dto.getPerson());
-			pstmt.setString(10,dto.getLev());
-			pstmt.setString(11,dto.getAsk());
+			sql="insert into class( num,center,classCode,className,teacher,classDate,"
+					+ "classTime,classPay,person,lev,state,classSummary,classPlan,reference,pw,orgName,sysName) "
+					+ "values(class_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(1, dto.getCenter());
+			pstmt.setString(2, dto.getClassCode());
+			pstmt.setString(3, dto.getClassName());
+			pstmt.setString(4, dto.getTeacher());
+			pstmt.setString(5, dto.getClassDate());
+			pstmt.setString(6, dto.getClassTime());
+			pstmt.setString(7, dto.getClassPay());
+			pstmt.setInt(8, dto.getPerson());
+			pstmt.setString(9, dto.getLev());
+			pstmt.setString(10, dto.getState());
+			pstmt.setString(11, dto.getClassSummary());
+			pstmt.setString(12, dto.getClassPlan());
+			pstmt.setString(13, dto.getReference());
+			pstmt.setString(14, dto.getPw());
+			pstmt.setString(15, dto.getOrgName());
+			pstmt.setString(16, dto.getSysName());
 			pstmt.executeUpdate();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			if(pstmt !=null)try{pstmt.close();}catch(SQLException e){}
-			if(conn !=null)try{conn.close();}catch(SQLException e){}
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
 		}
 	}
-	
-	public int getArticleCount() throws Exception{  //°­ÁÂ¼ö
-		
-		int x=0;
-		try{
+
+	public int getArticleCount() throws Exception { 
+		int x = 0;
+		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("select count(*) from class");
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				x= rs.getInt(1); 
+				x = rs.getInt(1);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			if (rs != null) try { rs.close(); } catch(SQLException e) {}
-			if (pstmt != null) try { pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try { conn.close(); } catch(SQLException e) {}
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
 		}
 		return x;
 	}
-	public List getArticles(int start, int end) throws Exception {//¸ñ·Ï½ÃÀÛ³¡
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<ClassDTO> articleList=null;
+
+	public List<ClassDTO> getArticles(int start, int end) throws Exception {
+		
+		List<ClassDTO> articleList = null;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,ask, r "
-					+
-					"from (select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,ask,rownum r " 
-					+
-					"from (select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,ask " 
-					+
-					"from class where r >= ? and r <= ?");
-					pstmt.setInt(1, start); 
-					pstmt.setInt(2, end); 
+					"select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,state,classSummary,classPlan,reference,pw,orgName,sysName, r "
+							+ "from (select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,state,classSummary,classPlan,reference,pw,orgName,sysName, rownum r "
+							+ "from (select * from class order by num desc)) where r >= ? and r <= ?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 
-					rs = pstmt.executeQuery();
-					if (rs.next()) {
-						articleList = new ArrayList<ClassDTO>(end); 
-						do{ 
-							ClassDTO dto= new ClassDTO();
-							dto.setNum(rs.getInt("num"));
-							dto.setCenter(rs.getString("center"));
-							dto.setClassCode(rs.getString("classCode"));
-							dto.setClassName(rs.getString("className"));
-							dto.setTeacher(rs.getString("teacher"));
-							dto.setClassDate(rs.getString("classDate"));
-							dto.setClassTime(rs.getString("classTime"));
-							dto.setClassPay(rs.getInt("classPay"));
-							dto.setPerson(rs.getInt("person"));
-							dto.setLev(rs.getString("lev"));	
-							dto.setAsk(rs.getString("ask"));
-							articleList.add(dto); 
-						}while(rs.next());
-					}
-		} catch(Exception ex) {
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				articleList = new ArrayList<ClassDTO>(end);
+				do {
+					ClassDTO dto = new ClassDTO();
+					dto.setNum(rs.getInt("num"));				
+					dto.setCenter(rs.getString("center"));
+					dto.setClassCode(rs.getString("classCode"));
+					dto.setClassName(rs.getString("className"));
+					dto.setTeacher(rs.getString("teacher"));
+					dto.setClassDate(rs.getString("classDate"));
+					dto.setClassTime(rs.getString("classTime"));
+					dto.setClassPay(rs.getString("classPay"));
+					dto.setPerson(rs.getInt("person"));
+					dto.setLev(rs.getString("lev"));
+					dto.setState(rs.getString("state"));
+					dto.setClassSummary(rs.getString("classSummary"));
+					dto.setClassPlan(rs.getString("classPlan"));
+					dto.setReference(rs.getString("reference"));
+					dto.setPw(rs.getString("pw"));
+					dto.setOrgName(rs.getString("orgName"));
+					dto.setSysName(rs.getString("sysName"));
+					articleList.add(dto);
+				} while (rs.next());
+			}
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
 		}
 		return articleList;
+	}
+		public ClassDTO updateGetClass(int num)
+				throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ClassDTO dto=null;
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(
+				"select * from class where num = ?"); 
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					dto = new ClassDTO();
+					dto.setNum(rs.getInt("num"));
+					dto.setCenter(rs.getString("center"));
+					dto.setClassCode(rs.getString("classCode"));
+					dto.setClassName(rs.getString("className"));
+					dto.setTeacher(rs.getString("teacher"));
+					dto.setClassDate(rs.getString("classDate"));
+					dto.setClassTime(rs.getString("classTime"));
+					dto.setClassPay(rs.getString("classPay"));
+					dto.setPerson(rs.getInt("person"));
+					dto.setLev(rs.getString("lev"));
+					dto.setState(rs.getString("state"));
+					dto.setClassSummary(rs.getString("classSummary"));
+					dto.setClassPlan(rs.getString("classPlan"));
+					dto.setReference(rs.getString("reference"));
+					dto.setPw(rs.getString("pw"));
+					dto.setOrgName(rs.getString("orgName"));
+					dto.setSysName(rs.getString("sysName"));
+				
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) try { rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try { conn.close(); } catch(SQLException e) {}
+			}
+
+			return dto;
+		}
+		
+	
+		public int updateClass(ClassDTO dto)
+				throws Exception {
+			
+			String dbpw="";
+			String sql="";
+			int x=-1;
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(
+				"select pw from class where num = ?");
+				pstmt.setInt(1, dto.getNum());
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					dbpw= rs.getString("pw"); 
+					if(dbpw.equals(dto.getPw())){
+						sql="update class set center=?,classCode=?,className=?,teacher=?,classDate=?,classTime=?,classPay=?";
+						sql+=",person=?,lev=?,state=?,classSummary=?,classPlan=?,reference=?,content=?,pw=?,orgName=?,sysName=? where num=?";
+					
+						pstmt = conn.prepareStatement(sql);
+						
+						pstmt.setString(1, dto.getCenter());
+						pstmt.setString(2, dto.getClassCode());
+						pstmt.setString(3, dto.getClassName());
+						pstmt.setString(4, dto.getTeacher());
+						pstmt.setString(5, dto.getClassDate());
+						pstmt.setString(6, dto.getClassTime());
+						pstmt.setString(7, dto.getClassPay());
+						pstmt.setInt(8, dto.getPerson());
+						pstmt.setString(9, dto.getLev());
+						pstmt.setString(10, dto.getState());
+						pstmt.setString(11, dto.getClassSummary());
+						pstmt.setString(12, dto.getClassPlan());
+						pstmt.setString(13, dto.getReference());
+						pstmt.setString(14, dto.getPw());
+						pstmt.setString(15, dto.getOrgName());
+						pstmt.setString(16, dto.getSysName());
+						pstmt.executeUpdate();
+						
+						x= 1;
+					}else{
+						x= 0;
+					}
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) try { rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try { conn.close(); } catch(SQLException e) {}
+			}
+			return x;
+		}
+		public int deleteClass(int num, String pw) throws Exception {
+
+			String dbpw="";
+			int x=-1;
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(
+				"select pw from class where num = ?");
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					dbpw= rs.getString("pw");
+					if(dbpw.equals(pw)){
+						pstmt = conn.prepareStatement(
+						"delete from class where num =?");
+						pstmt.setInt(1, num);
+						pstmt.executeUpdate();
+						x= 1; 
+					}else
+						x= 0; 
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) try { rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try { conn.close(); } catch(SQLException e) {}
+			}
+			return x;
+
 	}
 }
 

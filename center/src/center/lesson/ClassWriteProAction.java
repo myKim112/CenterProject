@@ -1,46 +1,80 @@
 package center.lesson;
 
-import java.io.UnsupportedEncodingException;
+
+
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import center.action.SuperAction;
 import center.lesson.ClassDAO;
 import center.lesson.ClassDTO;
 
-public class ClassWriteProAction implements SuperAction {// ÀÔ·ÂµÈ ±Û Ã³¸®
+public class ClassWriteProAction implements SuperAction {// ï¿½Ô·Âµï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
 
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
+		
+		String path = request.getRealPath("classSave");
+		int max = 1024*1024*10;
+		String enc = "UTF-8";
+		DefaultFileRenamePolicy  df= new DefaultFileRenamePolicy();
 
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} // ÇÑ±Û ÀÎÄÚµù
-
-		ClassDTO dto = new ClassDTO();// µ¥ÀÌÅÍÃ³¸® ºó
-		dto.setNum(Integer.parseInt(request.getParameter("num")));
-		dto.setCenter(request.getParameter("center"));
-		dto.setClassCode(request.getParameter("classCode"));
-		dto.setClassName(request.getParameter("classname"));
-		dto.setTeacher(request.getParameter("teacher"));
-		dto.setClassDate(request.getParameter("classDate"));
-		dto.setClassTime(request.getParameter("classTime"));
-		dto.setClassPay(Integer.parseInt(request.getParameter("classPay")));
-		dto.setPerson(Integer.parseInt(request.getParameter("person")));
-		dto.setLev(request.getParameter("lev"));
-		dto.setState(request.getParameter("state"));
-		dto.setClassSummary(request.getParameter("ClassSummary"));
-		dto.setClassPlan(request.getParameter("ClassPlan"));
-		dto.setReference(request.getParameter("reference"));
-
-		ClassDAO dao = ClassDAO.getInstance();// DBÃ³¸®
-		try {
+		try{
+			ClassDAO dao = ClassDAO.getInstance();
+			ClassDTO dto = new ClassDTO();
+			MultipartRequest multi = new MultipartRequest(request, path, max, enc, df);
+		   
+			int num = Integer.parseInt(multi.getParameter("num"));
+			String center = multi.getParameter("center");
+			String classCode = multi.getParameter("classCode");
+			String className = multi.getParameter("className");
+			String teacher = multi.getParameter("teacher");
+			String classDate = multi.getParameter("classDate");
+			String classTime = multi.getParameter("classTime");
+			String classPay = multi.getParameter("classpay");		
+			int person = Integer.parseInt(multi.getParameter("person"));
+			String lev = multi.getParameter("lev");
+			String state = multi.getParameter("state");
+			String classSummary= multi.getParameter("classSummary");
+			String classPlan = multi.getParameter("classPlan");
+			String reference= multi.getParameter("reference");
+			String pw = multi.getParameter("pw");
+			File classSave = multi.getFile("save");
+			String ct = multi.getContentType("save"); 
+			String org = multi.getOriginalFileName("save"); 			
+			String sys = multi.getFilesystemName("save");
+			
+			
+		
+			dto.setNum(num);			
+			dto.setCenter(center);
+			dto.setClassCode(classCode);
+			dto.setClassName(className);
+			dto.setTeacher(teacher);
+			dto.setClassDate(classDate);
+			dto.setClassTime(classTime);
+			dto.setClassPay(classPay);
+			dto.setPerson(person);
+			dto.setLev(lev);
+			dto.setState(state);
+			dto.setClassSummary(classSummary);
+			dto.setClassPlan(classPlan);
+			dto.setReference(reference);
+			dto.setPw(pw);
+			dto.setOrgName(org);
+			dto.setSysName(sys);
+		
+			
 			dao.insertClass(dto);
-		} catch (Exception e) {
+			
+			request.setAttribute("sys", sys);
+		}catch(Exception e){
 			e.printStackTrace();
-		}
-
-		return "/class/classWritePro.kiki";
+			}
+		return "/class/classWritePro.jsp";
 	}
 }

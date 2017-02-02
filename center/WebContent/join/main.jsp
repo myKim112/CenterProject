@@ -33,7 +33,7 @@
 <br/>
 <input type="button" value="정보 수정" onclick="window.location='teacherUpdateForm.kiki'" />
 <br/>
-<input type="button" value="강의 신청" onclick="window.location=''" />
+<input type="button" value="강의 신청" onclick="window.location='classList.kiki'" />
 <br/>
 <input type="button" value="강의 목록" onclick="window.location='classList.kiki'" />
 

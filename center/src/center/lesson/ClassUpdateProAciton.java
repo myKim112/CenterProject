@@ -12,23 +12,26 @@ import center.action.SuperAction;
 import center.lesson.ClassDAO;
 import center.lesson.ClassDTO;
 
-public class ClassUpdateProAciton implements SuperAction {// ÀÔ·ÂµÈ ±Û Ã³¸®
+public class ClassUpdateProAciton implements SuperAction {// ï¿½Ô·Âµï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
 
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 
+		String pageNum = request.getParameter("pageNum");
+		String num = request.getParameter("num");
 		String path = request.getRealPath("classSave");
 		int max = 1024 * 1024 * 10;
 		String enc = "UTF-8";
 		DefaultFileRenamePolicy df = new DefaultFileRenamePolicy();
-		String pageNum=request.getParameter("pageNum");
-		ClassDTO dto = null;
+		
+
 
 		try {
-			ClassDAO dao = ClassDAO.getInstance();
-			dto = new ClassDTO();
+			
+			request.setCharacterEncoding("UTF-8");
 			MultipartRequest multi = new MultipartRequest(request, path, max, enc, df);
+			ClassDTO dto = new ClassDTO();
 
-			int num = Integer.parseInt(multi.getParameter("num"));
+			int number = Integer.parseInt(multi.getParameter("num"));
 			String center = multi.getParameter("center");
 			String classCode = multi.getParameter("classCode");
 			String className = multi.getParameter("className");
@@ -43,38 +46,44 @@ public class ClassUpdateProAciton implements SuperAction {// ÀÔ·ÂµÈ ±Û Ã³¸®
 			String classPlan = multi.getParameter("classPlan");
 			String reference = multi.getParameter("reference");
 			String pw = multi.getParameter("pw");
-			File classSave = multi.getFile("classSave");
-			String ct = multi.getContentType("classSave"); 
-			String org = multi.getOriginalFileName("classSave");
-			String sys = multi.getFilesystemName("classSave");
+			File classSave = multi.getFile("save");
+			String ct = multi.getContentType("save"); 
+			String org = multi.getOriginalFileName("save");
+			String sys = multi.getFilesystemName("save");
 
-			dto.setNum(Integer.parseInt(request.getParameter("num")));
-			dto.setCenter(request.getParameter("center"));
-			dto.setClassCode(request.getParameter("classCode"));
-			dto.setClassName(request.getParameter("className"));
-			dto.setTeacher(request.getParameter("teacher"));
-			dto.setClassDate(request.getParameter("classDate"));
-			dto.setClassTime(request.getParameter("classTime"));
-			dto.setClassPay(request.getParameter("classPay"));
-			dto.setPerson(Integer.parseInt(request.getParameter("person")));
-			dto.setLev(request.getParameter("lev"));
-			dto.setState(request.getParameter("state"));
-			dto.setClassSummary(request.getParameter("classSummary"));
-			dto.setClassPlan(request.getParameter("classPlan"));
-			dto.setReference(request.getParameter("reference"));
+			dto.setNum(number);
+			dto.setCenter(center);
+			dto.setClassCode(classCode);
+			dto.setClassName(className);
+			dto.setTeacher(teacher);
+			dto.setClassDate(classDate);
+			dto.setClassTime(classTime);
+			dto.setClassPay(classPay);
+			dto.setPerson(person);
+			dto.setLev(lev);
+			dto.setState(state);
+			dto.setClassSummary(classSummary);
+			dto.setClassPlan(classPlan);
+			dto.setReference(reference);
 			dto.setPw(request.getParameter("pw"));
-			dto.setOrgName(request.getParameter("org"));
-			dto.setSysName(request.getParameter("sys"));
+			dto.setOrgName(org);
+			dto.setSysName(sys);
 
+			ClassDAO dao = ClassDAO.getInstance();
+			if(sys !=null){
 			dao.updateClass(dto);
+			}else if(sys == null){
+				dao.updateClass(dto);
+			}
 
-			request.setAttribute("sys", sys);
-			request.setAttribute("pageNum", new Integer(pageNum));
-			System.out.println(path);
-			System.out.println(center);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", new Integer(pageNum));
+		
 		return "/class/classUpdatePro.jsp";
 	}
 }
+

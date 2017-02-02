@@ -7,35 +7,26 @@
 <title>노곰문화센터</title>
 </head>
 
-<c:if test="${lev == 1}">
-
-	<script>
-		function writeSave() {
-			alert('로그인 후 글쓰기 가능');
-			window.location = "/jsp/main.kiki";
-		}
-	</script>
-</c:if>
-
 
 <body bgcolor="${bodyback_c}">
 	<center>
 		<b>강좌소개</b>
 	</center>
 	<br>
-	<form method="post" name="writeform" action="classWritePro.kiki"
-		onsubmit="return writeSave()">
+	<form method="post" name="classFile" >
 		<input type="hidden" name="num" value="${num}"> </br> </br>
 
 		<table width="700" border="0" cellspacing="0" cellpadding="0"
 			align="center">
 
 			<tr>
-				<td align="center" rowspan="9"><input type="file" name="save" /></td>
+				<td align="center" rowspan="10">
+				<img src="/center/classSave/${dto.sysName }" ></td>
 
 				<td width="70" align="right">강좌명</td>
-				<td width="330">${dto.className }</td>
+				<td width="330">&nbsp;${dto.className }</td>
 			</tr>
+			
 			<tr>
 				<td colspan="2" align="center">
 					<hr style="border: solid 0.5px lightgray;">
@@ -45,32 +36,37 @@
 
 			<tr>
 				<td width="70" align="right">지점</td>
-				<td width="330">${dto.center }</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.center }</td>
 			</tr>
 
 			<tr>
 				<td width="70" align="right">강좌코드</td>
-				<td width="330">${cto.classCord }</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${cto.classCord }</td>
 			</tr>
 
 			<tr>
 				<td width="70" align="right">강사명</td>
-				<td width="330">${dto.teacher }<br /></td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.teacher }<br /></td>
 			</tr>
 
 			<tr>
 				<td width="70" align="right">강좌 기간</td>
-				<td width="330">${dto.classDate }</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.classDate }</td>
 			</tr>
 
 			<tr>
 				<td width="70" align="right">강좌 시간</td>
-				<td width="330">${dto.classTime }</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.classTime }</td>
 			</tr>
 
 			<tr>
 				<td width="70" align="right">수강료</td>
-				<td width="330">${dto.classPay}</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.classPay}</td>
+			</tr>
+			
+			<tr>
+				<td width="70" align="right">인원</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.person}</td>
 			</tr>
 
 			<tr>
@@ -78,16 +74,17 @@
 					<hr style="border: solid 0.5px lightgray;">
 				</td>
 			</tr>
+			
 			<tr>
 				<td colspan="4" align="right"><input type="button" value="즉시결제"
 					onclick="javascript:window.location='classState.kiki'" /> <input
 					type="button" value="강좌바구니"
-					onclick="javascript:window.location='classbasket.kiki'" /></td>
+					onclick="javascript:window.location='classCartList.kiki'" /></td>
 			</tr>
 		</table>
 		<br /> <br />
 		
-		 <b>소개상세</b> <br> <input type="hidden" name="num"
+		 <center><b>소개상세</b> <br><center> <input type="hidden" name="num"
 			value="${num}"> </br>
 
 		<table align="center">
@@ -97,10 +94,10 @@
 			</tr>
 			<tr>
 				<td width="80" align="center">대상</td>
-				<td width="330">${dto.lev}</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.lev}</td>
 
 				<td width="80" align="center">접수기간</td>
-				<td width="330">강좌시작일 3일전 마감</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;강좌시작일 3일전 마감</td>
 			</tr>
 
 			<tr>
@@ -110,10 +107,10 @@
 			<tr>
 
 				<td width="80" align="center">강의실</td>
-				<td width="330">문자발송</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;문자발송</td>
 
 				<td width="80" align="center">재료비</td>
-				<td width="330">문자발송</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;문자발송</td>
 			</tr>
 
 			<tr>
@@ -123,7 +120,7 @@
 
 			<tr>
 				<td width="80" align="center">개요</td>
-				<td width="330" colspan="3">${dto.classSummary}</td>
+				<td width="330" colspan="3"><pre>${dto.classSummary}</pre></td>
 			<tr>
 				<td colspan="4" align="center">
 					<hr align="center" size="1" color="#EAEAEA">
@@ -139,13 +136,13 @@
 
 			<tr>
 				<td colspan="4" align="right"><input type="button" value="목록보기"
-					onclick="document.location.href='classList.kiki?pageNum=${pageNum}'">
+					onclick="document.location.href='classList.kiki'">
 					
-					<c:if test="${staff.lev >= 20 }">
+					<c:if test="${staff.lev>=20 }">
 					<input type="button" value="글수정"
 					onclick="document.location.href='classUpdate.kiki?num=${dto.num}&pageNum=${pageNum}'">
-					</c:if>
-					<c:if test="${staff.lev >= 500 }">
+					
+					
 					<input type="button" value="글삭제"
 					onclick="document.location.href='classDelete.kiki?num=${dto.num}&pageNum=${pageNum}'">
 					</c:if>

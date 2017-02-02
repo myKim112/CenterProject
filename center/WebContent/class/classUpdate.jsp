@@ -6,17 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>노곰문화센터</title>
+
 </head>
 
-<c:if test="${staff.lev >= 20}">
-
-	<script>
-		function writeSave() {
-			alert('staff만 수정가능');
-			window.location = "/join/main.kiki";
+<script>
+	function updateSave() {
+		if(document.writeform.pw.value==''){
+			alert("비밀번호를 입력하세요");
+			document.writeform.pw.focus();
+			return false;
 		}
-	</script>
-
+	}
+</script>
 
 
 	<body bgcolor="${bodyback_c}">
@@ -24,8 +25,8 @@
 		<br>
 		
 		<form method="post" name="writeform"
-			action="classUpdatePro.kiki?pageNum=${pageNum }"
-			onsubmit="return updateSave()">
+			action="classUpdatePro.kiki?num=${num}&pageNum=${pageNum}"
+			onsubmit="return updateSave()" enctype="multipart/form-data">
 
 			<input type="hidden" name="num" value="${dto.num}"> </br> </br>
 
@@ -33,7 +34,7 @@
 				align="center">
 
 				<tr>
-					<td align="center" rowspan="9"><input type="file" name="save" /></td>
+					<td align="center" rowspan="10"><input type="file" name="classSave" /></td>
 					<td width="70" align="right">강좌명</td>
 					<td width="330"><input type="text" size="40" maxlength="50"
 						value="${dto.className}"></td>
@@ -81,6 +82,12 @@
 						value="${dto.classPay}"></td>
 				</tr>
 
+			<tr>
+				<td width="70" align="right">인원</td>
+				<td width="330"><input type="text" size="40" maxlength="30"
+					value="${dto.person}"></td>
+			</tr>
+			
 				<tr>
 					<td colspan="2" align="center">
 						<hr style="border: solid 0.5px lightgray;">
@@ -92,10 +99,11 @@
 						value="즉시결제"
 						onclick="javascript:window.location='classState.kiki'" /> <input
 						type="button" value="강좌바구니"
-						onclick="javascript:window.location='classbasket.kiki'" /></td>
+						onclick="javascript:window.location='classCart.kiki'" /></td>
 				</tr>
 			</table>
-			<br /> <br /> <b>소개상세</b> <br>
+			<br /> <br />
+			<center> <b>소개상세</b></center> <br>
 
 			<table align="center">
 				<tr>
@@ -163,7 +171,7 @@
 						value="목록보기" OnClick="window.location='classList.kiki'"></td>
 				</tr>
 			</table>
-</c:if>
+</form>			
+
 </html>
-</form>
 </body>

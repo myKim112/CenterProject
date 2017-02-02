@@ -10,11 +10,11 @@ public class ClassContentAction implements SuperAction {
 
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 
-		int num = Integer.parseInt(request.getParameter("num")); // ÇØ´ç±Û¹øÈ£
-		String pageNum = request.getParameter("pageNum"); //// ÇØ´çÆäÀÌÁö¹øÈ£
+		int num = Integer.parseInt(request.getParameter("num")); // ï¿½Ø´ï¿½Û¹ï¿½È£
+		String pageNum = request.getParameter("pageNum"); //// ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		String id = request.getParameter("id");
 
-		ClassDAO dao = ClassDAO.getInstance(); // DBÃ³¸®
+		ClassDAO dao = ClassDAO.getInstance(); // DBÃ³ï¿½ï¿½
 		StaffDAO dao1 = StaffDAO.getInstance();	
 		ClassDTO dto = null;
 		StaffDTO staff =null;
@@ -25,9 +25,9 @@ public class ClassContentAction implements SuperAction {
 		
 		} catch (Exception e) {
 			e.printStackTrace();
-		} // ÇØ´ç±ÛºÒ·¯¿À´Â DAO
+		} // ï¿½Ø´ï¿½ÛºÒ·ï¿½ï¿½ï¿½ï¿½ï¿½ DAO
 
-		// ÇØ´çºä¿¡¼­ »ç¿ëÇÒ ¼Ó¼º
+		// ï¿½Ø´ï¿½ä¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½
 		request.setAttribute("num", new Integer(num));
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("dto", dto);
