@@ -276,7 +276,37 @@ public class JoinDAO {
 		}
 		return id;
 	}
+
+
+public String pwFind(String name,String phone,String id) {
+	String sql = null;
+	String pw =null;
+	
+
+
+	try {
+		conn = getConnection();
+		sql = "select id from join where id=? and name=? and phone=?"; 
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.setString(2, name);
+		pstmt.setString(3, phone);
+		rs = pstmt.executeQuery(); // ½ÇÇà
+		if(rs.next()){
+			pw = rs.getString("pw");
+			pw = rs.getString("id");
+			
+		}
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+	return pw;
 }
+}
+
+
+
+
 
 
 
