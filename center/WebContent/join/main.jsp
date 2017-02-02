@@ -11,11 +11,13 @@
 <br/><br/>
 
 <c:if test="${sessionScope.centerId ne null}">
+
 <input type="button" value="정보수정" onclick="window.location='modify.kiki'"/>
-<input type="button" value="로그인" onclick="window.location='loginPage.kiki'"/>
+
 </c:if>
 <br/>
 
+<input type="button" value="로그인" onclick="window.location='loginPage.kiki'"/>
 
 <c:if test="${null eq id}">
 ===== 관리자 모드로 넣을거 ========
@@ -32,8 +34,8 @@
 <input type="button" value="정보 수정" onclick="window.location='teacherUpdateForm.kiki'" />
 <br/>
 <input type="button" value="강의 신청" onclick="window.location=''" />
-
+<br/>
+<input type="button" value="강의 목록" onclick="window.location='classList.kiki'" />
 
 </c:if>
 
-<input type="button" value="강의 목록" onclick="window.location='classList.kiki'" />
