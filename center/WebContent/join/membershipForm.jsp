@@ -8,7 +8,9 @@
 
 <link href="style.css" rel="stylesheet" type="text/css">
 
-<script>
+<script language="JavaScript">
+
+
 	function checkIt()
 	{
 		var userinput = eval("document.userinput");
@@ -51,10 +53,13 @@
 	}
 </script>
 
+
+
 <center>
 <font face="impact" color="gray" size="20">
 Membership Application</font>
 </center>
+
 
 <body>
 <form action="membershipPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">

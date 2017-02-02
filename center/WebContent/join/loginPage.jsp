@@ -36,8 +36,7 @@
 
 <body onload="focusIt()">
 
-<br><br><br><br><br><br><br><br><br><br><br><center><h2>무거운 
-삶의 무게를 덜어드리겠습니다 </h2> 
+<br><br><br><br><br><br><br><br><br><br><br><center><h2>healthy  Upgrade </h2> 
  <br />
       <br />
 <h3>노곰의 세계로</h3>

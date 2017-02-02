@@ -68,7 +68,6 @@ public class JoinDAO {
   				dto.setPhone(rs.getInt("phone"));
   				dto.setAddress(rs.getString("address"));  					
   				dto.setEmail(rs.getString("email"));
-  				dto.setLev(rs.getInt("lev"));
   				dto.setRegDate(rs.getTimestamp("regDate"));
   				
   				pstmt.executeQuery();
