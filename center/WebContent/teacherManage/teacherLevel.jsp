@@ -12,22 +12,26 @@
 </center>
 
 <body>
+<form action="teacherLevelPro.kiki?id=${staff.id}" method="post" >
 <table align="center">
 	<tr>
 	<td>ID</td>
-	<td>직급</td>
-	<td colspan="2">-</td>
+	<td>변경 전</td>
+	<td>변경 후</td>
 	</tr>
 	<tr>
 	<td>${staff.id}</td>
-	<td>${staff.lev}</td>
+	<td>${power.position}</td>
 	<td>
 		<select name="lev">
 			<option value="20">강사</option>
 			<option value="50">팀장</option>
 			<option value="500">중간관리자</option>
+			<option value="1000">최고관리자</option>
 		</select>
-		<input type="button" value="수정" onclick="document.location='teacherLevelPro.kiki?id=${staff.id}'" />
+		
+		<input type="submit" value="수정" />
 	</td></tr>
 </table>
+</form>
 </body>

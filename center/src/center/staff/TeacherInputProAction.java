@@ -22,7 +22,7 @@ public class TeacherInputProAction implements SuperAction {
 			staff.setAddress(request.getParameter("address"));
 			staff.setEmail(request.getParameter("email"));
 			staff.setBankName(request.getParameter("bankName"));
-			staff.setBankAccount(Integer.parseInt(request.getParameter("bankAccount")));
+			staff.setBankAccount(request.getParameter("bankAccount"));
 			staff.setRegDate(new Timestamp(System.currentTimeMillis()));
 			
 			StaffDAO manager = StaffDAO.getInstance();

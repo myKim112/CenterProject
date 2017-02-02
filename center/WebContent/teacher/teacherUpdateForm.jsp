@@ -33,6 +33,7 @@ Teacher Modify</font>
 	<tr>
 	<td width="150">ID</td>
 	<td align="left">${staff.id}<br><br>
+		<input type="hidden" value="${staff.id}" name="id" />
 	</td></tr>
 	<tr>
 	<td width="150">비밀번호</td>

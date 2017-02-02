@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import center.lesson.ClassDTO;
+import center.power.PowerDTO;
 
 public class StaffDAO {
 	private static StaffDAO instance = new StaffDAO();
@@ -50,7 +50,7 @@ public class StaffDAO {
 				teacher.setAddress(rs.getString("address"));  					
 				teacher.setEmail(rs.getString("email"));
 				teacher.setBankName(rs.getString("bankName"));
-				teacher.setBankAccount(rs.getInt("bankAccount"));
+				teacher.setBankAccount(rs.getString("bankAccount"));
 				teacher.setLev(rs.getInt("lev"));
 				teacher.setRegDate(rs.getTimestamp("regDate"));
   				
@@ -77,7 +77,7 @@ public class StaffDAO {
 			pstmt.setString(5, staff.getAddress());
 			pstmt.setString(6, staff.getEmail());
 			pstmt.setString(7, staff.getBankName());
-			pstmt.setInt(8, staff.getBankAccount());
+			pstmt.setString(8, staff.getBankAccount());
 			pstmt.setString(9, staff.getId());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
@@ -118,7 +118,7 @@ public class StaffDAO {
 			pstmt = conn.prepareStatement(
 					"select id, pw, name, birth, phone, address, email, bankName, bankAccount, lev, regDate , r from"+
 					"(select id, pw, name, birth, phone, address, email, bankName, bankAccount, lev, regDate, rownum r from"+ 
-					"(select * from staff order by regDate asc) order by regDate asc) where r>=? and r<=?");
+					"(select * from staff order by regDate desc) order by regDate desc) where r>=? and r<=?");
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
@@ -137,7 +137,7 @@ public class StaffDAO {
 					article.setAddress(rs.getString("address"));
 					article.setEmail(rs.getString("email"));
 					article.setBankName(rs.getString("bankName"));
-					article.setBankAccount(rs.getInt("bankAccount"));
+					article.setBankAccount(rs.getString("bankAccount"));
 					article.setLev(rs.getInt("lev"));
 					article.setRegDate(rs.getTimestamp("regDate"));
 					staffList.add(article);
@@ -176,6 +176,7 @@ public class StaffDAO {
 	}
 	
 	public void updateTeacherLev(StaffDTO staff) throws Exception { // 권한 수정하기
+		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("update staff set lev=? where id=?");
@@ -190,6 +191,33 @@ public class StaffDAO {
 		}
 	}
 	
+	public PowerDTO getTeacherLev(String id) throws Exception { // 해당하는 아이디의 권한 보기
+		PowerDTO power = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select s.lev, p.position, s.id from power p, staff s where s.id=? and p.lev = s.lev");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				power = new PowerDTO();
+				
+				power.setLev(rs.getInt("lev"));
+				power.setPosition(rs.getString("position"));
+				
+				pstmt.executeQuery();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return power;
+	}
+	
 	public void insertTeacher(StaffDTO staff) throws Exception { // 직원 등록
 		try {
 			conn = getConnection();
@@ -202,7 +230,7 @@ public class StaffDAO {
 			pstmt.setString(6, staff.getAddress());
 			pstmt.setString(7, staff.getEmail());
 			pstmt.setString(8, staff.getBankName());
-			pstmt.setInt(9, staff.getBankAccount());
+			pstmt.setString(9, staff.getBankAccount());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();

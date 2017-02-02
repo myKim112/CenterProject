@@ -36,3 +36,5 @@
 
 
 </c:if>
+
+<input type="button" value="강의 목록" onclick="window.location='classList.kiki'" />

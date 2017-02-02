@@ -18,7 +18,7 @@
 	<td>조회수</td>
 	</tr>
 </table>
-s
+
 <c:if test="${count == 0}">
 <table align="center" width="700">
 	작성된 글이 없습니다.

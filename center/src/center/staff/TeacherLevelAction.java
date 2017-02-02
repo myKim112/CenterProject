@@ -4,17 +4,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import center.action.SuperAction;
+import center.power.PowerDTO;
 
 public class TeacherLevelAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
 		StaffDTO staff = null;
+		PowerDTO power = null;
 		
 		try {
 			response.setCharacterEncoding("UTF-8");
 			
 			StaffDAO dbPro = StaffDAO.getInstance();
 			staff = dbPro.getTeacher(id);
+			power = dbPro.getTeacherLev(id);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -22,6 +25,7 @@ public class TeacherLevelAction implements SuperAction {
 		
 		request.setAttribute("id", id);
 		request.setAttribute("staff", staff);
+		request.setAttribute("power", power);
 		
 		return "/teacherManage/teacherLevel.jsp";
 	}

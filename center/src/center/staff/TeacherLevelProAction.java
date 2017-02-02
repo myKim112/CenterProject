@@ -9,21 +9,23 @@ import center.join.JoinDTO;
 public class TeacherLevelProAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
-		
 		try {
 			response.setCharacterEncoding("UTF-8");
 			
 			StaffDTO staff = new StaffDTO();
 			
 			staff.setLev(Integer.parseInt(request.getParameter("lev")));
+			staff.setId(id);
 			
 			StaffDAO dbPro = StaffDAO.getInstance();
 			dbPro.updateTeacherLev(staff);
+			
+			System.out.println(id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}		
 		request.setAttribute("id", id);
 		
-		return "/teacherManage/teacherLevelPro.kiki";
+		return "/teacherManage/teacherLevelPro.jsp";
 	}
 }

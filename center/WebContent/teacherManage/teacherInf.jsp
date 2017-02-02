@@ -34,11 +34,11 @@ TEACHER INFORMATION</font>
 	</tr>
 	<tr>
 	<td>가입일</td><td>${staff.regDate}</td>
-	<td>직급</td><td>${staff.lev}</td>
+	<td>직급</td><td>${power.position}</td>
 	</tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="강의목록" onclick="document.location.href='teacherClassList.kiki?id=${staff.id}'" />
+		<input type="button" value="강의목록" onclick="document.location.href=''" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
