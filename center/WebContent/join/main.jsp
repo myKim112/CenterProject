@@ -11,7 +11,6 @@
 <br/><br/>
 
 <c:if test="${sessionScope.centerId ne null}">
-
 <input type="button" value="정보수정" onclick="window.location='modify.kiki'"/>
 <input type="button" value="로그인" onclick="window.location='loginPage.kiki'"/>
 </c:if>
