@@ -7,26 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>노곰문화센터</title>
 
-</head>
-
-<script>
-	function updateSave() {
-		if(document.writeform.pw.value==''){
-			alert("비밀번호를 입력하세요");
-			document.writeform.pw.focus();
-			return false;
-		}
-	}
-</script>
-
 
 	<body bgcolor="${bodyback_c}">
 		<center><b>강좌소개</b></center>
 		<br>
 		
-		<form method="post" name="writeform"
-			action="classUpdatePro.kiki?num=${num}&pageNum=${pageNum}"
-			onsubmit="return updateSave()" enctype="multipart/form-data">
+		<form method="post" name="Updateform"
+			action="classUpdatePro.kiki?num=${dto.num}&pageNum=${pageNum}"
+			onsubmit="return updateSave(${pw}, ${dto.pw })" enctype="multipart/form-data">
 
 			<input type="hidden" name="num" value="${dto.num}"> </br> </br>
 
@@ -34,10 +22,10 @@
 				align="center">
 
 				<tr>
-					<td align="center" rowspan="10"><input type="file" name="classSave" /></td>
+					<td align="center" rowspan="10"><input type="file" name="save" value="${dto.sysName }"/>${dto.orgName }</td>
 					<td width="70" align="right">강좌명</td>
 					<td width="330"><input type="text" size="40" maxlength="50"
-						value="${dto.className}"></td>
+						name="className" value="${dto.className}"></td>
 				</tr>
 
 				<tr>
@@ -49,43 +37,43 @@
 				<tr>
 					<td width="70" align="right">지점</td>
 					<td width="330"><input type="text" size="10" maxlength="10"
-						value="${dto.center}"></td>
+						name="center" value="${dto.center}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강좌코드</td>
 					<td width="330"><input type="text" size="10" maxlength="10"
-						value="${dto.classCode}"></td>
+						name="classCode" value="${dto.classCode}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강사명</td>
 					<td width="330"><input type="text" size="40" maxlength="30"
-						value="${dto.teacher}"><br /></td>
+						name="teacher" value="${dto.teacher}"><br /></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강좌 기간</td>
 					<td width="330"><input type="text" size="40" maxlength="30"
-						value="${dto.classDate}"></td>
+						name="classDate" value="${dto.classDate}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강좌 시간</td>
 					<td width="330"><input type="text" size="40" maxlength="30"
-						value="${dto.classTime}"></td>
+						name="classTime" value="${dto.classTime}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">수강료</td>
 					<td width="330"><input type="text" size="10" maxlength="10"
-						value="${dto.classPay}"></td>
+					name="classPay" value="${dto.classPay}"></td>
 				</tr>
 
 			<tr>
 				<td width="70" align="right">인원</td>
 				<td width="330"><input type="text" size="40" maxlength="30"
-					value="${dto.person}"></td>
+					name="person" value="${dto.person}"></td>
 			</tr>
 			
 				<tr>
@@ -113,7 +101,7 @@
 
 				<tr>
 					<td width="80" align="center">대상</td>
-					<td width="330"><input type="text" value="${dto.lev}"></td>
+					<td width="330"><input type="text" name="lev" value="${dto.lev}"></td>
 
 					<td width="80" align="center">접수기간</td>
 					<td width="330">강좌시작일 3일전 마감</td>
@@ -141,7 +129,7 @@
 				<tr>
 					<td width="80" align="center">개요</td>
 					<td width="330" colspan="3"><textarea rows="50" cols="100"
-							name="dto.classSummary"
+							name="classSummary"
 							style="margin: 0px; width: 1134px; height: 300px; resize: none;">
 					${dto.classSummary}</textarea></td>
 				<tr>
@@ -158,7 +146,7 @@
 				<tr>
 					<td width="70" align="right">비밀번호</td>
 					<td align="left" width="330"><input type="password" size="8"
-						maxlength="12" name="pw"></td>
+						maxlength="12" name="pw" value="${dto.pw }"></td>
 				</tr>
 				<tr>
 					<td colspan="4" align="center">

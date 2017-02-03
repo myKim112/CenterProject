@@ -12,11 +12,10 @@
 <table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 <tr>
 <td align="right" >
-<c:if test="${staff.lev >= 20 }">
+<c:if test="${power.lev >= 20 }">
 <a href="classWrite.kiki">글쓰기</a>
 </c:if>
 </td></tr></table>
-
 
 
 <table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">

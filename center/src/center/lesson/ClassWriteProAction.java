@@ -35,7 +35,7 @@ public class ClassWriteProAction implements SuperAction {// �Էµ� �� ó
 			String teacher = multi.getParameter("teacher");
 			String classDate = multi.getParameter("classDate");
 			String classTime = multi.getParameter("classTime");
-			String classPay = multi.getParameter("classpay");		
+			String classPay = multi.getParameter("classPay");		
 			int person = Integer.parseInt(multi.getParameter("person"));
 			String lev = multi.getParameter("lev");
 			String state = multi.getParameter("state");
@@ -43,7 +43,7 @@ public class ClassWriteProAction implements SuperAction {// �Էµ� �� ó
 			String classPlan = multi.getParameter("classPlan");
 			String reference= multi.getParameter("reference");
 			String pw = multi.getParameter("pw");
-			File classSave = multi.getFile("save");
+			File Save = multi.getFile("save");
 			String ct = multi.getContentType("save"); 
 			String org = multi.getOriginalFileName("save"); 			
 			String sys = multi.getFilesystemName("save");
@@ -70,8 +70,8 @@ public class ClassWriteProAction implements SuperAction {// �Էµ� �� ó
 		
 			
 			dao.insertClass(dto);
+			request.setAttribute("num", num);
 			
-			request.setAttribute("sys", sys);
 		}catch(Exception e){
 			e.printStackTrace();
 			}

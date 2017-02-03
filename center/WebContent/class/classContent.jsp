@@ -8,7 +8,7 @@
 </head>
 
 
-<body bgcolor="${bodyback_c}">
+<body >
 	<center>
 		<b>강좌소개</b>
 	</center>
@@ -16,12 +16,11 @@
 	<form method="post" name="classFile" >
 		<input type="hidden" name="num" value="${num}"> </br> </br>
 
-		<table width="700" border="0" cellspacing="0" cellpadding="0"
-			align="center">
+		<table width="800" border="0" cellspacing="0" cellpadding="0"align="center" >
 
 			<tr>
-				<td align="center" rowspan="10">
-				<img src="/center/classSave/${dto.sysName }" ></td>
+				<td align="center" rowspan="10" width="300" style="table-layout:fixed" >
+				<img src="/center/classSave/${dto.sysName}" width="200" ></td>
 
 				<td width="70" align="right">강좌명</td>
 				<td width="330">&nbsp;${dto.className }</td>
@@ -41,7 +40,7 @@
 
 			<tr>
 				<td width="70" align="right">강좌코드</td>
-				<td width="330">&nbsp;&nbsp;&nbsp;${cto.classCord }</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.classCode }</td>
 			</tr>
 
 			<tr>
@@ -61,7 +60,7 @@
 
 			<tr>
 				<td width="70" align="right">수강료</td>
-				<td width="330">&nbsp;&nbsp;&nbsp;${dto.classPay}</td>
+				<td width="330">&nbsp;&nbsp;&nbsp;${dto.classPay }</td>
 			</tr>
 			
 			<tr>
@@ -138,7 +137,7 @@
 				<td colspan="4" align="right"><input type="button" value="목록보기"
 					onclick="document.location.href='classList.kiki'">
 					
-					<c:if test="${staff.lev>=20 }">
+					<c:if test="${power.lev>=20 }">
 					<input type="button" value="글수정"
 					onclick="document.location.href='classUpdate.kiki?num=${dto.num}&pageNum=${pageNum}'">
 					

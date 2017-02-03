@@ -31,7 +31,7 @@
 			align="center">
 
 			<tr>
-				<td align="center" rowspan="10"><input type="file" name="classSave" /></td>
+				<td align="center" rowspan="10"><input type="file" name="save" /></td>
 
 
 
