@@ -94,7 +94,7 @@ public class StaffDAO {
 			
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select count(*) from staff");
+			pstmt = conn.prepareStatement("select count(*) from staff where lev>=20");
 			rs = pstmt.executeQuery();
 				
 			if(rs.next()) {
@@ -118,7 +118,7 @@ public class StaffDAO {
 			pstmt = conn.prepareStatement(
 					"select id, pw, name, birth, phone, address, email, bankName, bankAccount, lev, regDate , r from"+
 					"(select id, pw, name, birth, phone, address, email, bankName, bankAccount, lev, regDate, rownum r from"+ 
-					"(select * from staff order by regDate desc) order by regDate desc) where r>=? and r<=?");
+					"(select * from staff where lev>=20 order by regDate desc) where lev>=20 order by regDate desc) where r>=? and r<=?");
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
@@ -237,6 +237,99 @@ public class StaffDAO {
 		} finally {
 			if(pstmt != null)try{pstmt.close();}catch(SQLException ex){}
 			if(conn != null)try{conn.close();}catch(SQLException ex){}
+		}
+	}
+	
+	public int getTeacherQuitCount() throws Exception { // 퇴사한 강사 수
+		int x = 0;
+			
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from staff where lev=0");
+			rs = pstmt.executeQuery();
+				
+			if(rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+			return x;
+	}
+	
+	public ArrayList<StaffDTO> getTeacherQuitArticle(int start, int end) throws Exception { // 퇴사한 강사 목록 불러오기
+		ArrayList<StaffDTO> staffList = null;
+	
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select id, pw, name, birth, phone, address, email, bankName, bankAccount, lev, regDate , r from"+
+					"(select id, pw, name, birth, phone, address, email, bankName, bankAccount, lev, regDate, rownum r from"+ 
+					"(select * from staff where lev=0 order by regDate desc) where lev=0 order by regDate desc) where r>=? and r<=?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+				
+			if(rs.next()) {
+				staffList = new ArrayList(end);
+					
+				do {
+					StaffDTO article = new StaffDTO();
+					
+					article.setId(rs.getString("id"));
+					article.setPw(rs.getString("pw"));
+					article.setName(rs.getString("name"));
+					article.setBirth(rs.getInt("birth"));
+					article.setPhone(rs.getInt("phone"));
+					article.setAddress(rs.getString("address"));
+					article.setEmail(rs.getString("email"));
+					article.setBankName(rs.getString("bankName"));
+					article.setBankAccount(rs.getString("bankAccount"));
+					article.setLev(rs.getInt("lev"));
+					article.setRegDate(rs.getTimestamp("regDate"));
+					staffList.add(article);
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return staffList;
+	}
+	
+	public void teacherDelete(String id) throws Exception { // 퇴사한 강사 정보 삭제
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("delete from staff where id = ?");
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
+	
+	public void teacherQuit(String id) throws Exception { // 강사 퇴사처리
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("update staff set lev=0 where id=?");
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null)try{pstmt.close();}catch(SQLException ex){}
+		 	if(conn != null)try{conn.close();}catch(SQLException ex){}
 		}
 	}
 }

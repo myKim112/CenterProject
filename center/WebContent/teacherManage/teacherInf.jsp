@@ -47,7 +47,7 @@ TEACHER INFORMATION</font>
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">		
-		<input type="button" value="퇴사처리" onclick="document.location.href=''" />
+		<input type="button" value="퇴사처리" onclick="document.location.href='teacherQuitPro.kiki?id=${staff.id}'" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
