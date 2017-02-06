@@ -5,6 +5,8 @@ import center.staff.StaffDAO;
 import center.staff.StaffDTO;
 import javax.servlet.http.*;
 import center.action.SuperAction;
+import center.cart.CartDAO;
+import center.cart.CartDTO;
 import center.power.PowerDTO;
 
 public class ClassContentAction implements SuperAction {
@@ -15,6 +17,10 @@ public class ClassContentAction implements SuperAction {
 		String id = (String)session.getAttribute("centerId");
 		int num = Integer.parseInt(request.getParameter("num")); 
 		String pageNum = request.getParameter("pageNum"); 
+		
+		
+	
+		
 
 
 		ClassDAO dao = ClassDAO.getInstance(); 
@@ -26,6 +32,8 @@ public class ClassContentAction implements SuperAction {
 		try {
 			dto = dao.getClass(num);
 			power = dao1.getTeacherLev(id);
+
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,6 +45,8 @@ public class ClassContentAction implements SuperAction {
 		request.setAttribute("id", id);
 		request.setAttribute("staff", staff);
 		request.setAttribute("power", power);
+
+		
 
 		return "/class/classContent.jsp";
 	}

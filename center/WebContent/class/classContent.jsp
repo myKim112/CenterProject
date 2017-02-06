@@ -75,10 +75,11 @@
 			</tr>
 			
 			<tr>
+			<input type="hidden" name="num" value="${num}">
 				<td colspan="4" align="right"><input type="button" value="즉시결제"
 					onclick="javascript:window.location='classState.kiki'" /> <input
 					type="button" value="강좌바구니"
-					onclick="javascript:window.location='classCartList.kiki'" /></td>
+					onclick="javascript:window.location='classCartListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}'" /></td>
 			</tr>
 		</table>
 		<br /> <br />
