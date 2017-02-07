@@ -8,6 +8,8 @@ import center.action.SuperAction;
 
 public class TeacherUpdateProAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
+
+		
 		try{
 			request.setCharacterEncoding("UTF-8");
 			String id = request.getParameter("id");
@@ -36,6 +38,7 @@ public class TeacherUpdateProAction implements SuperAction {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+				
 		return "/teacher/teacherUpdatePro.jsp";
 	}
 }

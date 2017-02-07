@@ -42,7 +42,7 @@ TEACHER INFORMATION</font>
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="권한부여" onclick="document.location.href='teacherLevel.kiki?id=${staff.id}'" />
+		<input type="button" value="권한부여" onclick="document.location.href='teacherLevel.kiki?id=${staff.id}&pageNum=${pageNum}'" />
 		<input type="button" value="정보수정" onclick="document.location.href='teacherUpdateForm.kiki?id=${staff.id}'"/>
 	</td></tr>
 	<tr>
