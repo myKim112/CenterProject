@@ -62,8 +62,8 @@
 	<tr height="30">
 	<td colspan="2" align="center">
 	<br/><br/>
-		<a href="">아이디 찾기</a>&nbsp;
-		<a href="">비밀번호 찾기</a>
+		<a href="/center/findIdForm.kiki">아이디 찾기</a>&nbsp;
+		<a href="/center/findPwForm.kiki">비밀번호 찾기</a>
 	</td><tr>
 	<tr height="30">
 	<td colspan="2" align="center">
@@ -87,6 +87,7 @@
 	<td align="center">
 		<input type="button" value="게시판" onclick="javascript:window.location='/form/boardtest/list.jsp'"/>
 		<input type="button" value=" 공지사항" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
+		<input type="button" value="내가쓴글보기" onclick="window.location='memListMenu.kiki'"/>
 	</td></tr>
 	<tr>
 	<td algin="center">

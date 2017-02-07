@@ -5,16 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import center.action.SuperAction;
 
-public class ConfirmIdAction implements SuperAction {
+public class MemListMenuAction implements SuperAction {
 	public String executeAction (HttpServletRequest request, HttpServletResponse response) {
-	
 		
-		
-		
-		
-		String id = request.getParameter("id");
-		
-		request.setAttribute("id", id);
-		return "/join/confirmId.jsp";
+		return "/memManage/memListMenu.jsp";
 	}
 }

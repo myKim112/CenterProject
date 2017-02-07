@@ -1,62 +1,80 @@
-<%@ page contentType="text/html;charset=euc-kr" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<title>¾ÆÀÌµğÃ£±â</title>
+<title>ì•„ì´ë””ì°¾ê¸°</title>
 
+<link href="style.css" rel="stylesheet" type="text/css">
 
-</head>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	try {
 		if(session.getAttribute("centerId") == null) { %>
 		
 		
-<script>
-
-
+<script language="javascript">
 
 function focusIt() {
-	document.findForm.id.focus();
+	document.findIdForm.id.focus();
 }
 
-function ResearchId() {
-	inputForm = eval("document.findForm");
+function findId() {
+	inputForm = eval("document.findIdForm");
 	
 	if(!inputForm.name.value) {
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.");
+		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		inputForm.id.focus();
 		return false;
-	}
+	} 
 	
 	if(!inputForm.phone.value) {
-		alert("-¾øÀÌ ÀüÈ­¹øÈ£¸¦  ÀÔ·ÂÇÏ¼¼¿ä.");
-		inputForm.pw.focus();
+		alert("-ì—†ì´ ì „í™”ë²ˆí˜¸ë¥¼  ì…ë ¥í•˜ì„¸ìš”.");
+		inputForm.phone.focus();
 		return false;
-	}
+	} 
+	
 }
 </script>
 
-
+</head>
 
 <body onLoad="focusIt()">
-<center>
+		<center>
 <br><br><br><br><br><br><br><br>
-<form name="findForm" method=post action="findIdPro.kiki" onSubmit="ResearchId()"/>
-<table>
-  <tr><td  align="center"><p><h1><b>¾ÆÀÌµğ Ã£±â</b></h1></td></tr>
-  <tr><td>
-            <p><strong>Name :</strong></td>
-            <td><input name="name" type=text size="31"></td></tr> </p>
-            </p>
-            <tr><td><strong>Phone Number:</strong></td>
-            <td><input type=text name=phone size="31" placeholder="-¸¦»ı·«ÇÏ°í ¼ıÀÚ¸¸ÀÔ·Â¼¼¿ä" />
-            </td></tr>
+			
+			
+			
+			
+			
+			<form name="findIdForm" id="findIdForm" action="findIdPro.kiki" method="post" onSubmit="return findId(this);">
+		
+	<table>
+	
+
+  						<tr>
+  								<h1><td  align="center"><p><h1><b>ì•„ì´ë”” ì°¾ê¸°</b></h1></td>
+  						</tr>
+  				        <tr>
+  				        		<td><p><strong>Name :</strong></p></td>
+           					    <td><input type=text name="name" id="name" type=text size="31"></td>
+           			   </tr>
+           
+           				<tr>    <td><strong>Phone Number:</strong></td>
+           						 <td><input type=text name="phone" id="phone" size="31" placeholder="-ë¥¼ìƒëµí•˜ê³  ìˆ«ìë§Œì…ë ¥ì„¸ìš”" />
+          						  </td>
+          			  </tr>
          
            
-  <tr><td><p><input type=submit value="È®     ÀÎ" >
-     <input type=reset value="Ãë    ¼Ò"></p></td></tr>
-</form>
+  <tr>
+
+  <td><P><input type="submit" value="í™•     ì¸" />
+     <input type=reset value="ì·¨    ì†Œ" />
+     <input type="button" value="íšŒì›ê°€ì…" onclick="window.location='/center/agreeForm.kiki'" />
+     </p></td></tr></table>
+     
+			</form>
+			
 
 
 
@@ -70,21 +88,21 @@ function ResearchId() {
 
 <%	} else { %>
 
-<form action="finIdPro.kiki" method="post">
+<form action="" method="post">
 <table align="center">
 	<tr>
 	<td align="center">
-		<h3>±ÍÇÏ°¡ ÀÔ·ÂÇÏ½Å Id´Â <br>
-		<%= session.getAttribute("centerId") %>ÀÔ´Ï´Ù</h3>
+		<h3>ê·€í•˜ê°€ ì…ë ¥í•˜ì‹  IdëŠ” <br>
+		<%= session.getAttribute("centerId") %>ì…ë‹ˆë‹¤</h3>
 	</td></tr>
 	<tr>
 	<td align="center">
-		<input type="button" value="·Î±×ÀÎ" onclick="javascript:window.location='logPage.kiki'"/>
-		<input type="button" value=" °øÁö»çÇ×" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
+		<input type="button" value="ë¡œê·¸ì¸" onclick="javascript:window.location='logPage.kiki'"/>
+		<input type="button" value=" ê³µì§€ì‚¬í•­" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
 	</td></tr>
 	<tr>
 	<td algin="center">
-		<input type="submit" value="·Î±×¾Æ¿ô" onclick="window.location='logOut.kiki'" /></td>
+		<input type="submit" value="ë¡œê·¸ì•„ì›ƒ" onclick="window.location='logOut.kiki'" /></td>
 	</tr>
 	<tr>
 	<td align="center">
@@ -92,14 +110,14 @@ function ResearchId() {
 			String id = (String)session.getAttribute("centerId");
 		
 			if(id.equals("admin")) {	%>
-			<input type="button" value="°ü¸®ÀÚ" onclick="window.location=''" />
+			<input type="button" value="ê´€ë¦¬ì" onclick="window.location=''" />
 		<%	} %>
 	</td></tr>
 	<tr>
 	<td align="center">
 		<font size="2">
-			<a href="">Á¤º¸¼öÁ¤</a> |
-			<a href="">È¸¿øÅ»Åğ</a>
+			<a href="">ì •ë³´ìˆ˜ì •</a> 
+			<a href="">íšŒì›íƒˆí‡´</a>
 	</font>
 </table>
 </form>
