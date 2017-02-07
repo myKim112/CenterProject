@@ -4,7 +4,7 @@
 
 <head>
 <title>캘린더</title>
-</head> 
+</head>
 
 <body>
 <form action="calInputPro.kiki" method="post">
@@ -15,8 +15,7 @@
 	<tr>
 		<td>제목 : </td>
 		<td>
-			<input type="text" name="calTitle" />
-			<input type="hidden" name="calNum" value="${calNum}"/>
+			<input type="text" name="calTitle">
 		</td>
 	</tr>
 	<tr>

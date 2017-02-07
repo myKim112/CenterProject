@@ -1,7 +1,5 @@
 package center.calendar;
 
-import java.sql.Timestamp;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +12,16 @@ public class CalInputProAction implements SuperAction{
 			
 			CalendarDTO cal = new CalendarDTO();
 			
-			cal.setCalPw(request.getParameter("calPW"));
-			cal.setCalDate(Timestamp.valueOf(request.getParameter("memoYear")));
+			cal.setCalNum(Integer.parseInt(request.getParameter("calNum")));
+			cal.setCalPw(request.getParameter("calPw"));
+			cal.setMemoYear(request.getParameter("memoYear"));
+			cal.setMemoMonth(request.getParameter("memoMonth"));
+			cal.setMemoDate(request.getParameter("memoDate"));
+			cal.setCalTitle(request.getParameter("calTitle"));
+			cal.setCalContent(request.getParameter("calContent"));
+			
+			CalendarDAO dbPro = CalendarDAO.getInstance();
+			dbPro.insertCal(cal);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

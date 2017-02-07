@@ -29,12 +29,14 @@ private static CalendarDAO instance = new CalendarDAO();
 		return ds.getConnection();
 	}
 	
-	public void insertTeacher(CalendarDTO cal) throws Exception { // 직원 등록
+	public void insertCal(CalendarDTO cal) throws Exception { // 일정 등록
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("insert into calendar values(?,?,?,?,?,?,?,?,?,20,sysdate)");
+			pstmt = conn.prepareStatement("insert into calendar values(calendar_seq.NEXTVAL, ?, TO_DATE(?, 'yyyy-MM-dd'), ?, ?)");
 			pstmt.setString(1, cal.getCalPw());
-			pstmt.setTimestamp(2, cal.get);
+			pstmt.setString(2, cal.getMemoYear()+"-"+cal.getMemoMonth()+"-"+cal.getMemoDate());
+			pstmt.setString(3, cal.getCalTitle());
+			pstmt.setString(4, cal.getCalContent());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -42,5 +44,32 @@ private static CalendarDAO instance = new CalendarDAO();
 			if(pstmt != null)try{pstmt.close();}catch(SQLException ex){}
 			if(conn != null)try{conn.close();}catch(SQLException ex){}
 		}
+	}
+	
+	public CalendarDTO getCal(int calNum) throws Exception { // 저장된 일정 가져오기
+		CalendarDTO cal = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select calNum, calPw, TO_CHAR(calDate, 'yyyy-MM-dd'), calTitle, calContent from calendar where calNum = ?");
+			pstmt.setInt(1, calNum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cal = new CalendarDTO();
+				
+				cal.setCalNum(rs.getInt("calNum"));
+				cal.setCalPw(rs.getString("calPw"));
+				cal.setCalDate(rs.getString("calDate"));
+				cal.setCalTitle(rs.getString("calTitle"));
+				cal.setCalContent(rs.getString("calContent"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return cal;
 	}
 }
