@@ -3,6 +3,7 @@ package center.lesson;
 public class ClassDTO {
 	private int num =0;
 	private int cnum =0;
+	private int tnum =0;
 	private String center = null;
 	private String classCode =null;
 	private String className = null;
@@ -21,6 +22,12 @@ public class ClassDTO {
 	private String sysName=null;
 	
 	
+	public int getTnum() {
+		return tnum;
+	}
+	public void setTnum(int tnum) {
+		this.tnum = tnum;
+	}
 	public int getNum() {return num;}
 	public void setNum(int num) {this.num = num;}
 	
