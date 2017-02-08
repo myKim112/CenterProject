@@ -6,8 +6,34 @@
 <title>캘린더</title>
 </head> 
 
+<script>
+	function checkIt() {
+		var userinput = eval("document.userinput");
+	
+		if(!userinput.memoYear.value) {
+			alert("년도를 입력하시요.");
+			return false;
+		}
+		
+		if(!userinput.memoMonth.value) {
+			alert("월을 입력하시요.");
+			return false;
+		}
+		
+		if(!userinput.memoDate.value) {
+			alert("일을 입력하시요.");
+			return false;
+		}
+		
+		if(!userinput.calPw.value) {
+			alert("비밀번호를 입력하시요.");
+			return false;
+		}
+	}
+</script>
+	
 <body>
-<form action="calInputPro.kiki" method="post">
+<form action="calInputPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
 <table align="center" width="300" border="1">
 	<tr>
 		<td align="center" colspan="2"><b>일정 추가</b></td>

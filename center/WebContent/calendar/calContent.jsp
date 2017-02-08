@@ -10,30 +10,29 @@
 <form action="" method="post">
 <table align="center" width="300" border="1">
 	<tr>
-		<td align="center" colspan="2"><b>일정 확인</b></td>
+		<td align="center"><b>일정 확인</b></td>
 	</tr>
 	<tr>
-		<td>제목 : </td>
-		<td>${cal.calTitle}</td>
+		<td>제목 : ${cal.calTitle}</td>
 	</tr>
 	<tr>
-		<td colspan="2">
-			
-			${cal.memoYear}년 ${cal.memoMonth}월 ${sdf.format(cal.calDate)}일
+		<td>
+			${cal.memoYear}년 ${cal.memoMonth}월${sdf.format(cal.calDate)}일
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2">
+		<td>
 			<pre>${cal.calContent}</pre>
 		</td>
 	</tr>
 	<tr>
-		<td align="right" colspan="2">
+		<td align="right">
 			<input type="button" value="일정 수정" onclick="window.location='calUpdateForm.kiki?calNum=${cal.calNum}'"/>
+			<input type="button" value="일정 삭제" onclick="window.location='calDeleteForm.kiki?calNum=${cal.calNum}'" />
 		</td>
 	</tr>
 	<tr>
-		<td align="right" colspan="2">
+		<td align="right">
 			<input type="button" value="목록" onclick="window.location='calendar.kiki'" />
 		</td>
 	</tr>			

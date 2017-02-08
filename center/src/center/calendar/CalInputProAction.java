@@ -7,6 +7,8 @@ import center.action.SuperAction;
 
 public class CalInputProAction implements SuperAction{
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
+		int calNum = Integer.parseInt(request.getParameter("calNum"));
+		
 		try {
 			request.setCharacterEncoding("UTF-8");
 			
@@ -25,6 +27,9 @@ public class CalInputProAction implements SuperAction{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("calNum", new Integer(calNum));
+		
 		return "/calendar/calInputPro.jsp";
 	}
 }
