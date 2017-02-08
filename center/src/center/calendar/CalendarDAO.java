@@ -147,4 +147,34 @@ private static CalendarDAO instance = new CalendarDAO();
 		}
 		return calList;
 	}
+	
+	public int deleteCal(int calNum, String calPw) { //일정 삭제
+		int result = -1;
+		String dbpw = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select calPw from calendar where calNum = ?");
+			pstmt.setInt(1, calNum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbpw = rs.getString("calPw");
+				if(dbpw.equals(calPw)) {
+					pstmt = conn.prepareStatement("delete from calendar where calNum = ?");
+					pstmt.setInt(1, calNum);
+					pstmt.executeUpdate();
+					result = 1;
+				} else {
+					result = 0;
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return result;
+	}
 }
