@@ -12,6 +12,10 @@ public class QnaWriteProAction implements SuperAction{
 
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		
+		
+		
+		
+		
 			try {
 				request.setCharacterEncoding("UTF-8");
 				QnaDTO article = new QnaDTO();

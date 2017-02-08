@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=euc-kr" %>
 <%@ page import = "center.join.*" %>
->
+
 <html>
 <head>
 <title>회원탈퇴</title>
@@ -28,7 +28,7 @@
   </tr>
   <tr >
     <td align="center"> 
-      <p>정보는 삭제되었지만 우린 당신을 기억하고, 기다리겠습니다</p>
+      <p>bye bye</p>
       <meta http-equiv="Refresh" content="5;url=loginPage.kiki" >
     </td>
   </tr>

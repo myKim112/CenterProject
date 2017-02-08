@@ -12,7 +12,7 @@
 </center>
 
 <body>
-<form action="teacherLevelPro.kiki?id=${staff.id}" method="post" >
+<form action="teacherLevelPro.kiki?id=${staff.id}&pageNum=${pageNum}" method="post" >
 <table align="center">
 	<tr>
 	<td>ID</td>

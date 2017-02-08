@@ -9,6 +9,7 @@ import center.power.PowerDTO;
 public class TeacherLevelAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
+		String pageNum = request.getParameter("pageNum");
 		StaffDTO staff = null;
 		PowerDTO power = null;
 		
@@ -26,6 +27,7 @@ public class TeacherLevelAction implements SuperAction {
 		request.setAttribute("id", id);
 		request.setAttribute("staff", staff);
 		request.setAttribute("power", power);
+		request.setAttribute("pageNum", pageNum);
 		
 		return "/teacherManage/teacherLevel.jsp";
 	}
