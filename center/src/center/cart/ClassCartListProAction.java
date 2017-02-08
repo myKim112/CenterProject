@@ -19,7 +19,7 @@ public class ClassCartListProAction implements SuperAction {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = request.getParameter("classCode");
@@ -29,13 +29,11 @@ public class ClassCartListProAction implements SuperAction {
 			CartDTO dto = new CartDTO();
 			dto.setId(id);
 			dto.setClassCode(classCode);
-			
 			dao.insertCartActicle(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 

@@ -9,20 +9,20 @@ package center.cart;
 	public class CartDelAction implements SuperAction {
 		public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 
-			int tnum = Integer.parseInt(request.getParameter("tnum"));
-			String pageNum = request.getParameter("pageNum");
+			String [] nums = request.getParameterValues("num");
 		
 				CartDAO dao = CartDAO.getInstance();
 			    try{
-				dao.deleteCart(tnum);
+			    	for(String n : nums){  //String형식으로 변수 n선언
+			    		int num = Integer.parseInt(n);
+			    		dao.deleteCart(num);
+			    	}
 				} catch (Exception e) {
 					
 					e.printStackTrace();
 				}
-			
-			request.setAttribute("pageNum", new Integer(pageNum));
 	
-			return "/classCart/cartDel.jsp";
+			return "/cart/cartDel.jsp";
 
 		}
 

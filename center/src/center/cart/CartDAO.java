@@ -39,11 +39,11 @@ public class CartDAO {
 
 		try {
 			conn = getConnection();
-			sql = "insert into cart values(cart_seq.NEXTVAL,?,?,?,sysdate)";
+			sql = "insert into cart values(cart_seq.NEXTVAL,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getTnum());
-			pstmt.setString(2, dto.getId());
-			pstmt.setString(3, dto.getClassCode());
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getClassCode());
+			
 			pstmt.executeUpdate();
 
 		} catch (Exception ex) {
@@ -107,16 +107,16 @@ public class CartDAO {
 		List<ClassDTO> articleList = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select t.num tnum,c.num cnum,c.classCode,c.center,c.className,c.classDate,c.classTime,c.classPay,c.person,c.state from class c , cart t where c.classCode = t.classCode and  t.id=?");
+			pstmt = conn.prepareStatement("select t.num tnum,c.num cnum,c.classCode,c.center,c.className,"
+					+ "c.classDate,c.classTime,c.classPay,c.person,c.state from class c , cart t where c.classCode = t.classCode and  t.id=?");
 			pstmt.setString(1, id);
-			
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				articleList = new ArrayList<ClassDTO>();
 				do {
 					ClassDTO dto = new ClassDTO();
-					CartDTO ddto = new CartDTO();
-					ddto.setTnum(rs.getInt("tnum"));
+					dto.setTnum(rs.getInt("tnum"));
 					dto.setCnum(rs.getInt("cnum"));
 					dto.setClassCode(rs.getString("classCode"));
 					dto.setCenter(rs.getString("center"));
@@ -152,13 +152,13 @@ public class CartDAO {
 		return articleList;
 	}
 
-	public int deleteCart(int tnum) throws Exception {
+	public int deleteCart(int num) throws Exception {
 
 		int x = -1;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("delete from cart where tnum =?");
-			pstmt.setInt(1, tnum);
+			pstmt = conn.prepareStatement("delete from cart where num =?");
+			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -182,5 +182,27 @@ public class CartDAO {
 		return x;
 
 	}
+	public int getCartsum(String id) throws Exception{
+	      int sum=0;
+	       try{
+	          conn=getConnection();
+	          pstmt=conn.prepareStatement("select sum(c.classPay*t.num ) from class c, cart t where id=? ");
+	          pstmt.setString(1, id);
+	          rs=pstmt.executeQuery();
+	       if(rs.next()){
+	   
+	       sum = rs.getInt(1);
+	   }
+	   }catch(Exception ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }
+	   return sum;
+	}
+	   
+	   
 
 }

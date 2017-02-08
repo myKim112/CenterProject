@@ -8,13 +8,50 @@
 </head>
 
 
+ <script language="javascript">
+     
+       function checkIt(){
+    	  var centerId = document.classFile.id.value;
+    	  
+		  if(centerId == ""){
+					alert("아이디를 입력하세요.");
+					return false;
+				}
+		 if(centerId !=null){
+         alert("성공")
+        window.location='classCartListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
+        return false;
+         }
+	   }   
+   </script>
+   
+    <script language="javascript">
+     
+       function checkIt2(){
+    	  var centerId = document.classFile.id.value;
+    	  
+		  if(centerId == ""){
+					alert("아이디를 입력하세요.");
+					return false;
+				}
+		 if(centerId !=null){
+         alert("성공")
+        window.location='classState.kiki';
+        return false;
+         }
+	   }   
+   </script>
+   
+
+
 <body >
 	<center>
 		<b>강좌소개</b>
 	</center>
 	<br>
-	<form method="post" name="classFile" >
+	<form method="post" name="classFile"  >
 		<input type="hidden" name="num" value="${num}"> </br> </br>
+		<input type="hidden" name="id" value="${id }">
 
 		<table width="800" border="0" cellspacing="0" cellpadding="0"align="center" >
 
@@ -75,17 +112,20 @@
 			</tr>
 			
 			<tr>
-			<input type="hidden" name="num" value="${num}">
-				<td colspan="4" align="right"><input type="button" value="즉시결제"
-					onclick="javascript:window.location='classState.kiki'" /> <input
-					type="button" value="강좌바구니"
-					onclick="javascript:window.location='classCartListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}'" /></td>
+	
+	        
+			<input type="hidden" name="num" value="${dto.num}">
+				<td colspan="4" align="right"><input type="button" value="즉시결제" name="classApp"
+					onclick="checkIt2()" />
+					 <input type="button" value="강좌바구니" name="classCart"
+					onclick="checkIt()" /></td>
+				
 			</tr>
+			
 		</table>
 		<br /> <br />
 		
-		 <center><b>소개상세</b> <br><center> <input type="hidden" name="num"
-			value="${num}"> </br>
+		 <center><b>소개상세</b> <br><center> <input type="hidden" name="num" value="${num}"> </br>
 
 		<table align="center">
 			<tr>
