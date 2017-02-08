@@ -88,13 +88,13 @@
 	<td width="100%">
 		<table id="calendarTable">
 			<tr>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>일</b></font></td>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>월</b></font></td>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>화</b></font></td>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>수</b></font></td>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>목</b></font></td>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>금</b></font></td>
-			<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>토</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>일</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>월</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>화</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>수</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>목</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>금</b></font></td>
+				<td align="center" bgcolor="#666666"><font color="#FFFFFF"><b>토</b></font></td>
 	</tr>
 <%
 
@@ -113,6 +113,7 @@
 			if(!(count >= cal.get(Calendar.DAY_OF_WEEK)))
 			{
 %>
+	
 	<td width="<%=boxSize%>" height="<%=boxSize%>" bgcolor="lightgray">&nbsp;</td>
 <%
 				count += 1;
@@ -129,7 +130,20 @@
 						todayColor = "#ffffff";
 					}
 %>
-	<td bgcolor="<%=todayColor%>" width="<%=boxSize%>" height="<%=boxSize%>" valign="top" align="left"><%=dispDay %><br></td>
+	<td bgcolor="<%=todayColor%>" width="<%=boxSize%>" height="<%=boxSize%>" valign="top" align="left"><%=dispDay %><br>
+	<c:set value="<%=dispDay%>" var="dispDay"/>
+		<table>
+			<c:forEach var="cal" items="${calList}">
+			<c:if test="${cal.calDate.date == dispDay}">
+			<tr>
+				<td>
+					<a href="calContent.kiki?calNum=${cal.calNum}" >${cal.calTitle}</a>
+				</td>
+			</tr>
+			</c:if>	
+			</c:forEach>
+		</table>
+	</td>
 <%
 			count += 1;
 			dispDay += 1;
@@ -156,7 +170,7 @@
 	</td></tr>
 	<tr>
 	<td align="right">
-		<input type="button" value="일정등록" onclick="window.location=''" />
+		<input type="button" value="일정등록" onclick="window.location='calInputForm.kiki'" />
 	</td></tr>		
 </table>
 </body>

@@ -80,7 +80,7 @@ Teacher Modify</font>
 	<tr>
 	<td width="150">은행명</td>
 	<td align="left">
-		<select name="bankName">
+		<select name="bankName" id="bankName" >
 			<option value="신한">신한</option>
 			<option value="우리">우리</option>
 			<option value="농협">농협</option>

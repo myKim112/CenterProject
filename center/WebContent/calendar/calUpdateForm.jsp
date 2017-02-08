@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<form action="calInputPro.kiki" method="post">
+<form action="calInputPro.kiki?calNum=${cal.calNum}" method="post">
 <table align="center" width="300" border="1">
 	<tr>
 		<td align="center" colspan="2"><b>일정 추가</b></td>
@@ -15,19 +15,21 @@
 	<tr>
 		<td>제목 : </td>
 		<td>
-			<input type="text" name="calTitle">
+			<input type="text" name="calTitle" value="${cal.calTitle}" />
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="text" name="memoYear" size="4" maxlength="4" />년
-			<input type="text" name="memoMonth" size="2" maxlength="2" />월
-			<input type="text" name="memoDate" size="2" maxlength="2" />일
+			<input type="text" name="memoYear" size="4" maxlength="4" value="${cal.memoYear}"/>년
+			<input type="text" name="memoMonth" size="2" maxlength="2" value="${cal.memoMonth}"/>월
+			<input type="text" name="memoDate" size="2" maxlength="2" value="${cal.memoDate}"/>일
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<textarea cols="40" rows="10" name="calContent" ></textarea>
+			<textarea cols="40" rows="10" name="calContent" >
+				${cal.calContent}
+			</textarea>
 		</td>
 	</tr>
 	<tr>

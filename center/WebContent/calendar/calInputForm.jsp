@@ -45,7 +45,7 @@
 	</tr>
 	<tr>
 		<td align="right" colspan="2">
-			<input type="button" value="달력으로" onclick="calendar.kiki" />
+			<input type="button" value="달력으로" onclick="window.location='calendar.kiki'" />
 		</td>
 	</tr>	
 </table>
