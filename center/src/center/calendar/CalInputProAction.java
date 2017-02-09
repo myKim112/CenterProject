@@ -7,10 +7,10 @@ import center.action.SuperAction;
 
 public class CalInputProAction implements SuperAction{
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		int calNum = Integer.parseInt(request.getParameter("calNum"));
-		
 		try {
 			request.setCharacterEncoding("UTF-8");
+			
+			int calNum = Integer.parseInt(request.getParameter("calNum"));
 			
 			CalendarDTO cal = new CalendarDTO();
 			
@@ -24,11 +24,11 @@ public class CalInputProAction implements SuperAction{
 			
 			CalendarDAO dbPro = CalendarDAO.getInstance();
 			dbPro.insertCal(cal);
+
+			request.setAttribute("calNum", new Integer(calNum));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		request.setAttribute("calNum", new Integer(calNum));
 		
 		return "/calendar/calInputPro.jsp";
 	}

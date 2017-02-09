@@ -7,16 +7,19 @@ import center.action.SuperAction;
 
 public class CalInputFormAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		int calNum = 0;
-		
 		try {
+			response.setCharacterEncoding("UTF-8");
+			
+			int calNum = 0;
+			
 			if(request.getParameter("calNum") != null) {
 				calNum = Integer.parseInt(request.getParameter("calNum"));
 			}
+			
+			request.setAttribute("calNum", new Integer(calNum));
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-		request.setAttribute("calNum", new Integer(calNum));
+		}		
 		
 		return "/calendar/calInputForm.jsp";
 	}

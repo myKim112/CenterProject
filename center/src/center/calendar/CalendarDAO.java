@@ -119,7 +119,7 @@ private static CalendarDAO instance = new CalendarDAO();
 		return x;
 	}
 	
-	public ArrayList<CalendarDTO> getSchedule() throws Exception {
+	public ArrayList<CalendarDTO> getSchedule() throws Exception { // 저장된 일정 불러오기
 		ArrayList<CalendarDTO> calList = null;
 		try {
 			conn = getConnection();
@@ -128,10 +128,19 @@ private static CalendarDAO instance = new CalendarDAO();
 			calList = new ArrayList<CalendarDTO>();
 			
 			while(rs.next()) {
+				// DB의 일정 정보 -> 년, 월, 일 문자열로 자른다.
+				String work = rs.getDate("calDate").toString();
+				String memoYear = work.substring(0, 4);
+				String memoMonth = work.substring(5, 7);
+				String memoDate = work.substring(8, 10);
+				
 				CalendarDTO cal = new CalendarDTO();
 				
 				cal.setCalNum(rs.getInt("calNum"));
 				cal.setCalPw(rs.getString("calPw"));
+				cal.setMemoYear(memoYear);
+				cal.setMemoMonth(memoMonth);
+				cal.setMemoDate(memoDate);
 				cal.setCalDate(rs.getTimestamp("calDate"));
 				cal.setCalTitle(rs.getString("calTitle"));
 				cal.setCalContent(rs.getString("calContent"));

@@ -8,7 +8,7 @@
 
 <script>
 	function deleteCheck() {
-		if(document.deleteForm.calPw.value='') {
+		if(!document.deleteForm.calPw.value) {
 			alert("비밀번호를 입력하시오.");
 			document.deleteForm.calPw.focus();
 			return false;

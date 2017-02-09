@@ -218,6 +218,27 @@ public class StaffDAO {
 		return power;
 	}
 	
+	public StaffDTO getLev(String id) throws Exception { // 로그인한 아이디의 권한 보기
+		StaffDTO staff = new StaffDTO();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select lev from staff where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+						
+			if(rs.next()) {
+				staff.setLev(rs.getInt("lev"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return staff; 
+	}
+	
 	public void insertTeacher(StaffDTO staff) throws Exception { // 직원 등록
 		try {
 			conn = getConnection();

@@ -33,7 +33,7 @@
 </script>
 
 <body>
-<form action="calUpdatePro.kiki?calNum=${cal.calNum}" method="post">
+<form action="calUpdatePro.kiki?calNum=${cal.calNum}" name="userinput" method="post" onSubmit="return checkIt()">
 <table align="center" width="300" border="1">
 	<tr>
 		<td align="center" colspan="2"><b>일정 추가</b></td>
@@ -70,7 +70,7 @@
 	</tr>
 	<tr>
 		<td align="right" colspan="2">
-			<input type="button" value="달력으로" onclick="calendar.kiki" />
+			<input type="button" value="달력으로" onclick="window.location='calendar.kiki'" />
 		</td>
 	</tr>	
 </table>
