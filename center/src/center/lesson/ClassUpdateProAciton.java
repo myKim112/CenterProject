@@ -49,6 +49,7 @@ public class ClassUpdateProAciton implements SuperAction {
 			String ct = multi.getContentType("save");
 			String org = multi.getOriginalFileName("save");
 			String sys = multi.getFilesystemName("save");
+			String teacherId = multi.getParameter("teacherId");
 
 			ClassDAO dao = ClassDAO.getInstance();
 
@@ -69,6 +70,7 @@ public class ClassUpdateProAciton implements SuperAction {
 			dto.setPw(pw);
 			dto.setOrgName(org);
 			dto.setSysName(sys);
+			dto.setTeacherId(teacherId);
 
 			if (org != null) {
 				check = dao.updateClass(dto);

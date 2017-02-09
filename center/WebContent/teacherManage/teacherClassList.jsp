@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<table align="center" width="700">
+<table align="center" width="1000" border="1">
 	<tr>
 		<td>번호</td>
 		<td>지점</td>
@@ -24,9 +24,9 @@
 </table>
 
 <c:if test="${count == 0}">
-<table align="center" width="700">
+<table align="center" width="1000" border="1">
 	<tr>
-		<td>
+		<td align="center">
 			강좌 이력이 없습니다.
 		</td>
 	</tr>
@@ -34,16 +34,18 @@
 </c:if>
 
 <c:if test="${count > 0}">
-<table align="center" width="700">
-<c:forEach var="staff" items="${staffList}">
+<table align="center" width="1000" border="1">
+<c:forEach var="staff" items="${classList}">
 	<tr>
 		<td>
-			<c:out value="${num}" />
-			<c:set var="num" value="${num -1}"/>
+			<c:out value="${number}" />
+			<c:set var="number" value="${number-1}"/>
 		</td>
 		<td>${staff.center}</td>
 		<td>${staff.classCode}</td>
-		<td>${staff.classTitle}</td>
+		<td>
+			<a href="">${staff.className}</a>
+		</td>
 		<td>${staff.teacher}</td>
 		<td>${staff.classDate}</td>
 		<td>${staff.classTime}</td>
@@ -54,6 +56,14 @@
 </c:forEach>
 </table>
 </c:if>
+
+<table align="center" width="1000" border="1">
+	<tr>
+		<td align="right">
+			<input type="button" value="목록보기" onclick="window.location='taecherList.kiki'" />
+		</td>
+	</tr>
+</table>
 </body>
 
 <center>

@@ -47,6 +47,7 @@ public class ClassWriteProAction implements SuperAction {// �Էµ� �� ó
 			String ct = multi.getContentType("save"); 
 			String org = multi.getOriginalFileName("save"); 			
 			String sys = multi.getFilesystemName("save");
+			String teacherId = multi.getParameter("teacherId");
 			
 			
 		
@@ -67,6 +68,7 @@ public class ClassWriteProAction implements SuperAction {// �Էµ� �� ó
 			dto.setPw(pw);
 			dto.setOrgName(org);
 			dto.setSysName(sys);
+			dto.setTeacherId(teacherId);
 		
 			
 			dao.insertClass(dto);
