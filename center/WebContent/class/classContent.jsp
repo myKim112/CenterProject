@@ -10,7 +10,7 @@
 
  <script language="javascript">
      
-       function checkIt(){
+       function cart(){
     	  var centerId = document.classFile.id.value;
     	  
 		  if(centerId == ""){
@@ -18,8 +18,7 @@
 					return false;
 				}
 		 if(centerId !=null){
-         alert("성공")
-        window.location='classCartListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
+         	 window.location='classCartListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
         return false;
          }
 	   }   
@@ -27,7 +26,7 @@
    
     <script language="javascript">
      
-       function checkIt2(){
+       function buy(){
     	  var centerId = document.classFile.id.value;
     	  
 		  if(centerId == ""){
@@ -35,8 +34,7 @@
 					return false;
 				}
 		 if(centerId !=null){
-         alert("성공")
-        window.location='classState.kiki';
+			 window.location='appListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
         return false;
          }
 	   }   
@@ -114,11 +112,11 @@
 			<tr>
 	
 	        
-			<input type="hidden" name="num" value="${dto.num}">
-				<td colspan="4" align="right"><input type="button" value="즉시결제" name="classApp"
-					onclick="checkIt2()" />
-					 <input type="button" value="강좌바구니" name="classCart"
-					onclick="checkIt()" /></td>
+			<input type="hidden" name="num" value="${dto.num}" />
+				<td colspan="4" align="right">
+					<input type="button" value="즉시결제" name="classApp" onclick="buy()" />
+					<input type="button" value="강좌바구니" name="classCart" onclick="cart()" />
+				</td>
 				
 			</tr>
 			

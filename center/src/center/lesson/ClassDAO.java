@@ -84,6 +84,57 @@ public class ClassDAO {
 	}
 
 
+	public ClassDTO getClassCode(String classCode) throws Exception { 
+		ClassDTO dto = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from class where classCode=?");
+			pstmt.setString(1, classCode);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new ClassDTO();
+				dto.setNum(rs.getInt("num"));
+				dto.setCenter(rs.getString("center"));
+				dto.setClassCode(rs.getString("classCode"));
+				dto.setClassName(rs.getString("className"));
+				dto.setTeacher(rs.getString("teacher"));
+				dto.setClassDate(rs.getString("classDate"));
+				dto.setClassTime(rs.getString("classTime"));
+				dto.setClassPay(rs.getString("classPay"));
+				dto.setPerson(rs.getInt("person"));
+				dto.setLev(rs.getString("lev"));
+				dto.setState(rs.getString("state"));
+				dto.setClassSummary(rs.getString("classSummary"));
+				dto.setClassPlan(rs.getString("classPlan"));
+				dto.setReference(rs.getString("reference"));
+				dto.setPw(rs.getString("pw"));
+				dto.setOrgName(rs.getString("orgName"));
+				dto.setSysName(rs.getString("sysName"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return dto;
+	}
+	
+	
 	public void insertClass(ClassDTO dto) throws Exception { 
 		
 		int num = dto.getNum();

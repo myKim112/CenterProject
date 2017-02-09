@@ -74,7 +74,7 @@ public class CartDAO {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("select count(*) from class s ,cart t where s.classCode = t.classCode");// 코드가
 																													// 같은
-																												// 것을
+																		// 것을
 																											// 보여달라
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

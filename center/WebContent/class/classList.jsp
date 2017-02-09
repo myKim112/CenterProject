@@ -60,7 +60,8 @@
 <td colspan="2" align="center">${dto.person }</td>
 <td colspan="2" align="center">${dto.lev }</td>
 <td colspan="4" align="center">${dto.reference }
-<input type="button" value="수강신청"onclick="javascript:window.location='classApp.kiki'"></td>
+
+<input type="button" value="수강신청"onclick="javascript:window.location='appListPro.kiki?classCode=${dto.classCode}'"></td>
 </tr></table>
 <hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
 </c:forEach>

@@ -4,6 +4,7 @@ public class ClassDTO {
 	private int num =0;
 	private int cnum =0;
 	private int tnum =0;
+	private int anum =0;
 	private String center = null;
 	private String classCode =null;
 	private String className = null;
@@ -78,11 +79,11 @@ public class ClassDTO {
 	
 	public String getSysName() {return sysName;}
 	public void setSysName(String sysName) {this.sysName = sysName;}
-	public int getCnum() {
-		return cnum;
-	}
-	public void setCnum(int cnum) {
-		this.cnum = cnum;
-	}
+	
+	public int getCnum() {return cnum;}
+	public void setCnum(int cnum) {this.cnum = cnum;}
+	
+	public int getAnum() {return anum;}
+	public void setAnum(int anum) {this.anum = anum;}
 	
 }

@@ -6,6 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>노곰문화센터</title>
+	
 	<script type="text/javascript">
 		function delCart(){
 			document.cartForm.action="cartDel.kiki";
@@ -65,7 +66,7 @@
 						<td colspan="3" align="center">${dto.classPay }</td>
 						<td colspan="2" align="center">${dto.person }</td>
 						<td colspan="4" align="center">${dto.state}
-							<input type="button" value="수강신청"onclick="javascript:window.location='classApp.kiki'">
+							<input type="button" value="수강신청"onclick="javascript:window.location='appListPro.kiki?classCode=${dto.classCode}'">
 						</td>
 					</tr>
 					<tr>
@@ -80,8 +81,8 @@
 			<tr>
 				<td align="right" >
 					<br><br>
-					<input type="button"  value="즉시결제" onclick="javascript:window.location='classApp.kiki'" /> 
-					<input type="button" value="삭제" onclick="delCart();" /> 
+					<input type="button"  value="결제" onclick="javascript:window.location='appListPro.kiki?num=${dto.tnum}'" /> 
+					<input type="button" value="삭제" onclick="delApp();" /> 
 				</td>
 			</tr>
 		</table>
