@@ -13,7 +13,7 @@ public class TeacherListAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		int pageSize=10;
 		
-		int num = Integer.parseInt(request.getParameter("num"));
+//		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");
 		
 		HttpSession session = request.getSession();
@@ -44,14 +44,17 @@ public class TeacherListAction implements SuperAction {
 			e.printStackTrace();
 		}
 		
+		number = count-(currentPage-1)*pageSize;
+		
 		request.setAttribute("currentPage", new Integer(currentPage));
 		request.setAttribute("startRow", new Integer(startRow));
 		request.setAttribute("endRow", new Integer(endRow));
 		request.setAttribute("count", new Integer(count));
-		request.setAttribute("pageSize", new Integer(pageSize));
+		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("staffList", staffList);
-		request.setAttribute("num", new Integer(num));
+		request.setAttribute("pageNum", pageNum);
+//		request.setAttribute("num", new Integer(num));
 		
 		return "/teacherManage/teacherList.jsp";
 	}

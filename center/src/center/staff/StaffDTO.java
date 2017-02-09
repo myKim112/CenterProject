@@ -11,8 +11,8 @@ public class StaffDTO {
 	private String address;
 	private String email;
 	private String bankName;
-	private int bankAccount;
-	private String lev;
+	private String bankAccount;
+	private int lev;
 	private Timestamp regDate;
 	
 	public String getId() {return id;}
@@ -39,11 +39,11 @@ public class StaffDTO {
 	public String getBankName() {return bankName;}
 	public void setBankName(String bankName) {this.bankName = bankName;}
 	
-	public int getBankAccount() {return bankAccount;}
-	public void setBankAccount(int bankAccount) {this.bankAccount = bankAccount;}
+	public String getBankAccount() {return bankAccount;}
+	public void setBankAccount(String bankAccount) {this.bankAccount = bankAccount;}
 	
-	public String getLev() {return lev;}
-	public void setLev(String lev) {this.lev = lev;}
+	public int getLev() {return lev;}
+	public void setLev(int lev) {this.lev = lev;}
 	
 	public Timestamp getRegDate() {return regDate;}
 	public void setRegDate(Timestamp regDate) {this.regDate = regDate;}

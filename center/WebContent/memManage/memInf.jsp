@@ -29,22 +29,18 @@ MEMBER INFORMATION</font>
 	<td>주소</td><td colspan="3">${article.address}</td>
 	</tr>
 	<tr>
-	<td>은행명</td><td>${article.bankName}</td>
-	<td>계죄번호</td><td>${article.bankAccount}</td>
-	</tr>
-	<tr>
 	<td>가입일</td><td>${article.regDate}</td>
-	<td>level</td><td>${article.lev}</td>
+	<td>직급</td><td>${article.lev}</td>
 	</tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="회원 글보기" onclick="document.location.href='/memWriteList.kiki?writer=${article.id}'" />
-		<input type="button" value="회원 수강내역" onclick="document.loaction.href='/memClassList.kiki?writer=${article.id}'" />
+		<input type="button" value="회원 글보기" onclick="document.location.href='memWriteList.kiki?writer=${article.id}'" />
+		<input type="button" value="회원 수강내역" onclick="document.loaction.href='memClassList.kiki?writer=${article.id}'" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="탈퇴" onclick="document.location.href=''" />
-		<input type="button" value="정보수정" onclick="document.location.href=''"/>
+		<input type="button" value="탈퇴" onclick="document.location.href='memDelete.kiki?id=${article.id}'" />
+		<input type="button" value="정보수정" onclick="document.location.href='modify.kiki?id=${article.id}'"/>
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">

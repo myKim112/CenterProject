@@ -36,8 +36,7 @@
 
 <body onload="focusIt()">
 
-<br><br><br><br><br><br><br><br><br><br><br><center><h2>무거운 
-삶의 무게를 덜어드리겠습니다 </h2> 
+<br><br><br><br><br><br><br><br><br><br><br><center><h2>healthy  Upgrade </h2> 
  <br />
       <br />
 <h3>노곰의 세계로</h3>
@@ -63,8 +62,8 @@
 	<tr height="30">
 	<td colspan="2" align="center">
 	<br/><br/>
-		<a href="">아이디 찾기</a>&nbsp;
-		<a href="">비밀번호 찾기</a>
+		<a href="/center/findIdForm.kiki">아이디 찾기</a>&nbsp;
+		<a href="/center/findPwForm.kiki">비밀번호 찾기</a>
 	</td><tr>
 	<tr height="30">
 	<td colspan="2" align="center">
@@ -77,7 +76,7 @@
 
 <%	} else { %>
 
-<form action="logout.kiki" method="post">
+<form action="logOut.kiki" method="post">
 <table align="center">
 	<tr>
 	<td align="center">
@@ -88,6 +87,7 @@
 	<td align="center">
 		<input type="button" value="게시판" onclick="javascript:window.location='/form/boardtest/list.jsp'"/>
 		<input type="button" value=" 공지사항" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
+		<input type="button" value="내가쓴글보기" onclick="window.location='memListMenu.kiki'"/>
 	</td></tr>
 	<tr>
 	<td algin="center">

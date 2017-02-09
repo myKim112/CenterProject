@@ -8,7 +8,9 @@
 
 <link href="style.css" rel="stylesheet" type="text/css">
 
-<script>
+<script language="JavaScript">
+
+
 	function checkIt()
 	{
 		var userinput = eval("document.userinput");
@@ -51,10 +53,13 @@
 	}
 </script>
 
+
+
 <center>
 <font face="impact" color="gray" size="20">
 Membership Application</font>
 </center>
+
 
 <body>
 <form action="membershipPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
@@ -64,7 +69,7 @@ Membership Application</font>
 	<td align="left">
 		<input type="text" name="id" placeholder="아이디" />
 		&nbsp;&nbsp;
-		<input type="button" value="중복확인" />
+		<input type="button" value="중복확인" OnClick="openConfirmId(this.form)"/>
 		<br><br>
 	</td></tr>
 	<tr>
@@ -76,7 +81,7 @@ Membership Application</font>
 	<tr>
 	<td width="150">비밀번호 재입력</td>
 	<td align="left">
-		<input type="password" name="pwcheck" />
+		<input type="password" name="pwcheck" /> *동일한 비밀번호를 입력하시오.
 		<br><br>
 	</td>></tr>
 	<tr>
@@ -88,13 +93,13 @@ Membership Application</font>
 	<tr>
 	<td width="150">생년월일</td>
 	<td align="left">
-		<input type="text" name="birth" />
+		<input type="text" name="birth" placeholder="ex>19990909"/>
 		<br><br>
 	</td></tr>
 	<tr>
 	<td width="150">전화번호</td>
 	<td align="left">
-		<input type="text" name="phone" />
+		<input type="text" name="phone" placeholder="숫자만 입력해주세요"/>
 		<br><br>
 	</td></tr>
 	<tr>
@@ -107,17 +112,6 @@ Membership Application</font>
 	<td width="150">E-mail</td>
 	<td align="left">
 		<input type=text name="email">
-		<br><br>
-	</td></tr>
-	<tr>
-	<td width="150">등급</td>
-	<td align="left">
-		<select name="lev">
-			<option value="주니어">주니어</option>
-			<option value="어덜트">어덜트</option>
-			<option value="실버">실버</option>
-			<option value="선택안함">선택안함</option>
-		</select>
 		<br><br>
 	</td></tr>
 	<tr>

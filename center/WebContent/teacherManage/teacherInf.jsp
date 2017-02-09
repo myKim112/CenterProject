@@ -34,20 +34,24 @@ TEACHER INFORMATION</font>
 	</tr>
 	<tr>
 	<td>가입일</td><td>${staff.regDate}</td>
-	<td>level</td><td>${staff.lev}</td>
+	<td>직급</td><td>${power.position}</td>
 	</tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="강의목록" onclick="document.location.href='teacherClassList.kiki?id=${staff.id}'" />
+		<input type="button" value="강의목록" onclick="document.location.href=''" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="퇴사처리" onclick="document.location.href=''" />
-		<input type="button" value="정보수정" onclick="document.location.href='/mypage/modify.kiki?id=${staff.id}'"/>
+		<input type="button" value="권한부여" onclick="document.location.href='teacherLevel.kiki?id=${staff.id}&pageNum=${pageNum}'" />
+		<input type="button" value="정보수정" onclick="document.location.href='teacherUpdateForm.kiki?id=${staff.id}'"/>
+	</td></tr>
+	<tr>
+	<td colspan="4" align="right">		
+		<input type="button" value="퇴사처리" onclick="document.location.href='teacherQuitPro.kiki?id=${staff.id}'" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="목록" onclick="document.location.href='/teacherList.kiki?pageNum=${pageNum}'" />
+		<input type="button" value="목록" onclick="document.location.href='teacherList.kiki?pageNum=${pageNum}'" />
 	</td></tr>
 </table>
 </body>

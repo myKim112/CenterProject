@@ -34,13 +34,13 @@ MEMBER LIST</font>
 
 <c:if test="${count > 0}">
 <table align="center" width="500" border="1">
-<c:forEach var="article" items="${articleList}">
+<c:forEach var="article" items="${articleList}" varStatus="i">
 	<tr>
-	<td><c:out value="${num}"/>
-		<c:set var="num" value="${num-1}" />
-	<input type="hidden" name="num" value="${num}"/>
+	<td>${i.count}
+<%--	<c:set var="num" value="${num-1}" />
+		<input type="hidden" name="num" value="${num}"/> --%>
 	</td>	
-	<td><a href="memInf.kiki?id=${article.id}&num=${num}&pageNum=${pageNum}">${article.id}</a></td>
+	<td><a href="memInf.kiki?id=${article.id}&pageNum=${pageNum}">${article.id}</a></td>
 	<td>${article.name}</td>
 	</tr>
 </c:forEach>

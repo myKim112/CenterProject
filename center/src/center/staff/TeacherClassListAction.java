@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import center.action.SuperAction;
-import center.lesson.ClassDAO;
+import center.staff.StaffDAO;
 
 public class TeacherClassListAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
@@ -27,14 +27,15 @@ public class TeacherClassListAction implements SuperAction {
 		int number = 0;
 		
 		List staffList = null;
-		ClassDAO dbPro = ClassDAO.getInstance();
+		StaffDAO dbPro = StaffDAO.getInstance();
 		
 		try {
-//			count = dbPro.getTeacherClassCount(); // 해당 강사의 강좌 수
+			count = dbPro.getTeacherClassCount(id); // 해당 강사의 강좌 수
 			// 해당 강사의 아이디를 입력 받은 것으로 검색 해야한다.
 			
 			if(count > 0) {
-//				staffList = dbPro.getTeacherClassArticle(); // 해당 강사의 강의 목록
+//				staffList = dbPro.getTeacherClassArticle(id, startRow, endRow); // 해당 강사의 강좌 목록
+				// 이거 어떻게 만들즈쥐
 			} else {
 				staffList = Collections.EMPTY_LIST;
 			}					
