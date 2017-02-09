@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import center.action.SuperAction;
 import center.staff.StaffDAO;
@@ -19,6 +20,11 @@ public class TeacherClassListAction implements SuperAction {
 			pageNum = "1";
 		}
 		
+		if(id == null) {
+			HttpSession session = request.getSession();
+			id = (String)session.getAttribute("centerId");
+		}
+		
 		int pageSize = 10;
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage-1)*pageSize+1;
@@ -31,7 +37,7 @@ public class TeacherClassListAction implements SuperAction {
 		
 		try {
 			count = dbPro.getTeacherClassCount(id); // 해당 강사의 강좌 수
-			// 해당 강사의 아이디를 입력 받은 것으로 검색 해야한다.
+
 			
 			if(count > 0) {
 //				staffList = dbPro.getTeacherClassArticle(id, startRow, endRow); // 해당 강사의 강좌 목록
