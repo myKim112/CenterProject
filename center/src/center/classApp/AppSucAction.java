@@ -19,17 +19,16 @@ public class AppSucAction implements SuperAction{
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = request.getParameter("classCode");
-		int num = Integer.parseInt(request.getParameter("num"));
+		
 		try {
 			AppDTO dto = new AppDTO();
-			dto.setNum(num);
 			dto.setId(id);
 			dto.setClassCode(classCode);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        request.setAttribute("num", num);
+       
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 		

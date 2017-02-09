@@ -7,10 +7,10 @@ public class AppDTO {
 	private int num;
     private String id;
     private String classCode;
-    private int classPay;
+    private int sum;
     private int status;
     private Timestamp reg_date;
-	
+    private int memberCount;
 	public int getNum() {
 		return num;
 	}
@@ -29,11 +29,11 @@ public class AppDTO {
 	public void setClassCode(String classCode) {
 		this.classCode = classCode;
 	}
-	public int getClassPay() {
-		return classPay;
+	public int getSum() {
+		return sum;
 	}
-	public void setClassPay(int classPay) {
-		this.classPay = classPay;
+	public void setSum(int sum) {
+		this.sum = sum;
 	}
 	public int getStatus() {
 		return status;
@@ -46,6 +46,12 @@ public class AppDTO {
 	}
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
+	}
+	public int getMemberCount() {
+		return memberCount;
+	}
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
 	}
 
 

@@ -43,19 +43,22 @@
 		</tr>
 	</table>
 	<hr align="center" style="border: solid 1px red;" WIDTH="1400">
+			<form action="appSuc.kiki" method="post">
 	<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
 		<hr align="center" style="border: solid 1px red;" WIDTH="1400">
 		<tr>
-			<td colspan="15" align="center"><label id="pay">${dto.classPay}</label> * <label id="mc">1</label> = <label id="sum">${dto.classPay}</label> </td>
-			<br />
-			<form action="/center/classApp/test.jsp">
+			<td colspan="15" align="center"><label id="pay">${dto.classPay}</label> * <label id="mc">1</label> = <label id="sum">${dto.classPay}</label> 
+			<br/>
+			</td>
+			<td>
 				<input type="hidden" name="classCode" value="${dto.classCode}" />
 				<input type="hidden" name="pay" value="" id="rpay"/>
 				<input type="hidden" name="memberCount" value="" id="rmc" />
-				<input type="submit" value="결제" />
-			</form>
+			</td>
+				<td align="center"><input type="submit" value="결제" /></td>
 		</tr>
 	</table>
+			</form>
 
 </body>
 </html>

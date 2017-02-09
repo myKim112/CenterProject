@@ -47,8 +47,10 @@ public class AppDAO {
 				dto.setNum(rs.getInt("num"));
 				dto.setId(rs.getString("id"));
 				dto.setClassCode(rs.getString("classCode"));
-				dto.setClassPay(rs.getInt("classPay"));
+				dto.setSum(rs.getInt("sum"));
 				dto.setStatus(rs.getInt("status"));
+				dto.setMemberCount(rs.getInt("memberCount"));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,13 +80,13 @@ public class AppDAO {
 		String sql = "";
 		try {
 			conn = getConnection();
-			sql = "insert into app values(app_seq.NEXTVAL,?,?,?,?,sysdate)";
+			sql = "insert into app values(app_seq.NEXTVAL,?,?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,dto.getId());
 			pstmt.setString(2, dto.getClassCode());
-			pstmt.setInt(3,dto.getClassPay());
+			pstmt.setInt(3,dto.getSum());
 			pstmt.setInt(4,dto.getStatus());
-			
+			pstmt.setInt(5,dto.getMemberCount());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,56 +154,6 @@ public class AppDAO {
 					dto.setCenter(rs.getString("center"));
 					dto.setClassName(rs.getString("className"));
 					dto.setTeacher(rs.getString("teacher"));
-					dto.setClassDate(rs.getString("classDate"));
-					dto.setClassTime(rs.getString("classTime"));
-					dto.setClassPay(rs.getString("classPay"));
-					dto.setPerson(rs.getInt("person"));
-					dto.setState(rs.getString("state"));
-					articleList.add(dto);
-				} while (rs.next());
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException ex) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException ex) {
-				}
-		}
-		return articleList;
-	}
-	
-	
-	public List<ClassDTO> getArticles2(String id) throws Exception {
-
-		List<ClassDTO> articleList = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select a.num anum,c.num cnum,c.classCode,c.center,c.className,"
-					+ "c.classDate,c.classTime,c.classPay,c.person,c.state from class c , app a where c.classCode = a.classCode and  a.id=?");
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				articleList = new ArrayList<ClassDTO>();
-				do {
-					ClassDTO dto = new ClassDTO();
-					dto.setTnum(rs.getInt("anum"));
-					dto.setCnum(rs.getInt("cnum"));
-					dto.setClassCode(rs.getString("classCode"));
-					dto.setCenter(rs.getString("center"));
-					dto.setClassName(rs.getString("className"));
 					dto.setClassDate(rs.getString("classDate"));
 					dto.setClassTime(rs.getString("classTime"));
 					dto.setClassPay(rs.getString("classPay"));

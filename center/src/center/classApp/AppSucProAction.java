@@ -23,12 +23,19 @@ public class AppSucProAction implements SuperAction{
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = request.getParameter("classCode");
+		int sum = Integer.parseInt(request.getParameter("sum"));
+		int status = Integer.parseInt(request.getParameter("status"));
+		int memberCount = Integer.parseInt(request.getParameter("memberCount"));
 
+		
 		try {
 			AppDAO dao = AppDAO.getInstance();
 			AppDTO dto = new AppDTO();
 			dto.setId(id);
 			dto.setClassCode(classCode);
+			dto.setSum(sum);
+			dto.setStatus(status);
+			dto.setMemberCount(memberCount);
 			dao.insertAppActicle(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,7 +43,6 @@ public class AppSucProAction implements SuperAction{
 
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
-		
 		return "/classApp/appSucPro.jsp";
 	}
 }
