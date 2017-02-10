@@ -7,12 +7,13 @@
 <title>노곰문화센터</title>
 <script type="text/javascript">
 	function sumCalc(count){
-		var pay = ${dto.classPay};
+		var pay = parseInt('${cdto.classPay}');
 		var sum = pay * count;
 		document.getElementById("mc").innerHTML=count;
 		document.getElementById("sum").innerHTML=sum;
 		document.getElementById("rmc").value=count;
 		document.getElementById("rpay").value=sum;
+		document.payment.sum.value = sum;
 	}
 </script>
 </head>
@@ -30,30 +31,31 @@
 		</tr>
 		<tr>
 			<td colspan="15" align="center">
-				[${dto.center}][${dto.className}]<br />
-				강좌기간 | ${dto.classDate } <br />
-				강좌시간 | ${dto.classTime } <br />
-				강사명 | ${dto.teacher }
+				[${cdto.center}][${cdto.className}]<br />
+				강좌기간 | ${cdto.classDate } <br />
+				강좌시간 | ${cdto.classTime } <br />
+				강사명 | ${cdto.teacher }
 			</td>
 			<td colspan="4" align="center">${sessionScope.centerId }</td>
-			<td colspan="4" align="center"><input type="number" value="1" name="memberCount" onchange="sumCalc(this.value);"/> </td>
-			<td colspan="4" align="center">${dto.classPay}</td>
+			<td colspan="4" align="center"><input type="number" value="0" name="memberCount" onchange="sumCalc(this.value);"/> </td>
+			<td colspan="4" align="center">${cdto.classPay}</td>
 			<td colspan="3" align="center"> - </td>
-			<td colspan="2" align="center">${dto.classPay}</td>
+			<td colspan="2" align="center">${cdto.classPay}</td>
 		</tr>
 	</table>
 	<hr align="center" style="border: solid 1px red;" WIDTH="1400">
-			<form action="appSuc.kiki" method="post">
+	<form action="appSucPro.kiki?classCode=${cdto.classCode }" method="post" name = "payment">
 	<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
 		<hr align="center" style="border: solid 1px red;" WIDTH="1400">
 		<tr>
-			<td colspan="15" align="center"><label id="pay">${dto.classPay}</label> * <label id="mc">1</label> = <label id="sum">${dto.classPay}</label> 
+			<td colspan="15" align="center"><label id="pay">${cdto.classPay}</label> * <label id="mc">0</label> = <label id="sum">${cdto.classPay}</label> 
 			<br/>
 			</td>
 			<td>
-				<input type="hidden" name="classCode" value="${dto.classCode}" />
+				<input type="hidden" name="classCode" value="${cdto.classCode}" />
 				<input type="hidden" name="pay" value="" id="rpay"/>
 				<input type="hidden" name="memberCount" value="" id="rmc" />
+				<input type="hidden" name="sum" value="" id="sum" />
 			</td>
 				<td align="center"><input type="submit" value="결제" /></td>
 		</tr>

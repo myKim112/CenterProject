@@ -25,7 +25,7 @@ public class ClassCartListAction implements SuperAction {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = null;
-		int sum = 0;
+
 		List<ClassDTO> articleList = null;
 		CartDAO dao = CartDAO.getInstance();
 
@@ -41,14 +41,6 @@ public class ClassCartListAction implements SuperAction {
 			e.printStackTrace();
 		}
 		
-		   try {
-		         CartDAO dao2=CartDAO.getInstance();
-		         sum = dao2.getCartsum(id);
-		         
-		      } catch (Exception e) {
-		         e.printStackTrace();
-		      }
-		   
 		number = count - (currentPage - 1) * pageSize;
 
 		request.setAttribute("currentPage", new Integer(currentPage));
@@ -57,7 +49,6 @@ public class ClassCartListAction implements SuperAction {
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
-		request.setAttribute("sum", sum);
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 

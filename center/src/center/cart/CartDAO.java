@@ -182,27 +182,4 @@ public class CartDAO {
 		return x;
 
 	}
-	public int getCartsum(String id) throws Exception{
-	      int sum=0;
-	       try{
-	          conn=getConnection();
-	          pstmt=conn.prepareStatement("select sum(c.classPay*t.num ) from class c, cart t where id=? ");
-	          pstmt.setString(1, id);
-	          rs=pstmt.executeQuery();
-	       if(rs.next()){
-	   
-	       sum = rs.getInt(1);
-	   }
-	   }catch(Exception ex) {
-	        ex.printStackTrace();
-	    } finally {
-	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-	    }
-	   return sum;
-	}
-	   
-	   
-
 }

@@ -30,6 +30,7 @@ public class ClassCartListProAction implements SuperAction {
 			dto.setId(id);
 			dto.setClassCode(classCode);
 			dao.insertCartActicle(dto);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -36,7 +36,7 @@ public class AppListProAction implements SuperAction{
 		request.setAttribute("dto", dto);
 		
 
-		return "/classApp/appList.jsp";
+		return "/classApp/appListPro.jsp";
 
 	}
 }

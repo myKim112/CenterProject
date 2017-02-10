@@ -13,6 +13,18 @@
 			document.cartForm.submit();
 		}
 	</script>
+
+	<script type="text/javascript">
+	function sumCalc(count){
+		var pay = ${dto.classPay};
+		var sum = pay * count;
+		document.getElementById("cc").innerHTML=count;
+		document.getElementById("sum").innerHTML=sum;
+		document.getElementById("rcc").value=count;
+		document.getElementById("rpay").value=sum;
+	}
+	</script>
+	
 </head>
 
 <body>
@@ -88,9 +100,14 @@
 		</table>
 
 		<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
-			<tr>
-				<td align="right">합계액 : ${sum }</td>
-			</tr>
+						<td colspan="15" align="center"><label id="pay">${dto.classPay}</label> * <label id="cc">1</label> = <label id="sum">${dto.classPay}</label> 
+			<br/>
+			</td>
+			<td>
+				<input type="hidden" name="classCode" value="${dto.classCode}" />
+				<input type="hidden" name="pay" value="" id="rpay"/>
+				<input type="hidden" name="classCount" value="" id="rcc" />
+			</td>
 		</table>
 	</form>
 </body>

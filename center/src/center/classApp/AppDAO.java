@@ -80,13 +80,12 @@ public class AppDAO {
 		String sql = "";
 		try {
 			conn = getConnection();
-			sql = "insert into app values(app_seq.NEXTVAL,?,?,?,?,?,sysdate)";
+			sql = "insert into app values(app_seq.NEXTVAL,?,?,?,0,sysdate,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,dto.getId());
 			pstmt.setString(2, dto.getClassCode());
 			pstmt.setInt(3,dto.getSum());
-			pstmt.setInt(4,dto.getStatus());
-			pstmt.setInt(5,dto.getMemberCount());
+			pstmt.setInt(4,dto.getMemberCount());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,23 +103,21 @@ public class AppDAO {
 		}
 	}
 
-	public int getArticleCount(int num) throws Exception {
+	public int getArticleCount(String classCode) throws Exception {
 		int x = 0;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select count(*) from class s ,app a where s.classCode = a.classCode");  //코드가 같은것을 보여달라
+			pstmt = conn.prepareStatement("select count(*) from class where classCode = ?");  //코드가 같은것을 보여달라
+			pstmt.setString(1, classCode);
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				x = rs.getInt(1);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
 			if (pstmt != null)
 				try {
 					pstmt.close();
@@ -135,7 +132,7 @@ public class AppDAO {
 		return x;
 	}
 
-	public List<ClassDTO> getAppArticles(String id) throws Exception {
+	/*public List<ClassDTO> getAppArticles(String id) throws Exception {
 
 		List<ClassDTO> articleList = null;
 		try {
@@ -150,6 +147,54 @@ public class AppDAO {
 					ClassDTO dto = new ClassDTO();
 					dto.setAnum(rs.getInt("anum"));
 					dto.setCnum(rs.getInt("cnum"));
+					dto.setClassCode(rs.getString("classCode"));
+					dto.setCenter(rs.getString("center"));
+					dto.setClassName(rs.getString("className"));
+					dto.setTeacher(rs.getString("teacher"));
+					dto.setClassDate(rs.getString("classDate"));
+					dto.setClassTime(rs.getString("classTime"));
+					dto.setClassPay(rs.getString("classPay"));
+					dto.setPerson(rs.getInt("person"));
+					dto.setState(rs.getString("state"));
+					articleList.add(dto);
+				} while (rs.next());
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return articleList;
+	}*/
+	
+	public List<ClassDTO> getAppArticles(String classCode) throws Exception {
+
+		List<ClassDTO> articleList = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from class where classCode=?");
+			pstmt.setString(1,classCode);
+			rs = pstmt.executeQuery();			
+			if (rs.next()) {
+				articleList = new ArrayList<ClassDTO>();
+				do {
+					ClassDTO dto = new ClassDTO();
+//					dto.setAnum(rs.getInt("anum"));
+					dto.setNum(rs.getInt("num"));
 					dto.setClassCode(rs.getString("classCode"));
 					dto.setCenter(rs.getString("center"));
 					dto.setClassName(rs.getString("className"));
@@ -214,11 +259,11 @@ public class AppDAO {
 		return x;
 
 	}
-	public int getCartsum(String id) throws Exception{
+	public int getAppsum(String id) throws Exception{
 	      int sum=0;
 	       try{
 	          conn=getConnection();
-	          pstmt=conn.prepareStatement("select sum(classPay * num ) from app where id=? ");
+	          pstmt=conn.prepareStatement("select sum(sum * memberCount) from app where id=? ");
 	          pstmt.setString(1, id);
 	          rs=pstmt.executeQuery();
 	       if(rs.next()){

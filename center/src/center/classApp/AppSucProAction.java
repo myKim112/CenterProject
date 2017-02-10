@@ -1,8 +1,8 @@
 package center.classApp;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Collections;
-import java.util.List;
+import java.sql.Timestamp;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,19 +23,24 @@ public class AppSucProAction implements SuperAction{
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = request.getParameter("classCode");
+		System.out.println(classCode);
 		int sum = Integer.parseInt(request.getParameter("sum"));
-		int status = Integer.parseInt(request.getParameter("status"));
+		System.out.println(sum);
+//		int status = Integer.parseInt(request.getParameter("status"));
 		int memberCount = Integer.parseInt(request.getParameter("memberCount"));
+		
 
 		
 		try {
 			AppDAO dao = AppDAO.getInstance();
 			AppDTO dto = new AppDTO();
+			 
 			dto.setId(id);
 			dto.setClassCode(classCode);
 			dto.setSum(sum);
-			dto.setStatus(status);
+//			dto.setStatus(status);
 			dto.setMemberCount(memberCount);
+			dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 			dao.insertAppActicle(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,6 +48,7 @@ public class AppSucProAction implements SuperAction{
 
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
+		
 		return "/classApp/appSucPro.jsp";
 	}
 }
