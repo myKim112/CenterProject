@@ -43,9 +43,7 @@
 		</td>
 		<td>${staff.center}</td>
 		<td>${staff.classCode}</td>
-		<td>
-			<a href="">${staff.className}</a>
-		</td>
+		<td>${staff.className}</td>
 		<td>${staff.teacher}</td>
 		<td>${staff.classDate}</td>
 		<td>${staff.classTime}</td>

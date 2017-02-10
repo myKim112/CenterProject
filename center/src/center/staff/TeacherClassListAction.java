@@ -19,6 +19,11 @@ public class TeacherClassListAction implements SuperAction {
 		if(pageNum == null) {
 			pageNum = "1";
 		}
+		
+		if(id == null) {
+			HttpSession session = request.getSession();
+			id = (String)session.getAttribute("centerId");
+		}
 				
 		int pageSize = 10;
 		int currentPage = Integer.parseInt(pageNum);
