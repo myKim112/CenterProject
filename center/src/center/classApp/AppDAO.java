@@ -181,53 +181,7 @@ public class AppDAO {
 		return articleList;
 	}*/
 	
-	public List<ClassDTO> getAppArticles(String classCode) throws Exception {
-
-		List<ClassDTO> articleList = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select * from class where classCode=?");
-			pstmt.setString(1,classCode);
-			rs = pstmt.executeQuery();			
-			if (rs.next()) {
-				articleList = new ArrayList<ClassDTO>();
-				do {
-					ClassDTO dto = new ClassDTO();
-//					dto.setAnum(rs.getInt("anum"));
-					dto.setNum(rs.getInt("num"));
-					dto.setClassCode(rs.getString("classCode"));
-					dto.setCenter(rs.getString("center"));
-					dto.setClassName(rs.getString("className"));
-					dto.setTeacher(rs.getString("teacher"));
-					dto.setClassDate(rs.getString("classDate"));
-					dto.setClassTime(rs.getString("classTime"));
-					dto.setClassPay(rs.getString("classPay"));
-					dto.setPerson(rs.getInt("person"));
-					dto.setState(rs.getString("state"));
-					articleList.add(dto);
-				} while (rs.next());
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException ex) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException ex) {
-				}
-		}
-		return articleList;
-	}
+	
 	
 	public int deleteCart(int num) throws Exception {
 

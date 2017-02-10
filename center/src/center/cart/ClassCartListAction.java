@@ -25,7 +25,6 @@ public class ClassCartListAction implements SuperAction {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = null;
-
 		List<ClassDTO> articleList = null;
 		CartDAO dao = CartDAO.getInstance();
 

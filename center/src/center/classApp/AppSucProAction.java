@@ -24,8 +24,9 @@ public class AppSucProAction implements SuperAction{
 		String id = (String) session.getAttribute("centerId");
 		String classCode = request.getParameter("classCode");
 		System.out.println(classCode);
-		int sum = Integer.parseInt(request.getParameter("sum"));
-		System.out.println(sum);
+		//int resultSum = Integer.parseInt(request.getParameter("sum"));
+		int resultSum = Integer.parseInt(request.getParameter("resultSum"));
+		System.out.println(resultSum);
 //		int status = Integer.parseInt(request.getParameter("status"));
 		int memberCount = Integer.parseInt(request.getParameter("memberCount"));
 		
@@ -37,7 +38,7 @@ public class AppSucProAction implements SuperAction{
 			 
 			dto.setId(id);
 			dto.setClassCode(classCode);
-			dto.setSum(sum);
+			dto.setSum(resultSum);
 //			dto.setStatus(status);
 			dto.setMemberCount(memberCount);
 			dto.setReg_date(new Timestamp(System.currentTimeMillis()));

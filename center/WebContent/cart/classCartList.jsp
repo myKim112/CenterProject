@@ -12,6 +12,12 @@
 			document.cartForm.action="cartDel.kiki";
 			document.cartForm.submit();
 		}
+		
+		function testPay(){
+			document.cartForm.action="appList.kiki";
+			document.cartForm.submit();
+		}
+		
 	</script>
 
 	<script type="text/javascript">
@@ -43,7 +49,7 @@
 		<tr>
 			<td colspan="2" align="center">번호</td>
 			<td colspan="3" align="center">지점</td>
-			<td colspan="4" align="center" >강사코드</td>
+			<td colspan="4" align="center" >강좌코드</td>
 			<td colspan="15" align="center">강좌명</td>
 			<td colspan="4" align="center">강좌기간</td>
 			<td colspan="4" align="center">강좌시간</td>
@@ -62,12 +68,13 @@
    			</tr>
 		</table>
 	</c:if>
-	<form action="cartPro.kiki" method="post" name="cartForm">
+	<%--<form action="cartPro.kiki" method="post" name="cartForm"> --%>
+	<form method="post" name="cartForm">
 		<c:if test="${count > 0}">
 			<c:forEach var="dto" items="${articleList }">
 				<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 					<tr>
-						<td colspan="2" align="center"><input type="checkbox" name="num" value="${dto.tnum }"></td>
+						<td colspan="2" align="center"><input type="checkbox" name="classCode" value="${dto.classCode }"></td>
 						<td colspan="3" align="center" >${dto.center }</td>
 						<td colspan="4" align="center" >${dto.classCode}</td>
 						<td colspan="15" align="center">
@@ -78,7 +85,7 @@
 						<td colspan="3" align="center">${dto.classPay }</td>
 						<td colspan="2" align="center">${dto.person }</td>
 						<td colspan="4" align="center">${dto.state}
-							<input type="button" value="수강신청"onclick="javascript:window.location='appListPro.kiki?classCode=${dto.classCode}'">
+							<input type="button" value="수강신청"onclick="javascript:window.location='appList.kiki?classCode=${dto.classCode}'">
 						</td>
 					</tr>
 					<tr>
@@ -93,7 +100,7 @@
 			<tr>
 				<td align="right" >
 					<br><br>
-					<input type="button"  value="결제" onclick="javascript:window.location='appListPro.kiki?num=${dto.tnum}'" /> 
+					<input type="button"  value="결제" onclick="testPay();" /> 
 					<input type="button" value="삭제" onclick="delApp();" /> 
 				</td>
 			</tr>

@@ -18,7 +18,7 @@ public class AppListProAction implements SuperAction{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
+		String num [] = request.getParameterValues("num");
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String classCode = request.getParameter("classCode");
@@ -34,7 +34,15 @@ public class AppListProAction implements SuperAction{
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 		request.setAttribute("dto", dto);
+		/*
+		for(int i=0; i<num.length; i++){
+			
+			request.setAttribute("num[i]", num[i]);
+			System.out.println(num[i]);
+		}
+		*/
 		
+	
 
 		return "/classApp/appListPro.jsp";
 

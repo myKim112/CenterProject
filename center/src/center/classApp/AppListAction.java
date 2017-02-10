@@ -1,5 +1,6 @@
 package center.classApp;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,22 +26,26 @@ public class AppListAction implements SuperAction {
 		int number = 0;
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
-		String classCode = request.getParameter("classCode");
+		String [] classCode = request.getParameterValues("classCode");
 		int sum = 0;
-		List<ClassDTO> articleList = null;
 		AppDAO dao = AppDAO.getInstance();
 		ClassDTO cdto = null;
+		List<ClassDTO> classList = new ArrayList<ClassDTO>();
 		try {
-			count = dao.getArticleCount(classCode);
-			System.out.println(classCode);
-			System.out.println(count);
-			if (count > 0) {
-				    
-					ClassDAO cdao = ClassDAO.getInstance();
-					cdto = cdao.getClassCode(classCode);
-				    articleList = dao.getAppArticles(classCode);
-			} else {
-				articleList = Collections.emptyList();
+			if(classCode.length == 1){
+				count = dao.getArticleCount(classCode[0]);
+				if (count > 0) {
+						ClassDAO cdao = ClassDAO.getInstance();
+						classList.add(cdao.getClassCode(classCode[0]));
+				}
+			}else{
+				for(String cc : classCode){
+					count = dao.getArticleCount(cc);
+					if (count > 0) {
+							ClassDAO cdao = ClassDAO.getInstance();
+							classList.add(cdao.getClassCode(cc));
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,12 +58,15 @@ public class AppListAction implements SuperAction {
 		request.setAttribute("pageSize", new Integer(pageSize));
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("number", new Integer(number));
-		request.setAttribute("articleList", articleList);
 		request.setAttribute("sum", sum);
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
-		request.setAttribute("cdto", cdto);
+		request.setAttribute("classList", classList);
+		request.setAttribute("classListCount", classList.size());
+		
 
+		
 		return "/classApp/appList.jsp";
 	}
 }
+

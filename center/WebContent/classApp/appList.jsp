@@ -5,19 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>노곰문화센터</title>
-<script type="text/javascript">
-	function sumCalc(count){
-		var pay = parseInt('${cdto.classPay}');
-		var sum = pay * count;
-		document.getElementById("mc").innerHTML=count;
-		document.getElementById("sum").innerHTML=sum;
-		document.getElementById("rmc").value=count;
-		document.getElementById("rpay").value=sum;
-		document.payment.sum.value = sum;
+<script type="text/javascript">	
+	function sumCalc(count,pay,i){
+		document.getElementById("sumpay"+i).innerHTML=count*pay;
+		resultPay();
 	}
+	
+	function resultPay(){
+		var x = ${classListCount};
+		var resultSum=0;
+		for(a=1 ; a <= x ; a++){
+			rs = document.getElementById("sumpay"+a).textContent;
+			resultSum+=parseInt(rs);
+		}
+		document.getElementById("resultPay").innerHTML=resultSum;
+		document.payment.resultSum.values = resultSum;
+	}
+	
 </script>
 </head>
-<body>
+<body >
 	<table border="0" width="1400" cellpadding="0" cellspacing="0"
 		align="center" style="table-layout: fixed">
 		<hr align="center" style="border: solid 1px red;" WIDTH="1400">
@@ -29,33 +36,35 @@
 			<td colspan="3" align="center">할인</td>
 			<td colspan="2" align="center">결제액</td>
 		</tr>
-		<tr>
-			<td colspan="15" align="center">
-				[${cdto.center}][${cdto.className}]<br />
-				강좌기간 | ${cdto.classDate } <br />
-				강좌시간 | ${cdto.classTime } <br />
-				강사명 | ${cdto.teacher }
-			</td>
-			<td colspan="4" align="center">${sessionScope.centerId }</td>
-			<td colspan="4" align="center"><input type="number" value="0" name="memberCount" onchange="sumCalc(this.value);"/> </td>
-			<td colspan="4" align="center">${cdto.classPay}</td>
-			<td colspan="3" align="center"> - </td>
-			<td colspan="2" align="center">${cdto.classPay}</td>
-		</tr>
+		</table>
+		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+		<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
+		<c:forEach items="${classList}" var="cdto" varStatus="i">
+			<tr>
+				<td colspan="15" align="center">
+					[${cdto.center}][${cdto.className}]<br />
+					강좌기간 | ${cdto.classDate } <br />
+					강좌시간 | ${cdto.classTime } <br />
+					강사명 | ${cdto.teacher }
+				</td>
+				<td colspan="4" align="center">${sessionScope.centerId }</td>
+				<td colspan="4" align="center"><input type="number" value="1" name="memberCount" onchange="sumCalc(this.value,${cdto.classPay},'${i.count}');"/> </td>
+				<td colspan="4" align="center">${cdto.classPay}</td>
+				<td colspan="3" align="center"> - </td>
+				<td colspan="2" align="center"><label id="sumpay${i.count}">${cdto.classPay}</label></td>
+			</tr>
+		</c:forEach>
 	</table>
-	<hr align="center" style="border: solid 1px red;" WIDTH="1400">
+		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
 	<form action="appSucPro.kiki?classCode=${cdto.classCode }" method="post" name = "payment">
 	<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
-		<hr align="center" style="border: solid 1px red;" WIDTH="1400">
+	
 		<tr>
 			<td colspan="15" align="center"><label id="pay">${cdto.classPay}</label> * <label id="mc">0</label> = <label id="sum">${cdto.classPay}</label> 
 			<br/>
 			</td>
 			<td>
-				<input type="hidden" name="classCode" value="${cdto.classCode}" />
-				<input type="hidden" name="pay" value="" id="rpay"/>
-				<input type="hidden" name="memberCount" value="" id="rmc" />
-				<input type="hidden" name="sum" value="" id="sum" />
+				총 결제 금액 : <label id="resultPay">0</label>
 			</td>
 				<td align="center"><input type="submit" value="결제" /></td>
 		</tr>
