@@ -141,7 +141,7 @@ public class ClassDAO {
 		String sql = "";
 		try {
 			conn = getConnection();
-			sql = "insert into class values(class_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into class values(class_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCenter());
 			pstmt.setString(2, dto.getClassCode());
@@ -159,6 +159,7 @@ public class ClassDAO {
 			pstmt.setString(14, dto.getPw());
 			pstmt.setString(15, dto.getOrgName());
 			pstmt.setString(16, dto.getSysName());
+			pstmt.setString(17, dto.getTeacherId());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -295,6 +296,7 @@ public class ClassDAO {
 				dto.setPw(rs.getString("pw"));
 				dto.setOrgName(rs.getString("orgName"));
 				dto.setSysName(rs.getString("sysName"));
+				dto.setTeacherId(rs.getString("teacherId"));
 
 			}
 		} catch (Exception e) {
@@ -333,7 +335,7 @@ public class ClassDAO {
 			if (rs.next()) {
 				dbpw = rs.getString("pw");
 				if (dbpw.equals(dto.getPw())) {
-					sql = "update class set center=?,classCode=?,className=?,teacher=?,classDate=?,classTime=?,classPay=?,person=?,lev=?,state=?,classSummary=?,classPlan=?,reference=?,orgName=?,sysName=? where num=?";
+					sql = "update class set center=?,classCode=?,className=?,teacher=?,classDate=?,classTime=?,classPay=?,person=?,lev=?,state=?,classSummary=?,classPlan=?,reference=?,orgName=?,sysName=?,teacherId=? where num=?";
 
 					pstmt = conn.prepareStatement(sql);
 
@@ -352,7 +354,8 @@ public class ClassDAO {
 					pstmt.setString(13, dto.getReference());
 					pstmt.setString(14, dto.getOrgName());
 					pstmt.setString(15, dto.getSysName());
-					pstmt.setInt(16, dto.getNum());
+					pstmt.setString(16, dto.getTeacherId());
+					pstmt.setInt(17, dto.getNum());
 					pstmt.executeUpdate();
 
 					x = 1;
@@ -395,7 +398,7 @@ public class ClassDAO {
 			if (rs.next()) {
 				dbpw = rs.getString("pw");
 				if (dbpw.equals(dto.getPw())) {
-					sql = "update class set center=?,classCode=?,className=?,teacher=?,classDate=?,classTime=?,classPay=?,person=?,lev=?,state=?,classSummary=?,classPlan=?,reference=?,pw=? where num=?";
+					sql = "update class set center=?,classCode=?,className=?,teacher=?,classDate=?,classTime=?,classPay=?,person=?,lev=?,state=?,classSummary=?,classPlan=?,reference=?,pw=?,teacherId=? where num=?";
 
 					pstmt = conn.prepareStatement(sql);
 
@@ -413,7 +416,8 @@ public class ClassDAO {
 					pstmt.setString(12, dto.getClassPlan());
 					pstmt.setString(13, dto.getReference());
 					pstmt.setString(14, dto.getPw());
-					pstmt.setInt(15, dto.getNum());
+					pstmt.setString(15, dto.getTeacherId());
+					pstmt.setInt(16, dto.getNum());
 					pstmt.executeUpdate();
 
 					x = 1;

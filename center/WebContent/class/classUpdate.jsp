@@ -22,7 +22,7 @@
 				align="center">
 
 				<tr>
-					<td align="center" rowspan="10"><input type="file" name="save" value="${dto.sysName }"/>${dto.orgName }</td>
+					<td align="center" rowspan="11"><input type="file" name="save" value="${dto.sysName }"/>${dto.sysName}</td>
 					<td width="70" align="right">강좌명</td>
 					<td width="330"><input type="text" size="40" maxlength="50"
 						name="className" value="${dto.className}"></td>
@@ -36,44 +36,51 @@
 
 				<tr>
 					<td width="70" align="right">지점</td>
-					<td width="330"><input type="text" size="10" maxlength="10"
-						name="center" value="${dto.center}"></td>
+					<td width="330">
+						<input type="text" size="10" maxlength="10"	name="center" value="${dto.center}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강좌코드</td>
-					<td width="330"><input type="text" size="10" maxlength="10"
-						name="classCode" value="${dto.classCode}"></td>
+					<td width="330">
+						<input type="text" size="10" maxlength="10"	name="classCode" value="${dto.classCode}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강사명</td>
-					<td width="330"><input type="text" size="40" maxlength="30"
-						name="teacher" value="${dto.teacher}"><br /></td>
+					<td width="330">
+						<input type="text" size="40" maxlength="30"	name="teacher" value="${dto.teacher}"><br /></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강좌 기간</td>
-					<td width="330"><input type="text" size="40" maxlength="30"
-						name="classDate" value="${dto.classDate}"></td>
+					<td width="330">
+						<input type="text" size="40" maxlength="30"	name="classDate" value="${dto.classDate}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">강좌 시간</td>
-					<td width="330"><input type="text" size="40" maxlength="30"
-						name="classTime" value="${dto.classTime}"></td>
+					<td width="330">
+						<input type="text" size="40" maxlength="30"	name="classTime" value="${dto.classTime}"></td>
 				</tr>
 
 				<tr>
 					<td width="70" align="right">수강료</td>
-					<td width="330"><input type="text" size="10" maxlength="10"
-					name="classPay" value="${dto.classPay}"></td>
+					<td width="330">
+						<input type="text" size="10" maxlength="10"	name="classPay" value="${dto.classPay}"></td>
 				</tr>
 
 			<tr>
 				<td width="70" align="right">인원</td>
-				<td width="330"><input type="text" size="40" maxlength="30"
-					name="person" value="${dto.person}"></td>
+				<td width="330">
+					<input type="text" size="40" maxlength="30"	name="person" value="${dto.person}"></td>
+			</tr>
+			
+			<tr>
+				<td width="70" align="right">강사ID</td>
+				<td width="330">
+					<input type="text" size="40" maxlength="30"	name="teacherId" value="${dto.teacherId}" />
+				</td>
 			</tr>
 			
 				<tr>
@@ -128,10 +135,8 @@
 
 				<tr>
 					<td width="80" align="center">개요</td>
-					<td width="330" colspan="3"><textarea rows="50" cols="100"
-							name="classSummary"
-							style="margin: 0px; width: 1134px; height: 300px; resize: none;">
-					${dto.classSummary}</textarea></td>
+					<td width="330" colspan="3">
+						<textarea rows="50" cols="100" name="classSummary" style="margin: 0px; width: 1134px; height: 300px; resize: none;">${dto.classSummary}</textarea></td>
 				<tr>
 					<td colspan="4" align="center">
 						<hr align="center" size="1" color="#EAEAEA">
@@ -139,9 +144,8 @@
 
 				<tr>
 					<td width="80" height="100" align="center">강의계획서</td>
-					<td width="330" colspan="3"><textarea rows="50" cols="100"
-							name="classPlan"
-							style="margin: 0px; width: 1134px; height: 300px; resize: none;">${dto.classPlan }</textarea>
+					<td width="330" colspan="3">
+						<textarea rows="50" cols="100" name="classPlan"	style="margin: 0px; width: 1134px; height: 300px; resize: none;">${dto.classPlan }</textarea>
 					</td>
 				<tr>
 					<td width="70" align="right">비밀번호</td>

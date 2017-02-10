@@ -21,6 +21,7 @@ public class ClassDTO {
 	private String pw=null;
 	private String orgName=null;
 	private String sysName=null;
+	private String teacherId=null;
 	
 	
 	public int getTnum() {
@@ -85,5 +86,7 @@ public class ClassDTO {
 	
 	public int getAnum() {return anum;}
 	public void setAnum(int anum) {this.anum = anum;}
-	
+
+	public String getTeacherId() {return teacherId;}
+	public void setTeacherId(String teacherId) {this.teacherId = teacherId;}	
 }

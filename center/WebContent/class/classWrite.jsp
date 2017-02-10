@@ -11,7 +11,7 @@
 
 	<script>
 		function writeSave() {
-			alert('로그인 후 글쓰기 가능');
+			alert('로그인 후 글수정 가능');
 			window.location = "/jsp/main.kiki";
 		}
 	</script>
@@ -31,7 +31,7 @@
 			align="center">
 
 			<tr>
-				<td align="center" rowspan="10"><input type="file" name="save" /></td>
+				<td align="center" rowspan="11"><input type="file" name="save" /></td>
 
 
 
@@ -87,7 +87,13 @@
 				<td width="330"><input type="text" size="40" maxlength="30"
 					name="person"></td>
 			</tr>
-
+			
+			<tr>
+				<td width="70" align="right">강사ID</td>
+				<td width="330">
+					<input type="text" size="40" maxlength="30" name="teacherId">
+				</td>
+			</tr>
 
 			<tr>
 				<td colspan="2" align="center">
@@ -143,10 +149,7 @@
 
 			<tr>
 				<td width="80" align="center">개요</td>
-				<td width="330" colspan="3"><textarea rows="50" cols="100"
-						name="classSummary"
-						style="margin: 0px; width: 1134px; height: 300px; resize: none;">
-					</textarea></td>
+				<td width="330" colspan="3"><textarea rows="50" cols="100" name="classSummary" style="margin: 0px; width: 1134px; height: 300px; resize: none;"></textarea></td>
 			<tr>
 				<td colspan="4" align="center">
 					<hr align="center" size="1" color="#EAEAEA">

@@ -38,7 +38,7 @@ TEACHER INFORMATION</font>
 	</tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="강의목록" onclick="document.location.href=''" />
+		<input type="button" value="강의목록" onclick="document.location.href='teacherClassList.kiki?id=${staff.id}'" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">

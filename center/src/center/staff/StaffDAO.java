@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import center.lesson.ClassDTO;
 import center.power.PowerDTO;
 
 public class StaffDAO {
@@ -88,6 +89,49 @@ public class StaffDAO {
 		}
 	}
 	
+	public ArrayList<ClassDTO> getTeacherClassArticle(int start, int end, String id) throws Exception { // 특정 강사에 해당하는 강좌목록 불러오기
+		ArrayList<ClassDTO> classList = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select num, center, classCode, className, teacher, classDate, classTime, person, lev, state, r from"+ 
+					"(select num, center, classCode, className, teacher, classDate, classTime, person, lev, state, rownum r from class order by num desc)"
+					+ " where r>=? and r<=?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.executeQuery();
+			
+			pstmt = conn.prepareStatement("select * from class where teacherId=? order by num desc");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				classList = new ArrayList(end);
+				do {
+					ClassDTO article = new ClassDTO();
+					article.setNum(rs.getInt("num"));
+					article.setCenter(rs.getString("center"));
+					article.setClassCode(rs.getString("classCode"));
+					article.setClassName(rs.getString("className"));
+					article.setTeacher(rs.getString("teacher"));
+					article.setClassDate(rs.getString("classDate"));
+					article.setClassTime(rs.getString("classTime"));
+					article.setPerson(rs.getInt("person"));
+					article.setLev(rs.getString("lev"));
+					article.setState(rs.getString("state"));
+					classList.add(article);					
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return classList;
+	}
+	
 	// 관리자
 	public int getTeacherCount() throws Exception { // 전체 강사 수
 		int x = 0;
@@ -158,7 +202,7 @@ public class StaffDAO {
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select count(*) from class where teacher=?");
+			pstmt = conn.prepareStatement("select count(*) from class where teacherId=?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
