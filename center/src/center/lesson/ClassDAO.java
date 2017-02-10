@@ -207,6 +207,27 @@ public class ClassDAO {
 		}
 		return x;
 	}
+	
+	public int getArticleCont(int n, String searchKeyword) throws Exception { // 검색시 강좌 수 
+		String[] column_name = {"teacher", "className", "center"};
+		int x = 0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from class where "+column_name[n]+" like '%"+searchKeyword+"%'");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				x = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) try {rs.close();} catch(SQLException ex){}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex){}
+			if(conn != null) try {conn.close();} catch(SQLException ex){}
+		}
+		return x;
+	}
 
 	public List<ClassDTO> getArticles(int start, int end) throws Exception {
 
@@ -263,6 +284,52 @@ public class ClassDAO {
 					conn.close();
 				} catch (SQLException ex) {
 				}
+		}
+		return articleList;
+	}
+	
+	public List<ClassDTO> getArticles(int start, int end, int n, String searchKeyword) throws Exception {
+		List<ClassDTO> articleList = null;
+		String[] column_name = {"teacher", "className", "center"};
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,state,classSummary,classPlan,reference,pw,orgName,sysName, r "
+					+ "from (select num,center,classCode,className,teacher,classDate,classTime,classPay,person,lev,state,classSummary,classPlan,reference,pw,orgName,sysName, rownum r "
+					+ "from (select * from class order by num desc)where "+column_name[n]+" like '%"+searchKeyword+"%' order by num desc) where r >= ? and r <= ?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				articleList = new ArrayList(end);
+				do {
+					ClassDTO lesson = new ClassDTO();
+					
+					lesson.setNum(rs.getInt("num"));
+					lesson.setCenter(rs.getString("center"));
+					lesson.setClassCode(rs.getString("classCode"));
+					lesson.setClassName(rs.getString("className"));
+					lesson.setTeacher(rs.getString("teacher"));
+					lesson.setClassTime(rs.getString("classTime"));
+					lesson.setClassPay(rs.getString("classPay"));
+					lesson.setPerson(rs.getInt("person"));
+					lesson.setLev(rs.getString("lev"));
+					lesson.setState(rs.getString("state"));
+					lesson.setClassSummary(rs.getString("classSummary"));
+					lesson.setClassPlan(rs.getString("clasSPlan"));
+					lesson.setReference(rs.getString("reference"));
+					lesson.setPw(rs.getString("pw"));
+					lesson.setOrgName(rs.getString("orgName"));
+					lesson.setSysName(rs.getString("sysName"));
+					articleList.add(lesson);
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) try {rs.close();} catch(SQLException ex){}
+   			if(pstmt != null) try {pstmt.close();} catch(SQLException ex){}
+   			if(conn != null) try {conn.close();} catch(SQLException ex){}
 		}
 		return articleList;
 	}
