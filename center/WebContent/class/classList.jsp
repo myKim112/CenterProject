@@ -67,6 +67,23 @@
 </c:forEach>
 </c:if>
 
+<form method="post">
+<table align="center" width="1400">
+	<tr>
+		<td align="center">
+			<select name="search">
+				<option value="0">강사</option>
+				<option value="1">강좌이름</option>
+				<option value="2">지점</option>
+			</select>
+			<input type="text" name="searchContent" size="15" maxlength="50" />
+			<input type="hidden" value="${searchContent}" />
+			<input type="submit" value="검색" />
+		</td>
+	</tr>
+</table>
+</form>
+
 </body>
 </html>
 
