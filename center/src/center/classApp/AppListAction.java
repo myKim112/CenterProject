@@ -27,9 +27,9 @@ public class AppListAction implements SuperAction {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
 		String [] classCode = request.getParameterValues("classCode");
-		int sum = 0;
 		AppDAO dao = AppDAO.getInstance();
-		ClassDTO cdto = null;
+		ClassDTO dto =null;
+		
 		List<ClassDTO> classList = new ArrayList<ClassDTO>();
 		try {
 			if(classCode.length == 1){
@@ -37,6 +37,7 @@ public class AppListAction implements SuperAction {
 				if (count > 0) {
 						ClassDAO cdao = ClassDAO.getInstance();
 						classList.add(cdao.getClassCode(classCode[0]));
+						
 				}
 			}else{
 				for(String cc : classCode){
@@ -58,7 +59,6 @@ public class AppListAction implements SuperAction {
 		request.setAttribute("pageSize", new Integer(pageSize));
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("number", new Integer(number));
-		request.setAttribute("sum", sum);
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 		request.setAttribute("classList", classList);

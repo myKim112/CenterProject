@@ -14,12 +14,13 @@
 	function resultPay(){
 		var x = ${classListCount};
 		var resultSum=0;
-		for(a=1 ; a <= x ; a++){
+		for(a=1; a <= x ; a++){
 			rs = document.getElementById("sumpay"+a).textContent;
 			resultSum+=parseInt(rs);
 		}
-		document.getElementById("resultPay").innerHTML=resultSum;
-		document.payment.resultSum.values = resultSum;
+		document.getElementById("resultPay").innerHTML=resultSum; 
+		document.getElementById("resultSum").submit();
+	
 	}
 	
 </script>
@@ -46,9 +47,10 @@
 					강좌기간 | ${cdto.classDate } <br />
 					강좌시간 | ${cdto.classTime } <br />
 					강사명 | ${cdto.teacher }
+					${classCode }
 				</td>
 				<td colspan="4" align="center">${sessionScope.centerId }</td>
-				<td colspan="4" align="center"><input type="number" value="1" name="memberCount" onchange="sumCalc(this.value,${cdto.classPay},'${i.count}');"/> </td>
+				<td colspan="4" align="center"><input type="number" value="0" name="memberCount" onchange="sumCalc(this.value,${cdto.classPay},'${i.count}');"/> </td>
 				<td colspan="4" align="center">${cdto.classPay}</td>
 				<td colspan="3" align="center"> - </td>
 				<td colspan="2" align="center"><label id="sumpay${i.count}">${cdto.classPay}</label></td>
@@ -56,14 +58,11 @@
 		</c:forEach>
 	</table>
 		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
-	<form action="appSucPro.kiki?classCode=${cdto.classCode }" method="post" name = "payment">
+	<form action="appSuc.kiki?classCode=${cdto.classCode }" method="post" name = "payment">
 	<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
 	
 		<tr>
-			<td colspan="15" align="center"><label id="pay">${cdto.classPay}</label> * <label id="mc">0</label> = <label id="sum">${cdto.classPay}</label> 
-			<br/>
-			</td>
-			<td>
+			<td colspan="15" align="right">
 				총 결제 금액 : <label id="resultPay">0</label>
 			</td>
 				<td align="center"><input type="submit" value="결제" /></td>

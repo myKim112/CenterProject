@@ -18,7 +18,7 @@
 					return false;
 				}
 		 if(centerId !=null){
-         	 window.location='classCartListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
+         	 window.location='classCartList.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
         return false;
          }
 	   }   
@@ -34,7 +34,7 @@
 					return false;
 				}
 		 if(centerId !=null){
-			 window.location='appListPro.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
+			 window.location='appList.kiki?classCode=${dto.classCode}&pageNum=${pageNum}';
         return false;
          }
 	   }   
