@@ -1,7 +1,6 @@
 package center.classApp;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +35,7 @@ public class AppListAction implements SuperAction {
 				count = dao.getArticleCount(classCode[0]);
 				if (count > 0) {
 						ClassDAO cdao = ClassDAO.getInstance();
-						classList.add(cdao.getClassCode(classCode[0]));
-						
+						classList.add(cdao.getClassCode(classCode[0]));		
 				}
 			}else{
 				for(String cc : classCode){
@@ -62,6 +60,7 @@ public class AppListAction implements SuperAction {
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 		request.setAttribute("classList", classList);
+		//System.out.println(classCode);		
 		request.setAttribute("classListCount", classList.size());
 		
 

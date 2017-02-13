@@ -48,7 +48,7 @@ public class AppDAO {
 				dto.setNum(rs.getInt("num"));
 				dto.setId(rs.getString("id"));
 				dto.setClassCode(rs.getString("classCode"));
-				dto.setSum(rs.getInt("sum"));
+				dto.setSum(rs.getString("sum"));
 				dto.setStatus(rs.getInt("status"));
 				dto.setMemberCount(rs.getInt("memberCount"));
 				
@@ -85,7 +85,7 @@ public class AppDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,dto.getId());
 			pstmt.setString(2, dto.getClassCode());
-			pstmt.setInt(3,dto.getSum());
+			pstmt.setString(3,dto.getSum());
 			pstmt.setInt(4,dto.getMemberCount());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -108,7 +108,7 @@ public class AppDAO {
 		int x = 0;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select count(*) from app where classCode = ?");  //코드가 같은것을 보여달라
+			pstmt = conn.prepareStatement("select count(*) from class where classCode = ?");  //코드가 같은것을 보여달라
 			pstmt.setString(1, classCode);
 			rs = pstmt.executeQuery();
 			
@@ -222,6 +222,7 @@ public List getArticles(int num) throws Exception{
 		return articleList;
 	}
 	*/
+	
 	 public List<AppDTO> meminfo(String id)throws Exception{
 		 List<AppDTO> articleList = null;
 		 try {
@@ -236,7 +237,7 @@ public List getArticles(int num) throws Exception{
 	 						dto.setNum(rs.getInt("num"));
 	 						dto.setId(rs.getString("id"));
 	 						dto.setClassCode(rs.getString("classCode"));
-	 						dto.setSum(rs.getInt("sum"));
+	 						dto.setSum(rs.getString("sum"));
 	 						dto.setStatus(rs.getInt("status"));
 	 						dto.setMemberCount(rs.getInt("memberCount"));
 	 						articleList.add(dto);
@@ -251,35 +252,7 @@ public List getArticles(int num) throws Exception{
 	 				return articleList;
 			
 			} 
-	/* public void buyPage(AppDTO dto) throws Exception{
-				 
-			try{
-		  		conn=getConnection();
-		        pstmt = conn.prepareStatement("insert into app("num classCode,center,className,teacher,classDate,classTime,classPay,person,state) 
-		        		values(?,?,?,?,?,?,?,?,?,?,?,?)");
-		        pstmt.setString(1, mem.getId());
-		        pstmt.setString(2, mem.getName());
-		        pstmt.setString(3, mem.getPhone());
-		        pstmt.setString(4, mem.getPhone2());
-		        pstmt.setString(5, mem.getPhone3());
-		        pstmt.setString(6, mem.getAddress());
-		        pstmt.setString(7, mem.getAddress2());
-		        pstmt.setString(8, mem.getMemo());
-		        pstmt.setInt(9, mem.getItem_amount());
-		        pstmt.setString(10, mem.getGaveman());
-		        pstmt.setString(11, mem.getZipcode());
-		        pstmt.setInt(12, mem.getItem_num());
-		        pstmt.executeUpdate();
-		  	
-			
-		  	}catch(Exception e){
-				e.printStackTrace();
-			}finally{
-				 if (rs != null) try { rs.close(); } catch(SQLException e) {}
-				if(pstmt !=null){try{pstmt.close();}catch(SQLException e){}}
-				if(conn !=null){try{conn.close();}catch(SQLException e){}}
-			}
-} */
+
 		 
 	
 	public int deleteApp(int num) throws Exception {

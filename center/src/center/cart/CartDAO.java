@@ -101,6 +101,38 @@ public class CartDAO {
 		}
 		return x;
 	}
+	
+	public int getClassCodeCount(String classCode) throws Exception {
+
+		int x = 0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from class s ,cart t where s.classCode = t.classCode");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return x;
+	}
 
 	public List<ClassDTO> getCartArticles(String id) throws Exception {
 
@@ -152,6 +184,39 @@ public class CartDAO {
 		return articleList;
 	}
 
+	public int deleteCart(String classCode) throws Exception {
+
+		int x = -1;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("delete from cart where classCode =?");
+			pstmt.setString(1, classCode);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+		}
+		return x;
+
+	}
+}
+	
+/*
 	public int deleteCart(int num) throws Exception {
 
 		int x = -1;
@@ -182,4 +247,6 @@ public class CartDAO {
 		return x;
 
 	}
-}
+}*/
+
+

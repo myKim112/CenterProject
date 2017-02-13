@@ -19,18 +19,6 @@
 		}
 		
 	</script>
-
-	<script type="text/javascript">
-	function sumCalc(count){
-		var pay = ${dto.classPay};
-		var sum = pay * count;
-		document.getElementById("cc").innerHTML=count;
-		document.getElementById("sum").innerHTML=sum;
-		document.getElementById("rcc").value=count;
-		document.getElementById("rpay").value=sum;
-	}
-	</script>
-	
 </head>
 
 <body>
@@ -68,10 +56,9 @@
    			</tr>
 		</table>
 	</c:if>
-	<%--<form action="cartPro.kiki" method="post" name="cartForm"> --%>
 	<form method="post" name="cartForm">
 		<c:if test="${count > 0}">
-			<c:forEach var="dto" items="${articleList }">
+			<c:forEach var="dto" items="${articleList }" >
 				<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 					<tr>
 						<td colspan="2" align="center"><input type="checkbox" name="classCode" value="${dto.classCode }"></td>
@@ -101,20 +88,12 @@
 				<td align="right" >
 					<br><br>
 					<input type="button"  value="결제" onclick="testPay();" /> 
-					<input type="button" value="삭제" onclick="delApp();" /> 
+					<input type="button" value="삭제" onclick="delCart();" /> 
+				</td>
+				<td>
+				<input type="hidden" name="classCode" value="${dto.classCode}" />
 				</td>
 			</tr>
-		</table>
-
-		<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
-						<td colspan="15" align="center"><label id="pay">${dto.classPay}</label> * <label id="cc">1</label> = <label id="sum">${dto.classPay}</label> 
-			<br/>
-			</td>
-			<td>
-				<input type="hidden" name="classCode" value="${dto.classCode}" />
-				<input type="hidden" name="pay" value="" id="rpay"/>
-				<input type="hidden" name="classCount" value="" id="rcc" />
-			</td>
 		</table>
 	</form>
 </body>

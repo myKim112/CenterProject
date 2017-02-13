@@ -24,11 +24,15 @@ public class ClassCartListAction implements SuperAction {
 		int number = 0;
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
-		String classCode = null;
+		String classCode = request.getParameter("classCode");
 		List<ClassDTO> articleList = null;
 		CartDAO dao = CartDAO.getInstance();
 
 		try {
+			CartDTO dto = new CartDTO();
+			dto.setId(id);
+			dto.setClassCode(classCode);
+			dao.insertCartActicle(dto);
 			count = dao.getArticleCount(number);
 
 			if (count > 0) {

@@ -20,29 +20,26 @@ public class AppSucAction implements SuperAction{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		int count = 0;
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("centerId");
-		String [] classCode = request.getParameterValues("classCode");
-		System.out.println(classCode);
-    	int sumCalc = Integer.parseInt(request.getParameter("sum"));
-		//int [] sumCalc = Integer.parseInt(request.getParameterValues("sum"));
-	//	System.out.println(sumCalc);
-//		int status = Integer.parseInt(request.getParameter("status"));
-//		int memberCount = Integer.parseInt(request.getParameter("memberCount"));
-    	
-    	try{
-    	   AppDAO dao = AppDAO.getInstance();
-		   AppDTO dto = new AppDTO();   
 		
-				
+		String [] classCode = request.getParameterValues("classCode");
+		String [] sum =request.getParameterValues("classPay");
+		String [] memberCount = request.getParameterValues("memberCount");
+		
+    	try{
+		
+        AppDAO dao = AppDAO.getInstance();
+	    AppDTO dto = new AppDTO();   
+	    for(int a = 0 ; a < classCode.length; a++){
 			dto.setId(id);
-			dto.setClassCode(classCode);
-	        dto.setSum(sumCalc);
-//			dto.setStatus(status);
-	//		dto.setMemberCount(memberCount);
+			dto.setClassCode(classCode[a]);
+		    dto.setSum(sum[a]);
+			dto.setStatus(1);
+			dto.setMemberCount(Integer.parseInt(memberCount[a]));
 			dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 			dao.insertAppActicle(dto);
+	    }
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,6 +48,7 @@ public class AppSucAction implements SuperAction{
 		request.setAttribute("id", id);
 		request.setAttribute("classCode", classCode);
 		
+
 		return "/classApp/appSuc.jsp";
 	}
 }

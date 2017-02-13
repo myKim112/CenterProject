@@ -7,7 +7,7 @@ public class AppDTO {
 	private int num;
     private String id;
     private String classCode;
-    private int sum;
+    private String sum;
     private int status;
     private Timestamp reg_date;
     private int memberCount;
@@ -29,10 +29,10 @@ public class AppDTO {
 	public void setClassCode(String classCode) {
 		this.classCode = classCode;
 	}
-	public int getSum() {
+	public String getSum() {
 		return sum;
 	}
-	public void setSum(int sum) {
+	public void setSum(String sum) {
 		this.sum = sum;
 	}
 	public int getStatus() {
