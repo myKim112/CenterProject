@@ -11,6 +11,10 @@ public class AppDTO {
     private int status;
     private Timestamp reg_date;
     private int memberCount;
+    
+    // 상태를 보여주기 위함
+    private String position;
+    
 	public int getNum() {
 		return num;
 	}
@@ -53,7 +57,14 @@ public class AppDTO {
 	public void setMemberCount(int memberCount) {
 		this.memberCount = memberCount;
 	}
+	//
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
-
+	
 
 }

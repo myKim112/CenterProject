@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import center.classApp.AppDTO;
 import center.lesson.ClassDTO;
 import center.power.PowerDTO;
 
@@ -131,6 +132,89 @@ public class StaffDAO {
 		}
 		return classList;
 	}
+	
+	public int getMemberCount(String classCode) throws Exception { // 해당 강좌를 듣는 회원 수
+		int x = 0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from app where classCode=?");
+			pstmt.setString(1, classCode);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return x;
+	}
+	
+	public ArrayList<AppDTO> getMemberArticles(String classCode) throws Exception { // 해당 강좌를 듣는 회원 목록
+		ArrayList<AppDTO> memberList = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select anum, aid, aclassCode, asum, astatus, sstatus, areg_date, amembercount, sposition, r from"+
+										"(select a.num anum, a.id aid, a.classCode aclassCode, a.sum asum, a.status astatus, s.status sstatus,"
+										+ " a.reg_date areg_date, a.membercount amembercount, s.position sposition, rownum r from app a, appStatus s order by areg_date asc) where aclassCode=? and sstatus=astatus");
+			pstmt.setString(1, classCode);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberList = new ArrayList();
+				do {
+					AppDTO article = new AppDTO();
+					article.setNum(rs.getInt("anum"));
+					article.setId(rs.getString("aid"));
+					article.setClassCode(rs.getString("aclassCode"));
+					article.setSum(rs.getString("asum"));
+					article.setStatus(rs.getInt("astatus"));
+					article.setReg_date(rs.getTimestamp("areg_date"));
+					article.setMemberCount(rs.getInt("amemberCount"));
+					article.setPosition(rs.getString("sposition"));
+					memberList.add(article);					
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return memberList;
+	}
+	
+/*	public ArrayList<AppStatusDTO> getMemberStatus(String classCode) throws Exception { // 해당 강좌의 회원 상태 보기
+		ArrayList<AppStatusDTO> statusList = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from appStatus s, app a where classCode=? and s.status=a.status");
+			pstmt.setString(1, classCode);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				statusList = new ArrayList();
+				do {
+					AppStatusDTO status = new AppStatusDTO();
+					status.setStatus(rs.getInt("status"));
+					status.setPosition(rs.getString("position"));
+					statusList.add(status);
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return statusList;
+	} */
 	
 	// 관리자
 	public int getTeacherCount() throws Exception { // 전체 강사 수

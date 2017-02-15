@@ -43,7 +43,9 @@
 		</td>
 		<td>${staff.center}</td>
 		<td>${staff.classCode}</td>
-		<td>${staff.className}</td>
+		<td>
+			<a href="memberCheck.kiki?classCode=${staff.classCode}&id=${id}">${staff.className}</a>
+		</td>
 		<td>${staff.teacher}</td>
 		<td>${staff.classDate}</td>
 		<td>${staff.classTime}</td>
