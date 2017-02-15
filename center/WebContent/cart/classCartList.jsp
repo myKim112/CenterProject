@@ -10,7 +10,8 @@
 	<title>노곰문화센터</title>
 	
 	<script type="text/javascript">
-		function delCart(){
+		function delCart(index){
+			
 			document.cartForm.action="cartDel.kiki";
 			document.cartForm.submit();
 		}
@@ -35,7 +36,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">번호</td>
+			<td colspan="2" align="center">선택</td>
 			<td colspan="3" align="center">지점</td>
 			<td colspan="4" align="center" >강좌코드</td>
 			<td colspan="15" align="center">강좌명</td>
@@ -58,7 +59,7 @@
 	</c:if>
 	<form method="post" name="cartForm">
 		<c:if test="${count > 0}">
-			<c:forEach var="dto" items="${articleList }">
+			<c:forEach var="dto" items="${articleList }" >
 				<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 					<tr>
 						<td colspan="2" align="center"><input type="checkbox" name="classCode" value="${dto.classCode }"></td>

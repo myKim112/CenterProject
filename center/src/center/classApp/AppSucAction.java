@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import center.action.SuperAction;
+import center.cart.CartDAO;
 import center.lesson.ClassDAO;
 import center.lesson.ClassDTO;
 
@@ -31,6 +32,7 @@ public class AppSucAction implements SuperAction{
 		
         AppDAO dao = AppDAO.getInstance();
 	    AppDTO dto = new AppDTO();   
+	    CartDAO cdao= CartDAO.getInstance();
 	    for(int a = 0 ; a < classCode.length; a++){
 			dto.setId(id);
 			dto.setClassCode(classCode[a]);
@@ -39,6 +41,8 @@ public class AppSucAction implements SuperAction{
 			dto.setMemberCount(Integer.parseInt(memberCount[a]));
 			dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 			dao.insertAppActicle(dto);
+
+			cdao.deleteCart(classCode[a]);
 	    }
 			
 		} catch (Exception e) {

@@ -215,38 +215,3 @@ public class CartDAO {
 
 	}
 }
-	
-/*
-	public int deleteCart(int num) throws Exception {
-
-		int x = -1;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("delete from cart where num =?");
-			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-		}
-		return x;
-
-	}
-}*/
-
-
