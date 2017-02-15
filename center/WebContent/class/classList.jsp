@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:include page="header.jsp" flush="false" /> 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,6 +11,10 @@
 
 
 <body>
+<h1 id="customer"><div>lecture center</div></h1>
+<jsp:include page="sidebar_lecture.jsp" flush="false" />
+<article>
+<h2>강좌목록</h2>
 <table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 <tr>
 <td align="right" >
@@ -18,8 +24,8 @@
 </td></tr></table>
 
 
-<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
-<hr align="center" style="border: solid 1px red;" WIDTH="1400">
+<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+<hr align="center" style="border: solid 1px red;" WIDTH="650">
 <tr>
 <td colspan="2" align="center">번호</td>
 <td colspan="3" align="center">지점</td>
@@ -34,9 +40,9 @@
 <td colspan="4" align="center">접수상태</td>
 </tr>
 </table>
-<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
 <c:if test="${count == 0}">
-<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
  	<tr>
     <td align="center">
       	개설된 강좌가 없습니다.
@@ -45,7 +51,7 @@
 </c:if>
 <c:if test="${count > 0}">
 <c:forEach var="dto" items="${articleList }">
-<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 <tr>
 <td colspan="2" align="center"><c:out value="${number}"/>
 <c:set var="number" value="${number - 1}"/></td>
@@ -63,12 +69,12 @@
 
 <input type="button" value="수강신청"onclick="javascript:window.location='appList.kiki?classCode=${dto.classCode}'"></td>
 </tr></table>
-<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
 </c:forEach>
 </c:if>
 
 <form method="post">
-<table align="center" width="1400">
+<table align="center" width="650">
 	<tr>
 		<td align="center">
 			<select name="search">
@@ -114,3 +120,7 @@
 		</c:if>
 	</c:if>
 </center>
+
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:include page="header.jsp" flush="false" /> 
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,16 +24,14 @@
 </head>
 
 <body>
-	<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+<h1 id="customer"><div>lecture center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>장바구니</h2>
+	<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 		<tr>
 			<td>
-				<font style="Arial" size="10" align="left" >cart</font>
-			</td>
-		</tr>
-	
-		<tr>
-			<td>
-				<hr align="center" style="border: solid 1px black;" WIDTH="1400">
+				<hr align="center" style="border: solid 1px black;" WIDTH="650">
 			</td>
 		</tr>
 		<tr>
@@ -46,9 +46,9 @@
 			<td colspan="4" align="center">접수상태</td>
 		</tr>
 	</table>
-	<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+	<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
 	<c:if test="${count == 0}">
-		<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+		<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
  			<tr>
     			<td align="center">
       				장바구니가 비었습니다.
@@ -58,8 +58,8 @@
 	</c:if>
 	<form method="post" name="cartForm">
 		<c:if test="${count > 0}">
-			<c:forEach var="dto" items="${articleList }" >
-				<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+			<c:forEach var="dto" items="${articleList }">
+				<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 					<tr>
 						<td colspan="2" align="center"><input type="checkbox" name="classCode" value="${dto.classCode }"></td>
 						<td colspan="3" align="center" >${dto.center }</td>
@@ -77,25 +77,31 @@
 					</tr>
 					<tr>
 						<td>
-							<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+							<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
 						</td>
 					</tr>
 				</table>
 			</c:forEach>
 		</c:if>
-		<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+		<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 			<tr>
 				<td align="right" >
 					<br><br>
 					<input type="button"  value="결제" onclick="testPay();" /> 
 					<input type="button" value="삭제" onclick="delCart();" /> 
 				</td>
-				<td>
-				<input type="hidden" name="classCode" value="${dto.classCode}" />
-				</td>
 			</tr>
+		</table>
+
+		<table border="0" width="650" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
+			<td>
+				<input type="hidden" name="classCode" value="${dto.classCode}" />
+			</td>
 		</table>
 	</form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </html>
+
 

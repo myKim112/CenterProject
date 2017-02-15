@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="header.jsp" flush="false" /> 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,19 +41,16 @@
          }
 	   }   
    </script>
-   
-
-
 <body >
-	<center>
-		<b>강좌소개</b>
-	</center>
-	<br>
-	<form method="post" name="classFile"  >
+<h1 id="customer"><div>lecture center</div></h1>
+<jsp:include page="sidebar_lecture.jsp" flush="false" />
+<article>
+<h2>강좌소개</h2>
+	<form form id="searchbbs method="post" name="classFile"  >
 		<input type="hidden" name="num" value="${num}"> </br> </br>
 		<input type="hidden" name="id" value="${id }">
 
-		<table width="800" border="0" cellspacing="0" cellpadding="0"align="center" >
+		<table width="650" border="0" cellspacing="0" cellpadding="0"align="center" >
 
 			<tr>
 				<td align="center" rowspan="10" width="300" style="table-layout:fixed" >
@@ -180,7 +179,6 @@
 					<input type="button" value="글수정"
 					onclick="document.location.href='classUpdate.kiki?num=${dto.num}&pageNum=${pageNum}'">
 					
-					
 					<input type="button" value="글삭제"
 					onclick="document.location.href='classDel.kiki?num=${dto.num}&pageNum=${pageNum}'">
 					</c:if>
@@ -188,6 +186,8 @@
 				</td>
 			</tr>
 		</table>
-
 	</form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

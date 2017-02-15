@@ -1,0 +1,57 @@
+body{background-color: #fff; overflow-x: hidden  } 
+#wrap{ width:95%;min-width:768px;}
+nav {margin:42px 5px 0 0;}
+#notinews {float:left; margin-left:20px }
+#justar {float: right; position: relative; left: -70px;}
+#social {
+	float:none;
+	clear: both;
+	margin:50px 30px 0 30px;
+	width: 95%;
+}
+#social h3 {
+	padding:0;
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #ccc;
+}	
+h1 div {
+	right: 20px;
+}
+article{
+	float: left;
+	padding: 15px;
+	margin: 50px 0 0 0;
+}
+#inner_wrap{
+	position: relative;
+	margin: 0;
+	padding: 7px;
+	
+}
+aside{
+	width: 100%;
+	margin: 0 0 0 5px;		
+	position: absolute;
+	top: 150px;
+	font-size: 14px;
+}
+aside h3 {
+	background:  none;
+	height: 35px;
+	position: relative;
+	width: 150px;
+	display: block;
+	float: left;
+}
+aside h3 div {
+	font-size: 1.2em;
+}
+aside ul li {
+	text-align: left;
+	display: inline-block;
+	padding: 0 12px;
+}
+aside ul li a:hover {
+	font-size: 1.3em;
+}	
+

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:include page="header.jsp" flush="false" />
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,9 +28,13 @@
 </script>
 </head>
 <body >
-	<table border="0" width="1400" cellpadding="0" cellspacing="0"
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_lecture.jsp" flush="false" />
+<article>
+<h2>강좌목록</h2>
+	<table border="0" width="650" cellpadding="0" cellspacing="0"
 		align="center" style="table-layout: fixed">
-		<hr align="center" style="border: solid 1px red;" WIDTH="1400">
+		<hr align="center" style="border: solid 1px red;" WIDTH="650">
 		<tr>
 			<td colspan="15" align="center">강좌명/강좌정보</td>
 			<td colspan="4" align="center">수강자ID</td>
@@ -38,9 +44,9 @@
 			<td colspan="2" align="center">결제액</td>
 		</tr>
 		</table>
-		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
 	<form action="appSuc.kiki" method="post" name = "payment">
-		<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
+		<table border="0" width="650" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
 		<c:forEach items="${classList}" var="cdto" varStatus="i">
 			<tr>
 				<td colspan="15" align="center">
@@ -60,9 +66,9 @@
 				<input type="hidden" name="classPay" value="${cdto.classPay}">
 		</c:forEach>
 	</table>
-		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="1400">
+		<hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
 
-	<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
+	<table border="0" width="650" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
 
 		<tr>
 				<td colspan="15" align="right">
@@ -74,5 +80,7 @@
 			</form>
 
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </html>
 
