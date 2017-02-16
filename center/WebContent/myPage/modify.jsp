@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="center.join.*" %>
-
-
-
+<jsp:include page="header.jsp" flush="false" /> 
 
  <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -36,21 +34,19 @@
     String id = (String)session.getAttribute("centerId");
     JoinDAO manager = JoinDAO.getInstance();
     JoinDTO c = manager.getMember(id);
+    JoinDTO dto = new JoinDTO();
  %>
 
-
-<center>
-<font face ="Impact" color="lightgray" size = "20" >
-Membership Modify</font>
-</center>
-<hr align="center" style="border: solid 1px lightgray; width: 55%;">
-
 <body>
-<form action="modifyPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
-<table  border="0" align="center">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>회원정보 수정</h2>
+<form id="searchbbs" action="modifyPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
+<table id="cbbs_f" border="0" align="center">
 	<tr>
 	<td width="150">ID</td>
-	<td align="left">${dto.id}<br><br>
+	<td align="left">${sessionScope.centerId}<br><br>
 	</td></tr>
 	<tr>
 	<td width="150">비밀번호</td>
@@ -94,10 +90,11 @@ Membership Modify</font>
 	<tr>
 	<td align="right" colspan="2">
 	<br><br>
+		<input type="button" value="메인으로" onclick="javascript:window.location='index.jsp'"/>
 		<input type="submit" value="회원수정" />
-		<input type="button" value="회원탈퇴" onclick="javascript:window.location='memDelete.kiki'"/>
-		<input type="button" value="메인으로" onclick="javascript:window.location='main.kiki'"/>
 	</td></tr>
 </table>
 </form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />

@@ -133,97 +133,42 @@ public class AppDAO {
 		return x;
 	}
 
-	/*public List<ClassDTO> getAppArticles(String id) throws Exception {
-
-		List<ClassDTO> articleList = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select a.num anum,c.num cnum,c.classCode,c.center,c.className,"
-					+ "c.teacher,c.classDate,c.classTime,c.classPay,c.person,c.state from class c , app a where c.classCode = a.classCode and  a.id=?");
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();			
-			if (rs.next()) {
-				articleList = new ArrayList<ClassDTO>();
-				do {
-					ClassDTO dto = new ClassDTO();
-					dto.setAnum(rs.getInt("anum"));
-					dto.setCnum(rs.getInt("cnum"));
-					dto.setClassCode(rs.getString("classCode"));
-					dto.setCenter(rs.getString("center"));
-					dto.setClassName(rs.getString("className"));
-					dto.setTeacher(rs.getString("teacher"));
-					dto.setClassDate(rs.getString("classDate"));
-					dto.setClassTime(rs.getString("classTime"));
-					dto.setClassPay(rs.getString("classPay"));
-					dto.setPerson(rs.getInt("person"));
-					dto.setState(rs.getString("state"));
-					articleList.add(dto);
-				} while (rs.next());
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException ex) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException ex) {
-				}
-		}
-		return articleList;
-	}
-	
-public List getArticles(int num) throws Exception{
-		
-		List articleList = null;
-		
-		try{
-			conn = getConnection();
-			pstmt = conn.prepareStatement(
-					"select num, id, classCode, sum, status, reg_date, memberCount, r  " +
-		            "from (select  num, id, classCode, sum, status, reg_date, memberCount,rownum r " +
-		            "from (select * " +
-		            "from app order by reg_date desc)) where r >= ? and r <= ? ");
-			pstmt.setInt(1, num);
-		
-			rs = pstmt.executeQuery();
+	 public List<AppDTO> getAppList(String id)throws Exception{
+		 List<AppDTO> articleList = null;
+		 try {
+			 conn = getConnection();
+	 		 pstmt= conn.prepareStatement("select a.num ,c.center, c.classcode,c.className, c.teacher,c.classDate,c.classTime,a.sum,a.memberCount,a.reg_Date,a.status from class c ,app a where c.classcode = a.classcode and a.id=? order by a.reg_Date desc");
+	 		 pstmt.setString(1, id);
+	 	     rs= pstmt.executeQuery(); 
+	 	     articleList = new ArrayList<AppDTO>();
+	 				
+	 					while(rs.next()){
+	 						AppDTO dto = new AppDTO();
+	 					    dto.setNum(rs.getInt("num"));
+	 						dto.setCenter(rs.getString("center"));
+	 						dto.setClassCode(rs.getString("classCode"));
+	 						dto.setClassName(rs.getString("className"));
+	 						dto.setTeacher(rs.getString("teacher"));
+	 						dto.setClassDate(rs.getString("classDate"));
+	 						dto.setClassTime(rs.getString("classTime"));
+	 						dto.setSum(rs.getString("sum"));
+	 						dto.setMemberCount(rs.getInt("memberCount"));
+	 						dto.setStatus(rs.getInt("status"));
+	 			
+	 						articleList.add(dto);
+	 					}
+	 		        } catch(Exception ex) {
+	 		            ex.printStackTrace();
+	 		        } finally {
+	 		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	 		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	 		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	 		        }
+	 				return articleList;
 			
-			if(rs.next()){
-				articleList = new ArrayList(end);
-				do{
-					AppDTO dto = new AppDTO();
-					dto.setNum(rs.getInt("num"));
-					dto.setId(rs.getString("id"));
-					dto.setClassCode(rs.getString("classCode"));
-					dto.setSum(rs.getInt("sum"));
-					dto.setStatus(rs.getInt("status"));
-					dto.setMemberCount(rs.getInt("memberCount"));
-					
-					articleList.add(dto);
-					
-				}while(rs.next());
 			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-	            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-	            if (conn != null) try { conn.close(); } catch(SQLException ex) {}			
-		}
-		return articleList;
-	}
-	*/
-	
-	 public List<AppDTO> meminfo(String id)throws Exception{
+
+	 public List<AppDTO> getAppListId(String id)throws Exception{
 		 List<AppDTO> articleList = null;
 		 try {
 			 conn = getConnection();
@@ -250,40 +195,36 @@ public List getArticles(int num) throws Exception{
 	 		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	 		        }
 	 				return articleList;
-			
-			} 
-
+			}
 		 
-	
-	public int deleteApp(int num) throws Exception {
+	 public int deleteApp(String classCode) throws Exception {
 
-		int x = -1;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("delete from app where num =?");
-			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
+			int x = -1;
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement("delete from App where classCode =?");
+				pstmt.setString(1, classCode);
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (SQLException e) {
+					}
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+					}
+				if (conn != null)
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+			}
+			return x;
+
 		}
-		return x;
-
-	}  
-}
-
+	}

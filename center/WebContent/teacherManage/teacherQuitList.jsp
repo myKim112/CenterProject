@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <head>
 <title>퇴사자 목록</title>
@@ -11,13 +12,17 @@
 </center>
 
 <body>
-<table align="center" width="700">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_master.jsp" flush="false" />
+<article>
+<h2>퇴사자 목록</h2>
+<table id="cbbs_f">
 	<tr>
 	<td align="center">퇴사자 수(${count})</td>
 	</tr>
 </table>
 
-<table align="center" width="700">
+<table id="cbbs_f">
 	<tr>
 	<td>번호</td>
 	<td>ID</td>
@@ -26,14 +31,14 @@
 </table>
 
 <c:if test="${count == 0}">
-<table align="center" width="700">
+<table id="cbbs_f">
 	<tr>
 	<td align="center">확인되는 퇴사자가 없습니다.</td>
 </table>
 </c:if>
 
 <c:if test="${count > 0}">
-<table align="center" width="700">
+<table id="cbbs_f">
 <c:forEach var="staff" items="${staffList}" varStatus="i">
 	<tr>
 	<td>${i.count}</td>
@@ -46,3 +51,6 @@
 </table>
 </c:if>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

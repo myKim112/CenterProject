@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <head>
 <title>직원관리</title>
 </head>
 
-<center>
-<font face="impact">
-권한 부여</font>
-</center>
-
 <body>
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_teacher.jsp" flush="false" />
+<article>
+<h2>권한부여</h2>
 <form action="teacherLevelPro.kiki?id=${staff.id}&pageNum=${pageNum}" method="post" >
-<table align="center">
+<table id="cbbs_f">
 	<tr>
 	<td>ID</td>
 	<td>변경 전</td>
@@ -35,3 +35,6 @@
 </table>
 </form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

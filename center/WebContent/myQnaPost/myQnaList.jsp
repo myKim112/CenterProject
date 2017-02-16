@@ -2,30 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.sql.*,java.text.SimpleDateFormat,java.util.Date"%>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>나의게시판리스트  </title>
+<title>나의 질문목록 </title>
 </head>
 <body>
-<center>
-<font size="20" face="impact">
-MY QNA LIST</font>
-</center>
-[${sessionScope.centerId }]
-<center><b>my posts ${mycounts} /total  ${count} </b>
-	<table width="700">
-		<tr>
-			<td align="right">
-				<a href="">수정</a>
-			</td>
-		</tr>
-	</table>
-	
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>나의 질문목록</h2>
 	<c:if test="${count == 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0">
+	<table id="cbbs_f">
 		<tr>
 			<td align="center">
 				나의게시판리스트에 저장된 글이 없습니다.
@@ -34,11 +25,8 @@ MY QNA LIST</font>
 	</table>
 	</c:if>
 	
-	
-
-	
 	<c:if test="${count > 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0">	
+	<table id="cbbs_f">	
 		<tr height="30">
 			<td align="center" width="50">번호</td>
 			<td align="center" width="100">센터명</td>
@@ -47,11 +35,10 @@ MY QNA LIST</font>
 			<td align="center" width="150">작성일</td>
 		</tr>
 		
-		<c:forEach var="article" items="${articleList }">
+		<c:forEach var="article" items="${articleList}">
 			<c:if test="${article.writer == sessionScope.centerId}">
 			<tr height="30">
 				<td align="center" width="50">
-					
 					<c:out value="${number }"/>
 					<c:set var="number" value="${number-1}"/>
 				</td>
@@ -62,6 +49,7 @@ MY QNA LIST</font>
   					<a href="myQnaContent.kiki?num=${article.num}&pageNum=${pageNum}">${article.title}</a>
 				</td>
 					<td align="center" width="100">${article.writer}</td>
+					<input type="hidden" name="writer" value="${article.writer }">
 				<td align="center" width="150">${article.regDate}</td>
 			</tr>
 			</c:if>
@@ -69,9 +57,8 @@ MY QNA LIST</font>
 	</table>
 	</c:if>
 
-
-
-<!-- 8. 페이지번호에 대한 이해 필요 -->
+<div id="page">
+<ul class="paging">
 <c:if test="${count > 0}">
    <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
    <c:set var="pageBlock" value="${10}"/>
@@ -83,31 +70,38 @@ MY QNA LIST</font>
    </c:if>
          
    <c:if test="${startPage > 10}">
-        <a href="myPostList.kiki?pageNum=${startPage - 10 }">[이전]</a>
+       <li> <a href="myQnaList.kiki?pageNum=${startPage - 10 }">[이전]</a></li>
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="myPostList.kiki?pageNum=${i}">[${i}]</a>
+       <li><a href="myQnaList.kiki?pageNum=${i}">${i}</a></li>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="myPostList.kiki?pageNum=${startPage + 10}">[다음]</a>
+       <li> <a href="myQnaList.kiki?pageNum=${startPage + 10}">[다음]</a></li>
    </c:if>
 </c:if>
+</ul>
+</div>
 
-<form method="post">
-<select name="searchn">
-	<option value="0">제목</option>
-	<option value="1">내용</option>
-	<option value="2">센터</option>
-</select>
-
-<input type="text" name="search" size="15" maxlength="50" /> 
-<input type="hidden" value="${search}">
-<input type="submit" value="검색" />&nbsp;
-<input type="button" value="목록보기" OnClick="window.location='myPostList.kiki'">
+<%-- 
+<br>
+<div class="clear"></div>
+<form id="searchbbs" method="post">
+	<select  id="s" name="searchn">
+		<option value="0">제목</option>
+		<option value="1">내용</option>
+		<option value="2">센터</option>
+	</select>
+			<input type="text" name="search" size="15" maxlength="50" /> 
+			<input type="hidden" value="${search}">
+			<input type="submit" value="검색" />
+			<input type="button" value="목록보기" OnClick="window.location='myQnaList.kiki'"> 
 </form>
-
+--%>
 </center>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </html>
+

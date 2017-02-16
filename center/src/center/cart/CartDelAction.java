@@ -13,7 +13,7 @@ public class CartDelAction implements SuperAction {
 	
 			CartDAO dao = CartDAO.getInstance();
 		    try{
-		    	for(String cc : classCodes){  //String형식으로 변수 n선언
+		    	for(String cc : classCodes){ 
 		    		String classCode = cc;
 		    		dao.deleteCart(classCode);
 		       	}

@@ -1,109 +1,51 @@
-<%@ page contentType = "text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Review 게시판</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>나의 게시글 내용보기</title>
 </head>
-
 <body>
-<center><b>Review 글목록(전체 글:${count})</b>
-<table width="700">
-  <tr>
-    <td align="right">
-       <a href=""></a>
-    </td>
-  </tr>
-</table>
-
-<c:if test="${count == 0}">
-<table width="700" border="1" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center">
-      나의 Review 게시판에 저장된 글이 없습니다.
-    </td>
-  </tr>
-</table>
-</c:if>
-
-<c:if test="${count > 0}">
-<table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
-    <tr height="30">
-      <td align="center"  width="50"  >번호</td> 
-      <td align="center"  width="100" >제목</td>    
-      <td align="center"  width="250" >센터명</td> 
-      <td align="center"  width="100" >작성자</td>
-      <td align="center"  width="150" >작성일</td> 
-      <td align="center"  width="50" >조회</td> 
-    </tr>
-
-   <c:forEach var="article" items="${articleList}">
-   <tr height="30">
-    <td align="center"  width="50" >
-	  <c:out value="${number}"/>
-	  <c:set var="number" value="${number - 1}"/>
-	</td>
-    <td  width="250"  align="center">
-	  <c:if test="${article.reLevel > 0}">
-	  	<img src="images/level.gif" width="${5 * article.reLevel}" height="16">
-	    <img src="images/re.gif">
-	  </c:if>
-	  <c:if test="${article.reLevel == 0}">
-	    <img src="images/level.gif" width="${5 * article.reLevel}" height="16">
-	  </c:if>
-           
-      <a href="reviewContent.kiki?num=${article.num}&pageNum=${currentPage}">
-          ${article.title}</a> 
-          <c:if test="${article.readCount >= 20}">
-            <img src="images/hot.gif" border="0"  height="16">
-		  </c:if>
-	</td>
-    <td align="center"  width="100">${article.center}</td>
-    <td align="center"  width="100">${article.writer}</td>
-    <td align="center"  width="150">${article.regDate}</td>
-    <td align="center"  width="50">${article.readCount}</td>
-  </tr>
-  </c:forEach>
-</table>
-</c:if>
-
-<c:if test="${count > 0}">
-   <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
-   <c:set var="pageBlock" value="${10}"/>
-   <fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
-   <c:set var="startPage" value="${result * 10 + 1}" />
-   <c:set var="endPage" value="${startPage + pageBlock-1}"/>
-   <c:if test="${endPage > pageCount}">
-        <c:set var="endPage" value="${pageCount}"/>
-   </c:if> 
-          
-   <c:if test="${startPage > 10}">
-        <a href="reviewList.kiki?pageNum=${startPage - 10 }">[이전]</a>
-   </c:if>
-
-   <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="reviewList.kiki?pageNum=${i}">[${i}]</a>
-   </c:forEach>
-
-   <c:if test="${endPage < pageCount}">
-        <a href="reviewList.kiki?pageNum=${startPage + 10}">[다음]</a>
-   </c:if>
-</c:if>
-
-<form method="post">
-	<select name="searchn">
-		<option value="0">제목</option>
-		<option value="1">내용</option>
-		<option value="2">센터명</option>
-		<option value="3">작성자</option>
-	</select>
-
-	<input type="text" name="search" size="15" maxlength="50" /> 
-	<input type="hidden" value="${search}">
-	<input type="submit" value="검색" />&nbsp;
-	<input type="button" value="목록보기" OnClick="window.location='myReviewList.kiki'">
-</form>
-</body>
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>나의 수강후기</h2>
+<center>
+<form id="searchbbs">
+	<table id="cbbs_f">
+		<tr>
+			<th>글번호</th>
+			<td>${article.num}</th>
+			<input type="hidden" name="num" value="${atricle.num }">
+			<th>조회수</th>
+			<td>${article.readCount }</td>
+		</tr>
+		<tr>
+			<th>작성일</td>
+			<td align="center"  colspan="3">${article.regDate }</td>
+		</tr>
+		<tr>
+			<th>글제목</td>
+			<td align="center"  colspan="3">${article.title}</td>
+		</tr>
+		<tr>
+			<th>글내용</td>
+			<td align="center"  colspan="3">${article.content}</td>
+		</tr>	
+		<tr>
+			<td align="center" colspan="4">
+				<input type="button" value="글수정" onclick="document.location.href='/center/myReviewUpdateForm.kiki?num=${article.num}&pageNum=${pageNum}'">
+				<input type="button" value="글삭제" onclick="document.location.href='/center/myReviewDeleteForm.kiki?num=${article.num}&pageNum=${pageNum}'">
+				<input type="button" value="글목록" onclick="document.location.href='/center/myReviewList.kiki?pageNum=${pageNum}'">
+			</td>
+		</tr>					
+	</table>
+</form>	
 </center>
+</body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </html>

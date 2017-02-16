@@ -3,22 +3,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="http://localhost/jsp_prj/common/css/main.css" />
-<title>캘린더</title>
-<style type="text/css">
+<title>일정표</title>
+<%-- 
 #wrap {
-	width: 800px;
+	width: 600px;
 	height: 700px;
 	margin: 0px auto;
 }
 
 #header {
-	width: 800px;
+	width: 600px;
 	height: 80px;
 	background-color: #00375E;
 	text-align: right;
@@ -29,28 +30,30 @@
 }
 
 #content {
-	width: 800px;
+	width: 600px;
 	height: 535px;
 }
 
 #footer {
-	width: 800px;
+	width: 600px;
 	height: 80px;
 	background: URL(http://localhost/jsp_prj/common/images/footer.png);
 	font-weight: bold;
 	text-align: right;
 	vertical-align: bottom;
 }
+--%>
+<style type="text/css">
 /*------------------diary css 시작------------------------------- */
 /* #= id , . = class*/
 #diaryTitle {
-	width: 800px;
+	width: 600px;
 	text-align: center;
 	margin-top: 5px
 }
 
 #diaryContent {
-	width: 800px;
+	width: 600px;
 	text-align: center
 }
 
@@ -122,8 +125,13 @@ td {
 </script>
 </head>
 
+
 <body>
-	<div id="wrap">
+<h1 id="customer"><div>master center</div></h1>
+<jsp:include page="sidebar_master.jsp" flush="false" />
+<article>
+<h2>일정표</h2>
+	<div >
 		<div id="header"></div>
 		<div id="content">
 			<!--   <input type="date"/> //달력기능 -->
@@ -294,7 +302,7 @@ td {
 					</tbody>
 				</table>
 				<c:if test="${staff.lev >= 500}">
-				<table class="dTable" width="800">
+				<table class="dTable" width="600">
 					<tr>
 						<td align="right">
 							<input type="button" value="일정 등록" onclick="window.location='calInputForm.kiki'" />
@@ -304,7 +312,9 @@ td {
 				</c:if>
 			</div>
 		</div>
-		<div id="footer"></div>
+		<%-- <div id="footer"></div> --%>
 	</div>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </html>

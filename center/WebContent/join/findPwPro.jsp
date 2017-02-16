@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="center.join.*" %>
+<jsp:include page="header.jsp" flush="false" />
 
 <%
 
@@ -15,23 +16,15 @@
 
 
 <body >
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>비밀번호 찾기</h2> 
 <c:if test="${null ne pw}">
-<form method="post" action="loginPage.kiki" name="findIdRs" >
-<table width="270" border="0" cellspacing="0" cellpadding="5" align="center">
-  <tr > 
-    <td height="39" align="center">
+<form id="searchbbs"method="post" name="findIdRs"  action="loginPage.kiki">
 	  <font size="+1" ><b>${id}님의 비밀번호는
-${pw}입니다</b></font></td>
-  </tr>
- 
-  <tr>
-    <td align="center"> 
-      <input type="submit" value="확인">
-    <input type="button" value="아이디찾기" onclick="window.location='/center/findIdForm.kiki'" />
-    <input type="button" value="회원가입" onclick="window.location='/center/agreeForm.kiki'" />
-    </td>
-  </tr>
-</table>
+${pw}입니다</b></font><br><br>
+<input type="submit" value="이전">
 </form>
 </c:if>
 
@@ -46,4 +39,6 @@ ${pw}입니다</b></font></td>
 
 </c:if>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />   
 </html>

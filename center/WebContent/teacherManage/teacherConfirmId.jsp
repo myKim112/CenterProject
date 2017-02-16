@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <head>
 <title>중복확인</title>
@@ -47,3 +48,5 @@ function setId() {
 	self.close();
 }
 </script>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

@@ -1,46 +1,44 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=euc-kr" %>
+<%@ page import="java.sql.*" %>
 <%@ page import="center.join.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" />
+
 <html>
-<head><title>ID ì°¾ê¸°</title>
-<link href="style.css" rel="stylesheet" type="text/css">
-<%
+<% request.setCharacterEncoding("utf-8");%>
 
+ <%
+ 		String name = request.getParameter("name");
+ 		String phone = request.getParameter("phone");
 
-	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("id");
-	String name = request.getParameter("name");
-%>
-
-<body ><br><br><br><br><br><br><br><br>
-<c:if test="${null ne id}">
-<form method="post">
-<table width="270" border="0" cellspacing="0" cellpadding="5" align="center">
-  <tr > 
-    <td height="39" align="center">
-	  <font size="+1" ><b>${name}ë‹˜ì˜ IDëŠ”
-${id}ì…ë‹ˆë‹¤</b></font></td>
-  </tr>
+		 JoinDAO manager = JoinDAO.getInstance();
+		 String check = manager.idFind(name,phone);
  
-  <tr>
-    <td align="center"> 
-      <input type="submit" value="í™•ì¸" onclick="window.location='/center/loginPage.kiki'" />
-    <input type="button" value="ë¹„ë°€ë²ˆí˜¸ì°¾ê¸°" onclick="window.location='/center/findPwForm.kiki'" />
-    <input type="button" value="íšŒì›ê°€ì…" onclick="window.location='/center/agreeForm.kiki'" />
-    </td>
-  </tr>
-</table>
+		 if(name != null) {
+ %>
+ <body>
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>¾ÆÀÌµğ Ã£±â</h2>  
+ <form id="searchbbs" method="post" action="loginPage.kiki">
+		${name} ´ÔÀÇ ¾ÆÀÌµğ´Â <b>${name}</b>ÀÔ´Ï´Ù<p> 
+		<br>
+		 <input type="submit" value="ÀÌÀü">
+<%}else{%>
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>¾ÆÀÌµğ Ã£±â</h2>
+<form id="searchbbs" >
+		ÀÌ¸§ ¶Ç´Â ÇÚµåÆù¹øÈ£°¡ Æ²·È½À´Ï´Ù <p>
+		<br>
+		<input type="button" value="´Ù½ÃÀÔ·Â" onclick="window.location='findIdForm.kiki'">
 </form>
-</c:if>
+<%}%>
 
-
-<c:if test="${null eq id}">
-
-	<script> 
-	  alert("ì¼ì¹˜í•˜ëŠ” íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤");
-      history.go(-1);
-	</script>
-
-</c:if>
+</form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />   
 </html>

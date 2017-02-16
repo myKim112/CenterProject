@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <head>
 <title>회원 관리</title>
 </head>
 
-<center>
-<font size="6" face="impact">
-MEMBER INFORMATION</font>
-</center>
-
 <body>
-<table align="center" width="700">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_master.jsp" flush="false" />
+<article>
+<h2>회원 정보</h2>
+<table id="cbbs_f">
 	<tr>
 	<td>ID</td><td>${article.id}</td>
 	<td>PASSWORD</td><td>${article.pw}</td>
@@ -48,3 +48,6 @@ MEMBER INFORMATION</font>
 	</td></tr>
 </table>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

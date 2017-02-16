@@ -2,13 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<jsp:include page="header.jsp" flush="false" /> 
 <head>
 <title>강사 관리</title>
 </head>
 
 <body>
-<table align="center" width="1000" border="1">
+<h1 id="customer"><div>master center</div></h1>
+<jsp:include page="sidebar_teacher.jsp" flush="false" />
+<article>
+<h2>강의목록</h2>
+<table id="cbbs_f">
 	<tr>
 		<td>번호</td>
 		<td>지점</td>
@@ -24,7 +28,7 @@
 </table>
 
 <c:if test="${count == 0}">
-<table align="center" width="1000" border="1">
+<table id="cbbs_f">
 	<tr>
 		<td align="center">
 			강좌 이력이 없습니다.
@@ -34,7 +38,7 @@
 </c:if>
 
 <c:if test="${count > 0}">
-<table align="center" width="1000" border="1">
+<table id="cbbs_f">
 <c:forEach var="staff" items="${classList}">
 	<tr>
 		<td>
@@ -56,6 +60,10 @@
 </c:forEach>
 </table>
 </c:if>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>
+
 
 <table align="center" width="1000" border="1">
 	<tr>

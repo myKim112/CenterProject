@@ -31,7 +31,7 @@
 <body>
 	<div id="wrap">
 		<header>
-			<div id="logo"><a href="./">NGC Corp.</a></div>
+			<div id="logo"><a href="index.jsp">NGC Corp.</a></div>
 			<div id="hlink">
 				<ul>
 					<li><a href="index.jsp">HOME</a></li>
@@ -52,11 +52,17 @@
 				</c:if>	
 				
 				<%-- 관리자 로그인 --%>
-				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
+				<% 
+			//	String power = request.getParameter("power");
+			//	System.out.println(power);%>
+				<c:if test="${power.lev >= 500 }">
+				<%-- <c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}"> --%>
 					<li><a href="calendar.kiki">관리자</a></li>					
-					<li><a href="#">강사</a></li>					
 				</c:if>
 				
+				<c:if test="${power.lev >= 20 }">
+					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
+				</c:if>
 				
 				<%-- 강사 로그인  
 				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">

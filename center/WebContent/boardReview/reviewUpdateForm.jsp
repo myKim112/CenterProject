@@ -1,36 +1,40 @@
 <%@ page contentType = "text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <html>
 <head>
-<title>Review 수정게시판</title>
+<title>수강후기 글수정 게시판</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 
 <body>  
-<center><b>Review 글수정</b>
-<br>
-<form method="post" name="writeform" action="reviewUpdatePro.kiki?pageNum=${pageNum}" onsubmit="return writeSave()" enctype="multipart/form-data">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_customer.jsp" flush="false" />
+<article>
+<h2>공지사항 글수정</h2>
+<form id="searchbbs" method="post" name="writeform" action="reviewUpdatePro.kiki?pageNum=${pageNum}" onsubmit="return writeSave()" enctype="multipart/form-data">
 <input type="hidden" name="pageNum" value="${pageNum}"></td>
-<table width="450" border="1" cellspacing="0" cellpadding="0" align="center">
+<table id="cbbs_f">
   <tr>
-    <td  width="70" align="center">이 름</td>
-    <td align="left" width="330">
-       <input type="text" size="10" maxlength="50" name="writer" value="${article.writer}">
+    <td>이 름</td>
+    <td>${sessionScope.centerId}
+       <input type="hidden" size="10" maxlength="50" name="writer" value="${article.writer}">
 	   <input type="hidden" name="num" value="${article.num}"></td>
   </tr>
   <tr>
-    <td  width="70" align="center" >제 목</td>
-    <td align="left" width="330">
+    <td>제 목</td>
+    <td>
        <input type="text" size="40" maxlength="50" name="title" value="${article.title}"></td>
   </tr>
   <tr>
-    <td  width="70" align="center" >센터명</td>
-    <td align="left" width="330">
+    <td>센터명</td>
+    <td>
        <input type="text" size="40" maxlength="50" name="center" value="${article.center}"></td>
   </tr>  
   <tr>
-    <td  width="70" align="center" >내 용</td>
-    <td align="left" width="330">
+    <td>내 용</td>
+    <td>
      <textarea name="content" rows="13" cols="40">${article.content}</textarea></td>
   </tr>
   <tr>
@@ -40,20 +44,28 @@
   	</td>
   </tr>
   <tr>
-    <td  width="70" align="center" >비밀번호</td>
-    <td align="left" width="330" >
+    <td>비밀번호</td>
+    <td >
      <input type="password" size="8" maxlength="50" name="pw">
 	 </td>
   </tr>
+  </table>
+  <br><br>
+  
+  <table>
   <tr>      
-   <td colspan=2 align="center"> 
-     <input type="submit" value="글수정" >  
-     <input type="reset" value="다시작성">
+   <td> 
+     <input type="submit" value="글수정" > 
+   </td>
+   	  <td>&nbsp;&nbsp;&nbsp;</td>
+   	  <td> 
      <input type="button" value="목록보기" 
        onclick="document.location.href='reviewList.kiki?pageNum=${pageNum}&num=${num }'">
    </td>
  </tr>
  </table>
 </form>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </body>
 </html>      

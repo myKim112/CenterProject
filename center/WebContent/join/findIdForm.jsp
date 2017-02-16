@@ -1,108 +1,81 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=euc-kr" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
+
 <html>
 <head>
-<title>ì•„ì´ë””ì°¾ê¸°</title>
-
-<link href="style.css" rel="stylesheet" type="text/css">
-
+<title>¾ÆÀÌµğÃ£±â</title>
+</head>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	try {
-		if(session.getAttribute("centerId") == null) { %>
+		if(session.getAttribute("centerId") == null) {
+%>
 		
-		
-<script language="javascript">
-
+<script>
 function focusIt() {
-	document.findIdForm.id.focus();
+	document.findForm.id.focus();
 }
 
-function findId() {
-	inputForm = eval("document.findIdForm");
+function ResearchId() {
+	inputForm = eval("document.findForm");
 	
 	if(!inputForm.name.value) {
-		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
+		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.");
 		inputForm.id.focus();
 		return false;
-	} 
+	}
 	
 	if(!inputForm.phone.value) {
-		alert("-ì—†ì´ ì „í™”ë²ˆí˜¸ë¥¼  ì…ë ¥í•˜ì„¸ìš”.");
-		inputForm.phone.focus();
+		alert("-¾øÀÌ ÀüÈ­¹øÈ£¸¦  ÀÔ·ÂÇÏ¼¼¿ä.");
+		inputForm.pw.focus();
 		return false;
-	} 
-	
+	}
 }
 </script>
 
-</head>
-
 <body onLoad="focusIt()">
-		<center>
-<br><br><br><br><br><br><br><br>
-			
-			
-			
-			
-			
-			<form name="findIdForm" id="findIdForm" action="findIdPro.kiki" method="post" onSubmit="return findId(this);">
-		
-	<table>
-	
-
-  						<tr>
-  								<h1><td  align="center"><p><h1><b>ì•„ì´ë”” ì°¾ê¸°</b></h1></td>
-  						</tr>
-  				        <tr>
-  				        		<td><p><strong>Name :</strong></p></td>
-           					    <td><input type=text name="name" id="name" type=text size="31"></td>
-           			   </tr>
-           
-           				<tr>    <td><strong>Phone Number:</strong></td>
-           						 <td><input type=text name="phone" id="phone" size="31" placeholder="-ë¥¼ìƒëµí•˜ê³  ìˆ«ìë§Œì…ë ¥ì„¸ìš”" />
-          						  </td>
-          			  </tr>
-         
-           
-  <tr>
-
-  <td><P><input type="submit" value="í™•     ì¸" />
-     <input type=reset value="ì·¨    ì†Œ" />
-     <input type="button" value="íšŒì›ê°€ì…" onclick="window.location='/center/agreeForm.kiki'" />
-     </p></td></tr></table>
-     
-			</form>
-			
-
-
-
-
-
-
-
-
-
-
-
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>¾ÆÀÌµğ Ã£±â</h2>
+<form id="searchbbs" name="findForm" method=post action="findIdPro.kiki" onSubmit="ResearchId()"/>
+<table id="cbbs_f">
+	<tr>
+		<td>
+            <p><strong>Name</strong></td>
+        <td><input name="name" type=text size="31"></td></tr>
+	<tr>
+		<td>
+			<strong>Phone Number</strong></td>
+		<td>
+			<input type=text name=phone size="31" placeholder="-¸¦»ı·«ÇÏ°í ¼ıÀÚ¸¸ÀÔ·Â¼¼¿ä" />
+		</td>
+	<tr>
+</table>
+<table id="cbbs_f">	
+  	<tr>
+  		<td>
+  			<input type=submit value="È®ÀÎ" >
+     	</td>
+     </tr>
+</table>
 <%	} else { %>
 
-<form action="" method="post">
-<table align="center">
+
 	<tr>
 	<td align="center">
-		<h3>ê·€í•˜ê°€ ì…ë ¥í•˜ì‹  IdëŠ” <br>
-		<%= session.getAttribute("centerId") %>ì…ë‹ˆë‹¤</h3>
+		<h3>±ÍÇÏ°¡ ÀÔ·ÂÇÏ½Å Id´Â <br>
+		<%= session.getAttribute("centerId") %>ÀÔ´Ï´Ù</h3>
 	</td></tr>
 	<tr>
 	<td align="center">
-		<input type="button" value="ë¡œê·¸ì¸" onclick="javascript:window.location='logPage.kiki'"/>
-		<input type="button" value=" ê³µì§€ì‚¬í•­" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
+		<input type="button" value="·Î±×ÀÎ" onclick="javascript:window.location='logPage.kiki'"/>
+		<input type="button" value=" °øÁö»çÇ×" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
 	</td></tr>
 	<tr>
 	<td algin="center">
-		<input type="submit" value="ë¡œê·¸ì•„ì›ƒ" onclick="window.location='logOut.kiki'" /></td>
+		<input type="submit" value="·Î±×¾Æ¿ô" onclick="window.location='logOut.kiki'" /></td>
 	</tr>
 	<tr>
 	<td align="center">
@@ -110,19 +83,23 @@ function findId() {
 			String id = (String)session.getAttribute("centerId");
 		
 			if(id.equals("admin")) {	%>
-			<input type="button" value="ê´€ë¦¬ì" onclick="window.location=''" />
+			<input type="button" value="°ü¸®ÀÚ" onclick="window.location=''" />
 		<%	} %>
 	</td></tr>
 	<tr>
 	<td align="center">
 		<font size="2">
-			<a href="">ì •ë³´ìˆ˜ì •</a> 
-			<a href="">íšŒì›íƒˆí‡´</a>
+			<a href="">Á¤º¸¼öÁ¤</a> |
+			<a href="">È¸¿øÅ»Åğ</a>
 	</font>
 </table>
-</form>
 <%		} 
-	} catch(Exception e) { }	%>
-</body>
+	} catch(Exception e) {
+%>
+<%		
+	}	%>
+</table>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </body>
 </html>

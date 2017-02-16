@@ -2,26 +2,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:include page="header.jsp" flush="false" />  
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항 게시판</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>공지사항 게시판</title>
 </head>
+
 <body>
-<center><b>공지사항 글목록(전체 글:${count})</b>
-	<table width="700">
-		<tr>
-			<td align="right">
-				<a href="noticeWriteForm.kiki">글쓰기</a>
-			</td>
-		</tr>
-	</table>
+
+	<h1 id="customer"><div>customer center</div></h1>
+	<jsp:include page="sidebar_customer.jsp" flush="false" />
 	
+<article>
+<h2>공지사항</h2>
 	<c:if test="${count == 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0">
+	<table id="cbbs">
 		<tr>
-			<td align="center">
+			<td>
 				공지사항 게시판에 저장된 글이 없습니다.
 			</td>
 		</tr>
@@ -29,33 +28,34 @@
 	</c:if>
 	
 	<c:if test="${count > 0 }">
-	<table width="700" border="1" cellpadding="0" cellspacing="0">	
-		<tr height="30">
-			<td align="center" width="50">번호</td>
-			<td align="center" width="100">센터명</td>
-			<td align="center" width="250">제목</td>
-			<td align="center" width="150">작성일</td>
+	<table id="cbbs">	
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>게시일</th>
+			<th>센터명</th>
+			<th>조회수</th>
 		</tr>
 		
 		<c:forEach var="article" items="${articleList }">
-			<tr height="30">
-				<td align="center" width="50">
+			<tr>
+				<td>
 					<c:out value="${number }"/>
 					<c:set var="number" value="${number-1}"/>
 				</td>
-				<td align="center" width="100">
-					${article.center}					
-				</td>		
-				<td align="center" width="250">
+				<td>
   					<a href="noticeContent.kiki?num=${article.num}&pageNum=${pageNum}">${article.title}</a>
 				</td>
-				<td align="center" width="150">${article.regDate}</td>
+				<td>${article.regDate}</td>
+				<td>${article.center}</td>
+				<td>${article.readCount }</td>		
 			</tr>
 		</c:forEach>
 	</table>
 	</c:if>
 
-<!-- 8. 페이지번호에 대한 이해 필요 -->
+<div id="page">
+<ul class="paging">
 <c:if test="${count > 0}">
    <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
    <c:set var="pageBlock" value="${10}"/>
@@ -67,32 +67,40 @@
    </c:if>
          
    <c:if test="${startPage > 10}">
-        <a href="noticeList.kiki?pageNum=${startPage - 10 }">[이전]</a>
+        <li><a href="noticeList.kiki?pageNum=${startPage - 10 }">이전</a></li>
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="noticeList.kiki?pageNum=${i}">[${i}]</a>
+       <li> <a href="noticeList.kiki?pageNum=${i}">${i}</a></li>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="noticeList.kiki?pageNum=${startPage + 10}">[다음]</a>
+         <li><a href="noticeList.kiki?pageNum=${startPage + 10}">다음</a></li>
    </c:if>
 </c:if>
+</ul>
+</div>
 
-<form method="post">
-<select name="searchn">
-	<option value="0">제목</option>
+<div class="clear"></div>
+<form id="searchbbs" method="post">
+<select id="s" name="searchn">
+	<option value="0" >제목</option>
 	<option value="1">내용</option>
 	<option value="2">센터</option>
 </select>
-
-<input type="text" name="search" size="15" maxlength="50" /> 
+<input type="search" name="search" size="15" maxlength="50" /> 
 <input type="hidden" value="${search}">
-<input type="submit" value="검색" />&nbsp;
-<input type="button" value="목록보기" OnClick="window.location='noticeList.kiki'">
+<input type="submit" value="검색" />
+<%-- <input type="button" value="목록보기" OnClick="window.location='noticeList.kiki'"> --%>
 </form>
 
-</center>
+<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
+	<div class="btn"><a href="noticeWriteForm.kiki">글쓰기</a></div>
+</c:if>
+
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+  
 </body>
 </html>
 

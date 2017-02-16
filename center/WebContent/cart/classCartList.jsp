@@ -84,15 +84,18 @@
 				</table>
 			</c:forEach>
 		</c:if>
-		<table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
+		
+		<form id="searchbbs" method="">
+		<table id="cbbs_f">
 			<tr>
-				<td align="right" >
+				<td>
 					<br><br>
 					<input type="button"  value="결제" onclick="testPay();" /> 
 					<input type="button" value="삭제" onclick="delCart();" /> 
 				</td>
 			</tr>
 		</table>
+		</form>
 
 		<table border="0" width="650" cellpadding="0" cellspacing="0" align="center" style="table-layout: fixed">
 			<td>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" />
 
 <head>
 <title>캘린더</title>
@@ -33,19 +34,21 @@
 </script>
 	
 <body>
-<form action="calInputPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
-<table align="center" width="300" border="1">
+<h1 id="customer"><div>master center</div></h1>
+<jsp:include page="sidebar_master.jsp" flush="false" />
+<article>
+<h2>일정표 일정추가</h2>
+<form id="searchbbs" action="calInputPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
+<table id="cbbs_f" align="center" width="300" border="1">
 	<tr>
-		<td align="center" colspan="2"><b>일정 추가</b></td>
-	</tr>
-	<tr>
-		<td>제목 : </td>
+		<th>제목</th>
 		<td>
 			<input type="text" name="calTitle" />
 			<input type="hidden" name="calNum" value="${calNum}"/>
 		</td>
 	</tr>
 	<tr>
+		<th>일정</th>
 		<td colspan="2">
 			<input type="text" name="memoYear" size="4" maxlength="4" />년
 			<input type="text" name="memoMonth" size="2" maxlength="2" />월
@@ -53,27 +56,27 @@
 		</td>
 	</tr>
 	<tr>
+		<th>내용</th>	
 		<td colspan="2">
 			<textarea cols="40" rows="10" name="calContent" ></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td>비밀번호</td>
+		<th>비밀번호</th>
 		<td>
 			<input type="password" name="calPw" size="6" />
 		</td>
 	</tr>
 	<tr>
-		<td align="right" colspan="2">
-			<input type="submit" value="일정 등록" />
-			<input type="reset" value="다시 등록" />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" colspan="2">
+		<td>
 			<input type="button" value="달력으로" onclick="window.location='calendar.kiki'" />
 		</td>
-	</tr>	
+		<td>
+			<input type="submit" value="일정 등록" />
+		</td>
+	</tr>
 </table>
 </form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />

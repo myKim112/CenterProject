@@ -56,7 +56,7 @@
 <c:if test="${article.re_level == 0}">
 	<img src="images/level.gif" width="${5 * article.re_level}" height="16">
 </c:if>
-	<a href="content.do?num=${article.num}&pageNum=${currentPage}">${article.title}</a> 
+	<a href="myClassContent.kiki?num=${article.num}&pageNum=${currentPage}">${article.title}</a> 
 <c:if test="${article.readcount >= 20}">
 	<img src="images/hot.gif" border="0"  height="16">
 </c:if>

@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp" flush="false" />
 
 <head>
 <title>회원가입</title>
 </head>
 
-<link href="style.css" rel="stylesheet" type="text/css">
-
 <body>
-
-<form name="loginPro" action="" method="post" onSubmit="return checkIt()">
-<br><br><br><br><br><br><br><br><br><br><br><center><h2>NoGom Company </h2> 
-<br><br><br><br><br><br>
-
-<table width="600" border="0" align="center">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>회원가입</h2>
+<form id="searchbbs" name="loginPro" action="" method="post" onSubmit="return checkIt()">
+<table id="cbbs_f">
 	<tr>
 	<td colspan="2" align="center" id="checkbox01">
 		<i>이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택),<br/> 
@@ -40,13 +39,14 @@
 		<i>이벤트 등 프로모션 알림 메일 수신(선택)</i>
 		<input type="radio" name="checkbox05" size="15" maxlength="12" /> <br><br><br><br>
 	</td></tr>
-	<tr height="30">
-	<td name="agree" colspan="2" align="center">
-		<br/><br/>
-		<a href="loginPage.kiki"> 비동의</a> &nbsp;&nbsp;
-		<a href="membershipForm.kiki"> 동의</a>
-		<br/><br/><br/>
-	</td></tr>
+	<tr>
+	<td>
+		<input type="button" value="비동의" onclick="window.location='loginPage.kiki'">
+		<input type="button" value="동의" onclick="window.location='membershipForm.kiki'">
+	</td>	
+</tr>
 </table>
 </form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" /> 

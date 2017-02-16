@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" />
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
 </head>
-
-<link href="style.css" rel="stylesheet" type="text/css">
-
 <%
 	try {
 		if(session.getAttribute("centerId") == null) { %>
@@ -35,81 +36,83 @@
 </script>
 
 <body onload="focusIt()">
-
-<br><br><br><br><br><br><br><br><br><br><br><center><h2>healthy  Upgrade </h2> 
- <br />
-      <br />
-<h3>노곰의 세계로</h3>
-<br />
-
-<form name="logform" action="loginPro.kiki" method="post" onSubmit="return checkIt()" >
-<table width="300" height="150" border="0" align="center">
-	<tr height="30">
-	<td colspan="2" align="middle">
-		<strong>Log-in</strong>
-	<br/><br/><br/>
-	</td></tr>
-	<tr height="30">
-	<td width="110" align="center">아이디</td>
-	<td align="center">
-		<input type="text" name="id" size="15" maxlength="12" /></td>
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_login.jsp" flush="false" />
+<article>
+<h2>로그인</h2>  
+<form id="searchbbs" name="logform" action="loginPro.kiki" method="post" onSubmit="return checkIt()" >
+<table id="cbbs_f">
+	<tr>
+		<td>아이디</td>
+		<td>
+			<input type="text" name="id">
+		</td>
 	</tr>
-	<tr height="30">
-	<td width="110" align="center">비밀번호</td>
-	<td align="center">
-		<input type="password" name="pw" size="15" maxlength="12" /></td>
+	<tr>
+		<td>비밀번호</td>
+		<td>
+			<input type="password" name="pw">
+		</td>
 	</tr>
-	<tr height="30">
-	<td colspan="2" align="center">
-	<br/><br/>
-		<a href="/center/findIdForm.kiki">아이디 찾기</a>&nbsp;
-		<a href="/center/findPwForm.kiki">비밀번호 찾기</a>
-	</td><tr>
-	<tr height="30">
-	<td colspan="2" align="center">
-	<br/><br/>
-		<input type="submit" value="로그인" />
-		<input type="button" value="회원가입" onclick="window.location='agreeForm.kiki'" />
-	</td></tr>
 </table>
+
+<table  id="cbbs">
+	<tr>
+		<td>
+			<input type="submit" value="로그인" />
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>
+			<input type="button" value="아이디 찾기" onclick="window.location='/center/findIdForm.kiki'">
+		</td>
+		<td>
+			<input type="button" value="비밀번호 찾기" onclick="window.location='/center/findPwForm.kiki'">
+		</td>
+	</tr>
+</table>
+<%-- <table id="cbbs">		
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" value="회원가입" onclick="window.location='agreeForm.kiki'" />
+		</td>
+	</tr>
+</table>
+--%>
 </form>
 
 <%	} else { %>
-
-<form action="logOut.kiki" method="post">
-<table align="center">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<form id="searchbbs"  action="logOut.kiki" method="post">
+<table id="cbbs_f">
 	<tr>
-	<td align="center">
-		<h3>반갑습니다. <br>
-		<%= session.getAttribute("centerId") %>님이 방문하셨습니다.</h3>
-	</td></tr>
-	<tr>
-	<td align="center">
-		<input type="button" value="게시판" onclick="javascript:window.location='/form/boardtest/list.jsp'"/>
-		<input type="button" value=" 공지사항" onclick="javascript:window.location='/form/noticeboard/noticeList.jsp'"/>
-		<input type="button" value="내가쓴글보기" onclick="window.location='memListMenu.kiki'"/>
-	</td></tr>
-	<tr>
-	<td algin="center">
-		<input type="submit" value="로그아웃" /></td>
+		<td>
+			<h1>반갑습니다.</h1> <br>
+			<%= session.getAttribute("centerId") %>님이 방문하셨습니다.</h3>
+		</td>
 	</tr>
 	<tr>
-	<td align="center">
-		<%
-			String id = (String)session.getAttribute("centerId");
-		
-			if(id.equals("admin")) {	%>
-			<input type="button" value="관리자" onclick="window.location=''" />
-		<%	} %>
-	</td></tr>
+		<td>
+			<%
+				String id = (String)session.getAttribute("centerId");
+				if(id.equals("admin")) {	%>
+				<input type="button" value="관리자" onclick="window.location=''" />
+			<%	} %>
+		</td>
+	</tr>
 	<tr>
-	<td align="center">
-		<font size="2">
-			<a href="">정보수정</a> |
-			<a href="">회원탈퇴</a>
-	</font>
-</table>
+		<td>
+			<font size="2">
+				<a href="">정보수정</a> |
+				<a href="">회원탈퇴</a>
+		</font>
+	</table>
 </form>
 <%		} 
 	} catch(Exception e) { }	%>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />   
+</html>

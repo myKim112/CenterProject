@@ -18,10 +18,7 @@
 <br/>
 
 <input type="button" value="로그인" onclick="window.location='loginPage.kiki'"/>
-<input type="button" value="나의글보기" onclick="window.location='myPostList.kiki'"/>
-<input type="button" value="Q&A" onclick="window.location='qnaList.kiki'"/>
-<input type="button" value="Review" onclick="window.location='reviewList.kiki'"/>
-
+<input type="button" value="review게시판" onclick="window.location='reviewList.kiki'"/>
 <c:if test="${null eq id}">
 ===== 관리자 모드로 넣을거 ========
 <br/>

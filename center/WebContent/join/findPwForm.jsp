@@ -1,21 +1,18 @@
 <%@ page contentType="text/html;charset=euc-kr" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" />
+
 <html>
 <head>
 <title>Password찾기</title>
-<link href="style.css" rel="stylesheet" type="text/css">
-
-
 </head>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	try {
 		if(session.getAttribute("centerId") == null) { %>
 		
-		
 <script language="javascript">
-
-
 
 function focusIt() {
 	document.findForm.id.focus();
@@ -46,38 +43,35 @@ function findPw() {
 </script>
 
 
-
 <body onLoad="focusIt()">
-<center>
-<form name="findPwForm" action="findPwPro.kiki" method="post" onSubmit="return findPw();">
-<br><br><br><br><br><br><br><br>
-<table>
-
-  <tr><td  align="center"><p><h1><b>Password 찾기</b></h1></td></tr>
-           <tr><td>
-            <p><strong>Name :</strong></td>
-            <td><input name="name" type=text size="31"></td></tr> </p>
-            </p>
-            <tr><td><strong>Phone Number:</strong></td>
-            <td><input type=text name=phone size="31" placeholder="-를생략하고 숫자만입력세요" />
-            </td></tr></br>
-             <tr><td><strong>ID:</strong></td>
-            <td><input type=text name=id size="31"  />
-            </td></tr>
-         
-         
-           
-  <tr><td><p><input type=submit value="확    인">
-     <input type=reset value="취    소"></p></td></tr>
-     
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>비밀번호 찾기</h2> 
+<form id="searchbbs" name="findPwForm" action="findPwPro.kiki" method="post" onSubmit="return findPw();">
+<table id="cbbs_f">
+	<tr>
+		<td>Name</td>
+        <td><input name="name" type=text></td>
+	</tr>
+	<tr>
+		<td>Phone Number</td>
+        <td><input type=text name=phone placeholder="-를생략. 숫자만입력." /></td>
+	</tr>
+	<tr>
+		<td>ID</td>
+		<td><input type=text name=id></td>
+	</tr>
 </table>
+<br>
+			<input type=submit value="확인">
 </form>
 
 
 <%	} else { %>
 
-<form action="finPwPro.kiki" method="post">
-<table align="center">
+<form id="searchbbs" action="finPwPro.kiki" method="post">
+<table id="cbbs_f">
 	<tr>
 	<td align="center">
 		<h3>귀하가 입력하신 Id는 <br>
@@ -112,7 +106,8 @@ function findPw() {
 <%		} 
 	} catch(Exception e) { }	%>
 </body>
-</body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />   
 </html>
 
 

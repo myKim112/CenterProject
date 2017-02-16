@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <head>
 <title>직원관리</title>
@@ -22,14 +23,13 @@
 	}
 </script>
 
-<center>
-<font face ="Impact" color="lightgray" size = "20" >
-Teacher Modify</font>
-</center>
-
 <body>
-<form action="teacherUpdatePro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
-<table  border="0" align="center">
+<h1 id="customer"><div>teacher center</div></h1>
+<jsp:include page="sidebar_teacher.jsp" flush="false" />
+<article>
+<h2>정보 수정</h2>
+<form id="searchbbs" action="index.jsp" method="post" name="userinput" onSubmit="return checkIt()">
+<table id="cbbs_f">
 	<tr>
 	<td width="150">ID</td>
 	<td align="left">${staff.id}<br><br>
@@ -101,8 +101,11 @@ Teacher Modify</font>
 	<td align="right" colspan="2">
 	<br><br>
 		<input type="submit" value="정보수정" />
-		<input type="button" value="메인으로" onclick="javascript:window.location='main.kiki'"/>
+		<input type="button" value="메인으로" onclick="javascript:window.location='index.jsp'"/>
 	</td></tr>
 </table>
 </form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>

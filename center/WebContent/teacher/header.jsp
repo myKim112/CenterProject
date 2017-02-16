@@ -31,7 +31,7 @@
 <body>
 	<div id="wrap">
 		<header>
-			<div id="logo"><a href="./">NGC Corp.</a></div>
+			<div id="logo"><a href="index.jsp">NGC Corp.</a></div>
 			<div id="hlink">
 				<ul>
 					<li><a href="index.jsp">HOME</a></li>
@@ -48,15 +48,18 @@
 					<li><a href="logOut.kiki">로그아웃</a></li>	
 					<li><a href="modify.kiki">정보수정</a></li>
 					<li><a href="deleteForm.kiki">회원탈퇴</a></li>				
-					<li><a href="myPostList.kiki">마이페이지</a></li>				
+					<li><a href="myQnaList.kiki">마이페이지</a></li>				
 				</c:if>	
 				
 				<%-- 관리자 로그인 --%>
-				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
+				<c:if test="${power.lev >= 500 }">
+				<%-- <c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}"> --%>
 					<li><a href="calendar.kiki">관리자</a></li>					
-					<li><a href="#">강사</a></li>					
 				</c:if>
 				
+				<c:if test="${power.lev >= 20 }">
+					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
+				</c:if>
 				
 				<%-- 강사 로그인  
 				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
@@ -70,7 +73,7 @@
 			<nav>
 				<ul>
 					<li class="n1"><a href="company.jsp">회사소개</a></li>
-					<li class="n2"><a href="classCartList.kiki">강좌정보</a></li>
+					<li class="n2"><a href="classList.kiki">강좌정보</a></li>
 					<li class="n3"><a href="community.jsp">커뮤니티</a></li>
 					<li class="n4"><a href="noticeList.kiki">고객지원</a></li>
 				</ul>

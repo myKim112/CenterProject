@@ -205,19 +205,28 @@
 						<li><a href="deleteForm.kiki">회원탈퇴</a></li>
 					</ul>
 				</c:if>	
-				<%-- 관리자 로그인 --%>
+				
+				
+				<%-- 관리자 로그인 
+				<% 
+				String power = request.getParameter("power");
+				out.println(power);%>				
+				<c:if test="${power.lev >= 500 }">
+					<li><a href="calendar.kiki">관리자</a></li>					
+				</c:if>
+				
+				<c:if test="${power.lev >= 20 }">
+					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
+				</c:if>				
+				--%>
+				
 				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
 					<ul>
 						<li><a href="calendar.kiki">관리자</a></li>					
-						<li><a href="#">강사</a></li>					
+						<li><a href="teacherUpdateForm.kiki">강사</a></li>					
 					</ul>
 				</c:if>
 				
-				<%-- 강사 로그인  
-				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
-					<li><a href="#">강사</a></li>					
-				</c:if>
-				--%>								
 			</div>
            
 		  <nav>
