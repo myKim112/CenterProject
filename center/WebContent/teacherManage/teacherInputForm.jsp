@@ -133,7 +133,6 @@ Teacher Application</font>
 		<br><br><br><br>
 		<input type="submit" value="직원 등록" />
 		<input type="reset" value="다시작성" />
-		<input type="button" value="메인으로" onclick="window.location='main.kiki'" />
 	</td></tr>
 </table>
 </form>

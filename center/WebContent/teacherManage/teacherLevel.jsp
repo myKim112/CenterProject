@@ -23,7 +23,7 @@
 	<td>${staff.id}</td>
 	<td>${power.position}</td>
 	<td>
-		<select name="lev">
+		<select name="lev" id="${staff.lev}">
 			<option value="20">강사</option>
 			<option value="50">팀장</option>
 			<option value="500">중간관리자</option>

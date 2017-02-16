@@ -180,7 +180,7 @@
 					onclick="document.location.href='classUpdate.kiki?num=${dto.num}&pageNum=${pageNum}'">
 					
 					<input type="button" value="글삭제"
-					onclick="document.location.href='classDel.kiki?num=${dto.num}&pageNum=${pageNum}'">
+					onclick="document.location.href='classDelete.kiki?num=${dto.num}&pageNum=${pageNum}'">
 					</c:if>
 
 				</td>

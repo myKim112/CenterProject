@@ -15,14 +15,16 @@
 <jsp:include page="sidebar_lecture.jsp" flush="false" />
 <article>
 <h2>강좌목록</h2>
-<table border="0" width="1400" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
-<tr>
-<td align="right" >
-<c:if test="${power.lev >= 500 }">
-<a href="classWrite.kiki">글쓰기</a>
-</c:if>
-</td></tr></table>
 
+<c:if test="${staff.lev >= 500}">
+<table align="center" width="650">
+	<tr>
+		<td align="right">
+			<a href="classWrite.kiki">글쓰기</a>
+		</td>
+	</tr>
+</table>
+</c:if>
 
 <table border="0" width="650" cellpadding="0" cellspacing="0" align="center"style="table-layout:fixed">
 <hr align="center" style="border: solid 1px red;" WIDTH="650">

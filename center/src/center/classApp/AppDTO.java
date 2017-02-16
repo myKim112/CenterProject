@@ -16,8 +16,10 @@ public class AppDTO {
     private String teacher;
     private String classDate;
     private String ClassTime;
+    //
+    private String position;
 
-    public String getCenter() {return center;}
+	public String getCenter() {return center;}
 	public void setCenter(String center) {this.center = center;}
 	
 	public String getClassName() {return className;}
@@ -53,4 +55,6 @@ public class AppDTO {
 	public int getMemberCount() {return memberCount;}
 	public void setMemberCount(int memberCount) {this.memberCount = memberCount;}
 
+	public String getPosition() {return position;}
+	public void setPosition(String position) {this.position = position;}
 }

@@ -42,14 +42,15 @@ public  class ClassListAction implements SuperAction {
 		int count = 0;
 		int number= 0;
 		
-		StaffDTO staff = null;
-		PowerDTO power = null;
-		List<ClassDTO> articleList=null;
-		ClassDAO dao = ClassDAO.getInstance();
-		StaffDAO dao1 = StaffDAO.getInstance();
 		
 		try {
-			power = dao1.getTeacherLev(id);
+//			PowerDTO power = null;
+			List<ClassDTO> articleList=null;
+			ClassDAO dao = ClassDAO.getInstance();
+			StaffDAO manage = StaffDAO.getInstance();
+			
+			StaffDTO staff = manage.getLev(id);
+			System.out.println(staff);
 
 			if(searchContent.equals("") || searchContent == null) {
 				count = dao.getArticleCount();
@@ -66,22 +67,23 @@ public  class ClassListAction implements SuperAction {
 			}else{
 				articleList =Collections.emptyList();
 			}
+			
+			number= count-(currentPage-1)*pageSize;
+			
+			request.setAttribute("currentPage", new Integer(currentPage));
+			request.setAttribute("startRow", new Integer(startRow));
+			request.setAttribute("endRow", new Integer(endRow));
+			request.setAttribute("count", new Integer(count));
+			request.setAttribute("pageSize", new Integer(pageSize));
+			request.setAttribute("number", new Integer(number));
+			request.setAttribute("articleList", articleList);
+			request.setAttribute("id", id);
+			request.setAttribute("staff", staff);
+//     		request.setAttribute("power", power);
+			request.setAttribute("pageNum", pageNum);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		number= count-(currentPage-1)*pageSize;
-		
-		request.setAttribute("currentPage", new Integer(currentPage));
-		request.setAttribute("startRow", new Integer(startRow));
-		request.setAttribute("endRow", new Integer(endRow));
-		request.setAttribute("count", new Integer(count));
-		request.setAttribute("pageSize", new Integer(pageSize));
-		request.setAttribute("number", new Integer(number));
-		request.setAttribute("articleList", articleList);
-        request.setAttribute("id", id);
-        request.setAttribute("staff", staff);
-        request.setAttribute("power", power);
-        request.setAttribute("pageNum", pageNum);
         
 		return "/class/classList.jsp";
 		}

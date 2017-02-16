@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="center.staff.*" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -207,25 +208,31 @@
 				</c:if>	
 				
 				
-				<%-- 관리자 로그인 
+				 
 				<% 
-				String power = request.getParameter("power");
-				out.println(power);%>				
-				<c:if test="${power.lev >= 500 }">
+					String id = (String)session.getAttribute("centerId");
+					StaffDAO manage = StaffDAO.getInstance();
+					StaffDTO staff = manage.getLev(id);
+				%>
+				<c:if test="${staff.lev >= 20 }">
+					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
+				</c:if>
+				
+								
+				<c:set value="<%=staff %>" var="staff"/>			
+				<c:if test="${staff.lev >= 500 }">
 					<li><a href="calendar.kiki">관리자</a></li>					
 				</c:if>
 				
-				<c:if test="${power.lev >= 20 }">
-					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
-				</c:if>				
-				--%>
 				
+<%--				
 				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
 					<ul>
 						<li><a href="calendar.kiki">관리자</a></li>					
 						<li><a href="teacherUpdateForm.kiki">강사</a></li>					
 					</ul>
 				</c:if>
+--%>
 				
 			</div>
            

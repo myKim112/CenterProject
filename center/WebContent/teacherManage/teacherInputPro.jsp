@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
 <%
-	response.sendRedirect("main.kiki");
+	response.sendRedirect("teacherInputForm.kiki");
 %>

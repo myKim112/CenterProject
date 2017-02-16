@@ -13,9 +13,9 @@ public class MyReviewDeleteProAction implements SuperAction {
     	String num = request.getParameter("num");
     	
     	MyReviewDAO dao = MyReviewDAO.getInstance();
-    	boolean result = dao.deleteId(num);
+ //   	boolean result = dao.deleteId(num);
     	request.setAttribute("pageNum", pageNum);
-    	request.setAttribute("result", result);
+//    	request.setAttribute("result", result);
 		
     	return "/myReviewPost/myReviewDeletePro.jsp";
 	}

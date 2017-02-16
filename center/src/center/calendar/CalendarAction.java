@@ -22,7 +22,7 @@ public class CalendarAction implements SuperAction{
 			StaffDTO staff = new StaffDTO();
 			ArrayList<CalendarDTO> calList = dbPro.getSchedule();
 			
-			staff = manage.getLev(id); 
+			staff = manage.getLev(id);
 			
 			request.setAttribute("calList", calList);
 			request.setAttribute("staff", staff);
