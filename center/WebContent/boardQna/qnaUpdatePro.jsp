@@ -6,7 +6,7 @@
 %>
 
 <c:if test="${check==1}"> 
-	<meta http-equiv="Refresh" content="0;url=qnaList.kiki?pageNum=${pageNum}&num=${num}" >
+	<meta http-equiv="Refresh" content="0;url=qnaList.kiki?pageNum=${pageNum}" >
 </c:if>
 <c:if test="${check==0}"> 
 비밀번호가 다릅니다.

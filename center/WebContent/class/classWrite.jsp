@@ -22,7 +22,7 @@
 
 
 <body bgcolor="${bodyback_c}">
-<h1 id="customer"><div>customer center</div></h1>
+<h1 id="customer"><div>lecture center</div></h1>
 <jsp:include page="sidebar_lecture.jsp" flush="false"/>
 <article>
 	<h2>강좌소개</h2>
@@ -101,12 +101,14 @@
 					<hr style="border: solid 0.5px lightgray;">
 				</td>
 			</tr>
+<%--			
 			<tr>
 				<td colspan="4" align="right"><input type="button" value="즉시결제"
 					onclick="javascript:window.location='classState.kiki'" /> <input
 					type="button" value="강좌바구니"
 					onclick="javascript:window.location='classCart.kiki'" /></td>
 			</tr>
+ --%>
 		</table>
 		<br /> <br />
 		<h2>소개상세</h2>
@@ -130,9 +132,9 @@
 			</tr>
 			<tr>
 
-				<td>강의실</td>
-				<td>문자발송</td>
+				<td>강의실 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 문자발송</td>
 				<td>재료비</td>
+				<td>문자발송</td>
 			</tr>
 
 			<tr>

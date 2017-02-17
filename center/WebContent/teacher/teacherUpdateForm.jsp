@@ -28,7 +28,7 @@
 <jsp:include page="sidebar_teacher.jsp" flush="false" />
 <article>
 <h2>정보 수정</h2>
-<form id="searchbbs" action="index.jsp" method="post" name="userinput" onSubmit="return checkIt()">
+<form id="searchbbs" action="teacherUpdatePro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
 <table id="cbbs_f">
 	<tr>
 	<td width="150">ID</td>

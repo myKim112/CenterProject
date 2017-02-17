@@ -14,7 +14,7 @@
 <jsp:include page="sidebar_customer.jsp" flush="false" />
 <article>
 <h2>고객상담 글작성</h2>
-<form id="searchbbs" method="post" name="writeform" action="qnaWritePro.kiki" onsubmit="return writeSave()" enctype="multipart/form-data">
+<form id="searchbbs" method="post" name="writeform" action="qnaWritePro.kiki" onsubmit="return writeSave()">
 	<input type="hidden" name="num" value="${num}">
 	<input type="hidden" name="ref" value="${ref}">
 	<input type="hidden" name="reStep" value="${reStep}">

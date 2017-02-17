@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%
-	response.sendRedirect("main.kiki");
-%>
+<%--
+	response.sendRedirect("teacherUpdatePro.kiki");
+--%>
+
+<meta http-equiv="Refresh" content="0;url=teacherUpdateForm.kiki" >

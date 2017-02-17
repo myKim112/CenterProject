@@ -68,7 +68,7 @@
        onclick="document.location.href='qnaDeleteForm.kiki?num=${article.num}&pageNum=${pageNum}'">
     </td>
     <td>
-      <c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
+      <c:if test="${staff.lev >= 20}">
       <input type="button" value="답글쓰기" 
        onclick="document.location.href='qnaWriteForm.kiki?num=${article.num}&ref=${article.ref}&reStep=${article.reStep}&reLevel=${article.reLevel}'">
     	</c:if>

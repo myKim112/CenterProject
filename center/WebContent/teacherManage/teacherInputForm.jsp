@@ -7,11 +7,6 @@
 <title>직원관리</title>
 </head>
 
-<center>
-<font face="impact">
-Teacher Application</font>
-</center>
-
 <script>
 	function checkIt()
 	{

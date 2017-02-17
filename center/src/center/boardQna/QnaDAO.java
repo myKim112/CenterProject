@@ -125,9 +125,9 @@ private static QnaDAO instance = new QnaDAO();
 			pstmt.setString(3, article.getContent());
 			pstmt.setString(4, article.getWriter());
 			pstmt.setString(5, article.getPw());
-			pstmt.setInt(6, article.getRef());
-			pstmt.setInt(7, article.getReStep());
-			pstmt.setInt(8, article.getReLevel());
+			pstmt.setInt(6, ref);
+			pstmt.setInt(7, reStep);
+			pstmt.setInt(8, reLevel);
 			
 			pstmt.executeUpdate();
 			

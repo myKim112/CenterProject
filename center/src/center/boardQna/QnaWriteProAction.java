@@ -1,6 +1,5 @@
 package center.boardQna;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,26 +16,31 @@ public class QnaWriteProAction implements SuperAction{
 		
 		
 			try {
+				int num=Integer.parseInt(request.getParameter("num"));
+        		int ref=Integer.parseInt(request.getParameter("ref"));
+        		int reStep=Integer.parseInt(request.getParameter("reStep"));
+        		int reLevel=Integer.parseInt(request.getParameter("reLevel"));
+        		
 				request.setCharacterEncoding("UTF-8");
 				QnaDTO article = new QnaDTO();
-				article.setNum(Integer.parseInt(request.getParameter("num")));			
+				article.setNum(num);			
 				article.setWriter(request.getParameter("writer"));
 				article.setTitle(request.getParameter("title"));
 				article.setCenter(request.getParameter("center"));
 				article.setContent(request.getParameter("content"));
 				article.setRegDate(new Timestamp(System.currentTimeMillis()));
 				article.setPw(request.getParameter("pw"));
-				article.setRef(Integer.parseInt(request.getParameter("ref")));
-				article.setReStep(Integer.parseInt(request.getParameter("reStep")));
-				article.setReLevel(Integer.parseInt(request.getParameter("reLevel")));			
+				article.setRef(ref);
+				article.setReStep(reStep);
+				article.setReLevel(reLevel);	
 				
-				try {
-					QnaDAO dao = QnaDAO.getInstance();
-					dao.insertArticle(article);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}				
-			} catch (UnsupportedEncodingException e) {
+				
+				
+				
+				QnaDAO dao = QnaDAO.getInstance();
+				dao.insertArticle(article);
+								
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			

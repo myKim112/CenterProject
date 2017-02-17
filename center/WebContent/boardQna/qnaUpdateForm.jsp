@@ -12,7 +12,7 @@
 <jsp:include page="sidebar_customer.jsp" flush="false" />
 <article>
 <h2>고객상담 글수정</h2>
-<form id="searchbbs" method="post" name="writeform" action="qnaUpdatePro.kiki?pageNum=${pageNum}" onsubmit="return writeSave()" enctype="multipart/form-data">
+<form id="searchbbs" method="post" name="writeform" action="qnaUpdatePro.kiki?pageNum=${pageNum}" onsubmit="return writeSave()">
 <input type="hidden" name="pageNum" value="${pageNum}"></td>
 <table id="cbbs_f">
   <tr>

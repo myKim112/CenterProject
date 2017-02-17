@@ -24,7 +24,7 @@ public class QnaUpdateProAction implements SuperAction {
         //int reStep = Integer.parseInt(request.getParameter("reStep"));
 
         QnaDTO article = new QnaDTO();
-        article.setNum(Integer.parseInt(request.getParameter("num")));
+//      article.setNum(Integer.parseInt(request.getParameter("num")));
         article.setWriter(request.getParameter("writer"));
         article.setCenter(request.getParameter("center"));
         article.setTitle(request.getParameter("title"));

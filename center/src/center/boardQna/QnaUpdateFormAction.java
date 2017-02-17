@@ -12,10 +12,9 @@ public class QnaUpdateFormAction implements SuperAction {
         int num = Integer.parseInt(request.getParameter("num"));
         String pageNum = request.getParameter("pageNum");
 
-        QnaDAO dbPro = QnaDAO.getInstance();
-        QnaDTO article;
 		try {
-			article = dbPro.updateGetArticle(num);
+			QnaDAO dbPro = QnaDAO.getInstance();
+			QnaDTO article = dbPro.updateGetArticle(num);
 
 			//해당 뷰에서 사용할 속성
 		        request.setAttribute("pageNum", new Integer(pageNum));

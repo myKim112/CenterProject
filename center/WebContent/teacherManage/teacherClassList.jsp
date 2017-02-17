@@ -60,19 +60,6 @@
 </c:forEach>
 </table>
 </c:if>
-</article>
-<jsp:include page="footer.jsp" flush="false" />
-</html>
-
-
-<table align="center" width="1000" border="1">
-	<tr>
-		<td align="right">
-			<input type="button" value="목록보기" onclick="window.location='taecherList.kiki'" />
-		</td>
-	</tr>
-</table>
-</body>
 
 <center>
 	<c:if test="${count>0}">
@@ -100,3 +87,9 @@
 		</c:if>
 	</c:if>
 </center>
+</body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
+</html>
+
+

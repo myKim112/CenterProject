@@ -42,7 +42,7 @@ private static NoticeDAO instance = new NoticeDAO();
 					"select num, center, title, content,regDate, readCount, r  " +
 				            "from (select num,center,title,content,regDate,readCount, rownum r " +
 				            "from (select * " +
-				            "from notice order by num) order by num ) where r >= ? and r <= ? ");
+				            "from notice order by num desc ) order by num desc ) where r >= ? and r <= ? ");
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
