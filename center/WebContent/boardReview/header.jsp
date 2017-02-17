@@ -47,9 +47,8 @@
 				<%-- 로그인이 되었을 경우, 로그아웃, 마이페이지 버튼을 보여준다. --%>				
 				<c:if test="${sessionScope.centerId != null }" >
 					<li><a href="logOut.kiki">로그아웃</a></li>	
-					<li><a href="modify.kiki">정보수정</a></li>
-					<li><a href="deleteForm.kiki">회원탈퇴</a></li>				
-					<li><a href="myQnaList.kiki">마이페이지</a></li>				
+					<li><a href="myClassList.kiki">마이페이지</a></li>
+					<li><a href="deleteForm.kiki">회원탈퇴</a></li>						
 				</c:if>	
 				
 				

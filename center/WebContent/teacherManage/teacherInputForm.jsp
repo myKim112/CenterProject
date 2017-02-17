@@ -59,6 +59,7 @@ Teacher Application</font>
 <h1 id="customer"><div>master center</div></h1>
 <jsp:include page="sidebar_master.jsp" flush="false" />
 <article>
+<h2>강사 등록</h2>
 <form action="teacherInputPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
 <table align="center" border="0">
 	<tr>

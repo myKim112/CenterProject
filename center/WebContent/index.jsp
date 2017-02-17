@@ -191,23 +191,17 @@
 		<header>
 			<div id="logo"><a href="index.jsp">NGC Corp.</a></div>
 			<div id="hlink">
-				<c:if test="${sessionScope.centerId == null }" >			
 					<ul>
+				<c:if test="${sessionScope.centerId == null }" >			
 						<li><a href="index.jsp">HOME</a></li>
 						<li><a href="loginPage.kiki">로그인</a></li>
 						<li><a href="agreeForm.kiki">회원가입</a></li>
-					</ul>
 				</c:if>
 				<c:if test="${sessionScope.centerId != null }" >
-					<ul>
 						<li><a href="logOut.kiki">로그아웃</a></li>
-						<li><a href="modify.kiki">정보수정</a></li>
-						<li><a href="myQnaList.kiki?writer=${sessionScope.centerId}">마이페이지</a></li>
+						<li><a href="myClassList.kiki">마이페이지</a></li>
 						<li><a href="deleteForm.kiki">회원탈퇴</a></li>
-					</ul>
-				</c:if>	
-				
-				
+
 				 
 				<% 
 					String id = (String)session.getAttribute("centerId");
@@ -221,22 +215,11 @@
 				<c:if test="${staff.lev >= 20 }">
 					<li><a href="calendar.kiki">일정</a></li>
 				</c:if>
-				
-								
 				<c:if test="${staff.lev >= 500 }">
 					<li><a href="teacherList.kiki">관리자</a></li>					
 				</c:if>
-				
-				
-<%--				
-				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
-					<ul>
-						<li><a href="calendar.kiki">관리자</a></li>					
-						<li><a href="teacherUpdateForm.kiki">강사</a></li>					
-					</ul>
-				</c:if>
---%>
-				
+				</c:if>	
+				</ul>
 			</div>
            
 		  <nav>
@@ -257,12 +240,6 @@
             </div>
         </div>    
         <div class="clear"></div>
-        <%-- 
-        <div id="justar">
-        	<h3>just arrived</h3>
-        	<figure><img src="imgs/goods1.jpg" width="161" height="125"></figure>
-        </div>
-        --%>
         <div id="notinews">
         	<div class="container">
             <ul class="tabs">

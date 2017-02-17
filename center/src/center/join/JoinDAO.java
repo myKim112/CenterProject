@@ -257,6 +257,28 @@ public class JoinDAO {
 		}
 		return articleList;
 	}
+	
+	public JoinDTO getLev(String id) throws Exception { // 회원의 권한 불러오기
+		JoinDTO join = new JoinDTO();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select lev from join where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+						
+			if(rs.next()) {
+				join.setLev(rs.getInt("lev"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return join; 
+		
+	}
 
 	public String idFind(String name,String phone) {
 		String sql = null;
