@@ -12,7 +12,7 @@
 <h1 id="customer"><div>customer center</div></h1>
 <jsp:include page="sidebar_customer.jsp" flush="false" />
 <article>
-<h2>공지사항 글수정</h2>
+<h2>수강후기 글수정</h2>
 <form id="searchbbs" method="post" name="writeform" action="reviewUpdatePro.kiki?pageNum=${pageNum}" onsubmit="return writeSave()" enctype="multipart/form-data">
 <input type="hidden" name="pageNum" value="${pageNum}"></td>
 <table id="cbbs_f">

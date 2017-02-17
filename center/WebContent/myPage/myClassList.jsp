@@ -15,9 +15,9 @@
 <div>customer center</div></h1>
 <jsp:include page="sidebar_mypage.jsp" flush="false" />
 <article>
- 
+ <h2>내 강좌보기</h2>
 
-<table align="center" border="1" width="700" cellpadding="0" cellspacing="0" align="center">
+<table id="cbbs_f" align="center" border="1" width="700" cellpadding="0" cellspacing="0" align="center">
 	<tr>
 	<td align="center"  width="50" >번호</td>
     <td align="center"  width="50" >지점</td>
@@ -32,17 +32,15 @@
     
     </tr>
     </table>
-    <hr align="center" style="border: solid 0.5px lightgray;"WIDTH="650">
-   
     <c:if test="${count == 0}">
-	<table align="center" width="700" border="1" cellpadding="0" cellspacing="0">
+	<table id="cbbs_f" align="center" width="700" border="1" cellpadding="0" cellspacing="0">
 	<tr>
 	<td align="center"> 신청하신 강좌가 없습니다.</td></tr>
 </table>
 </c:if>
     <c:if test="${count > 0 }">
     <c:forEach var="dto" items="${articleList }">
-    <table align="center" border="1" width="700" cellpadding="0" cellspacing="0" align="center">
+    <table id="cbbs_f" align="center" border="1" width="700" cellpadding="0" cellspacing="0" align="center">
     
     <tr>
 	  <td colspan="2" align="center"><c:out value="${dto.num}"/>

@@ -79,7 +79,7 @@
 </c:if>
 </ul>
 </div>
-
+<%-- 
 <div class="clear"></div>
 <form id="searchbbs"  method="post">
 <select id="s" name="searchn">
@@ -91,8 +91,9 @@
 <input type="text" name="search" size="15" maxlength="50" /> 
 <input type="hidden" value="${search}">
 <input type="submit" value="검색" />
-<%-- <input type="button" value="목록보기" OnClick="window.location='myReviewList.kiki'">--%>
+<input type="button" value="목록보기" OnClick="window.location='myReviewList.kiki'">
 </form>
+--%>
 </body>
 </article>
 <jsp:include page="footer.jsp" flush="false" />

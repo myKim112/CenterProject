@@ -2,12 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<jsp:include page="header.jsp" flush="false" />  
+
 <head>
 <title>수강 회원</title>
 </head>
 
 <body>
-<table align="center" width="700">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_teacher.jsp" flush="false"/>
+<article>
+	<h2>수강 회원</h2>
+<table id="cbbs_f" align="center" width="700">
 	<tr>
 		<td>번호</td>
 		<td>회원 ID</td>
@@ -18,7 +24,7 @@
 </table>
 
 <c:if test="${count == 0}">
-<table align="center" width="700">
+<table id="cbbs_f" align="center" width="700">
 	<tr>
 		<td>수강 회원이 없습니다.</td>
 	</tr>		
@@ -26,7 +32,7 @@
 </c:if>
 
 <c:if test="${count > 0}">
-<table align="center" width="700">
+<table id="cbbs_f" align="center" width="700">
 <c:forEach var="member" items="${memberList}" varStatus="i">
 	<tr>
 		<td>${i.count}</td>
@@ -39,11 +45,13 @@
 </table>
 </c:if>
 
-<table align="center" width="700">
+<table id="cbbs_f" align="center" width="700">
 	<tr>
 		<td align="right">
 			<input type="button" value="목록" onclick="window.location='teacherClassList.kiki?id=${id}'" />
 		</td>
 	</tr>
 </table>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </body>
