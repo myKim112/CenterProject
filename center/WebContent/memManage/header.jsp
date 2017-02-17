@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="center.staff.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,7 +32,7 @@
 <body>
 	<div id="wrap">
 		<header>
-			<div id="logo"><a href="./">NGC Corp.</a></div>
+			<div id="logo"><a href="index.jsp">NGC Corp.</a></div>
 			<div id="hlink">
 				<ul>
 					<li><a href="index.jsp">HOME</a></li>
@@ -51,12 +52,35 @@
 					<li><a href="myQnaList.kiki">마이페이지</a></li>				
 				</c:if>	
 				
+				
 				<%-- 관리자 로그인 --%>
-				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
+				<% 
+					String id = (String)session.getAttribute("centerId");
+					StaffDAO manage = StaffDAO.getInstance();
+					StaffDTO staff = manage.getLev(id);
+				%>
+				<c:set value="<%=staff %>" var="staff"/>			
+				<c:if test="${staff.lev >= 20 }">
+					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
+				</c:if>
+				<c:if test="${staff.lev >= 20 }">
+					<li><a href="calendar.kiki">일정</a></li>
+				</c:if>
+				
+								
+				<c:if test="${staff.lev >= 500 }">
+					<li><a href="teacherList.kiki">관리자</a></li>					
+				</c:if>
+				
+				<%--<c:if test="${power.lev >= 500 }"> --%>
+<%-- 				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">
 					<li><a href="calendar.kiki">관리자</a></li>					
 					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
 				</c:if>
+--%>
 				
+				<%-- <c:if test="${power.lev >= 20 }"> --%>
+				<%--</c:if>  --%>
 				
 				<%-- 강사 로그인  
 				<c:if test="${sessionScope.centerId !=null && sessionScope.centerId == 'MY00001'}">

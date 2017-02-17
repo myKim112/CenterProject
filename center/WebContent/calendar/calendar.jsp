@@ -128,7 +128,7 @@ td {
 
 <body>
 <h1 id="customer"><div>master center</div></h1>
-<jsp:include page="sidebar_master.jsp" flush="false" />
+<jsp:include page="sidebar_teacher.jsp" flush="false" />
 <article>
 <h2>일정표</h2>
 	<div >

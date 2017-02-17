@@ -5,7 +5,6 @@
   			<ul>
   				<li><a href="teacherUpdateForm.kiki">정보수정</a></li>
   				<li><a href="teacherClassList.kiki">강좌 리스트</a></li>
-  				<li><a href="calendar.kiki">일정표</a></li>
   			</ul>
   		</aside>
 

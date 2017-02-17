@@ -214,14 +214,17 @@
 					StaffDAO manage = StaffDAO.getInstance();
 					StaffDTO staff = manage.getLev(id);
 				%>
+				<c:set value="<%=staff %>" var="staff"/>			
 				<c:if test="${staff.lev >= 20 }">
 					<li><a href="teacherUpdateForm.kiki">강사</a></li>					
 				</c:if>
+				<c:if test="${staff.lev >= 20 }">
+					<li><a href="calendar.kiki">일정</a></li>
+				</c:if>
 				
 								
-				<c:set value="<%=staff %>" var="staff"/>			
 				<c:if test="${staff.lev >= 500 }">
-					<li><a href="calendar.kiki">관리자</a></li>					
+					<li><a href="teacherList.kiki">관리자</a></li>					
 				</c:if>
 				
 				

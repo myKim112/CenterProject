@@ -8,7 +8,7 @@
 
 <body>
 <h1 id="customer"><div>master center</div></h1>
-<jsp:include page="sidebar_teacher.jsp" flush="false" />
+<jsp:include page="sidebar_master.jsp" flush="false" />
 <article>
 <h2>강사정보</h2>
 <table id="cbbs_f">

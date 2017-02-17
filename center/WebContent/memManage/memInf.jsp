@@ -34,8 +34,8 @@
 	</tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="회원 글보기" onclick="document.location.href='memWriteList.kiki?writer=${article.id}'" />
-		<input type="button" value="회원 수강내역" onclick="document.loaction.href='memClassList.kiki?writer=${article.id}'" />
+<%--		<input type="button" value="회원 글보기" onclick="document.location.href='memWriteList.kiki?writer=${article.id}'" />  --%>
+		<input type="button" value="회원 수강내역" onclick="document.location.href='memClassList.kiki?id=${article.id}'" />
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
@@ -44,7 +44,7 @@
 	</td></tr>
 	<tr>
 	<td colspan="4" align="right">
-		<input type="button" value="목록" onclick="document.location.href='/memList.kiki?pageNum=${pageNum}'" />
+		<input type="button" value="목록" onclick="document.location.href='memList.kiki?pageNum=${pageNum}'" />
 	</td></tr>
 </table>
 </body>

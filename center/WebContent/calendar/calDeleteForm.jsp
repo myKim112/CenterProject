@@ -17,7 +17,7 @@
 	}
 </script>
 <h1 id="customer"><div>customer center</div></h1>
-<jsp:include page="sidebar_master.jsp" flush="false" />
+<jsp:include page="sidebar_teacher.jsp" flush="false" />
 <article>
 <h2>고객상담</h2>
 <form id="searchbbs" action="calDeletePro.kiki?calNum=${calNum}" method="post" name="deleteForm" onsubmit="return deleteCheck()">

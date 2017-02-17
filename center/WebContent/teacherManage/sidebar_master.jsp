@@ -3,7 +3,6 @@
   		<aside>
   			<h3><div>관리자</div></h3>
   			<ul>
-  				<li><a href="calendar.kiki">일정표</a></li>
   				<li><a href="teacherInputForm.kiki">강사 등록</a></li>
   				<li><a href="teacherList.kiki">강사 목록</a></li>
   				<li><a href="teacherQuitList.kiki">퇴사자 관리</a></li>

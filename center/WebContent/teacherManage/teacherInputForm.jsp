@@ -56,6 +56,9 @@ Teacher Application</font>
 </script>
 
 <body>
+<h1 id="customer"><div>master center</div></h1>
+<jsp:include page="sidebar_master.jsp" flush="false" />
+<article>
 <form action="teacherInputPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
 <table align="center" border="0">
 	<tr>
