@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<jsp:include page="header.jsp" flush="false" />  
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,9 +22,10 @@
 
 
 <body bgcolor="${bodyback_c}">
-	<center>
-		<b>강좌소개</b>
-	</center>
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_lecture.jsp" flush="false"/>
+<article>
+	<h2>강좌소개</h2>
 	<br>
 	<form method="post" name="writeform" action="classWritePro.kiki"
 		onsubmit="return writeSave()" enctype="multipart/form-data">
@@ -32,9 +36,6 @@
 
 			<tr>
 				<td align="center" rowspan="11"><input type="file" name="save" /></td>
-
-
-
 				<td width="70" align="right">강좌명</td>
 				<td width="330"><input type="text" size="50" maxlength="100"
 					name="className"></td>
@@ -108,50 +109,47 @@
 			</tr>
 		</table>
 		<br /> <br />
-		<center>
-			<b>소개상세</b>
-		</center>
+		<h2>소개상세</h2>
 		<br> <input type="hidden" name="num" value="${num}"> </br>
 
 
 		<table align="center">
 			<tr>
-				<td colspan="4" align="center">
-					<hr align="center" style="border: solid 0.3px lightgray;">
+				<td colspan="3" align="center">
+					<hr align="center" style="border: solid 0.4px lightgray;">
 			</tr>
 			<tr>
-				<td width="80" align="center">대상</td>
-				<td width="330"><input type="text" name="lev"></td>
-
-				<td width="80" align="center">접수기간</td>
-				<td width="330">강좌시작일 3일전 마감</td>
+				<td>대상&nbsp;<input type="text" name="lev"></td>
+				<td>접수기간</td>
+				<td>강좌시작일 3일전 마감</td>
 			</tr>
 
 			<tr>
-				<td colspan="4" align="center">
+				<td colspan="3" align="center">
 					<hr align="center" size="1" color="#EAEAEA">
 			</tr>
 			<tr>
 
-				<td width="80" align="center">강의실</td>
-				<td width="330">문자발송</td>
-
-				<td width="80" align="center">재료비</td>
-				<td width="330">문자발송</td>
+				<td>강의실</td>
+				<td>문자발송</td>
+				<td>재료비</td>
 			</tr>
 
 			<tr>
-				<td colspan="4" align="center">
+				<td colspan="3" align="center">
 					<hr align="center" size="1" color="#EAEAEA">
 			</tr>
 
 
 
 			<tr>
-				<td width="80" align="center">개요</td>
-				<td width="330" colspan="3"><textarea rows="50" cols="100" name="classSummary" style="margin: 0px; width: 1134px; height: 300px; resize: none;"></textarea></td>
+				<td colspan="4">개요</td>
+			</tr>
 			<tr>
-				<td colspan="4" align="center">
+				<td width="250" colspan="3"><textarea rows="50" cols="100" name="classSummary" style="margin: 0px; width: 650px; height: 300px; resize: none;"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
 					<hr align="center" size="1" color="#EAEAEA">
 			</tr>
 
@@ -159,20 +157,20 @@
 
 
 			<tr>
-				<td width="80" height="100" align="center">강의계획서</td>
+				<td colspan="4">강의계획서</td>
+			</tr>
+			<tr>
 				<td width="330" colspan="3"><textarea rows="50" cols="100"
 						name="classPlan"
-						style="margin: 0px; width: 1134px; height: 300px; resize: none;"></textarea>
+						style="margin: 0px; width: 650px; height: 300px; resize: none;"></textarea>
 				</td>
 			<tr>
-				<td colspan="4" align="center">
+				<td colspan="3" align="center">
 					<hr align="center" style="border: solid 0.3px lightgray;">
 			</tr>
 
 			<tr>
-				<td width="70" align="right">비밀번호</td>
-				<td align="left" width="330"><input type="password" size="8"
-					maxlength="12" name="pw"></td>
+				<td colspan="4">비밀번호 &nbsp;<input type="password" size="8"	maxlength="12" name="pw"></td>
 			</tr>
 			
 			<tr>
@@ -183,4 +181,6 @@
 		</table>
 
 	</form>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 </body>
