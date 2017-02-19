@@ -13,11 +13,18 @@ public class DeleteProAction implements SuperAction {
 		String id = (String)session.getAttribute("centerId");
 		String pw  = request.getParameter("pw");
 		
+		try {
+			JoinDAO dbPro = JoinDAO.getInstance();
+			int check = dbPro.deleteMem(id, pw);
+			
+			request.setAttribute("id", id);
+			request.setAttribute("pw", pw);
+			request.setAttribute("check", new Integer(check));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	
 		
-		
-		request.setAttribute("id", id);
-		request.setAttribute("pw", pw);
 		
 		
 		return "/join/deletePro.jsp";

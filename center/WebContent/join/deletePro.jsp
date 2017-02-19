@@ -16,7 +16,6 @@
     int check = manager.deleteMem(id,pw);
 	//요기까지 액션에 들어가고 아래 값도 액션에 같이 넣어주라 
 	if(check==1){
-		session.invalidate();
 --%>
 
 <body >
@@ -27,6 +26,7 @@
 <form id="searchbbs" method="post" action="index.jsp" name="userinput" >
 <table id="cbbs_f">
 <c:if test="${check==1}"> 
+<%		session.invalidate(); %>
   <tr > 
     <td>
 	  <font size="+1" ><b>회원정보가 완벽히 삭제되었습니다.</b></font></td>

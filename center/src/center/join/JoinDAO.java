@@ -279,6 +279,20 @@ public class JoinDAO {
 		return join; 
 		
 	}
+	
+	public void memberDelete(String id) throws Exception {
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("delete from join where id=?");
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
 
 	public String idFind(String name,String phone) {
 		String sql = null;
@@ -295,6 +309,10 @@ public class JoinDAO {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
 		}
 		return id;
 	}
