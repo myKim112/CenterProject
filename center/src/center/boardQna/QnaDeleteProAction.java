@@ -11,14 +11,16 @@ public class QnaDeleteProAction implements SuperAction {
 		
 		String pageNum = request.getParameter("pageNum");
     	String pw = request.getParameter("pw");
-    	String num = request.getParameter("num");
+    	int num = Integer.parseInt(request.getParameter("num"));
     	
     	System.out.println(num);
     	
     	QnaDAO dao = QnaDAO.getInstance();
-    	boolean result = dao.deleteId(num, pw);
+    	int result = dao.deleteId(num, pw);
+    	System.out.println(result);
+    	
     	request.setAttribute("pageNum", pageNum);
-    	request.setAttribute("result", result);
+    	request.setAttribute("result", new Integer(result));
 		
     	return "/boardQna/qnaDeletePro.jsp";
 	}

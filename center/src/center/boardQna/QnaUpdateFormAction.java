@@ -17,9 +17,9 @@ public class QnaUpdateFormAction implements SuperAction {
 			QnaDTO article = dbPro.updateGetArticle(num);
 
 			//해당 뷰에서 사용할 속성
-		        request.setAttribute("pageNum", new Integer(pageNum));
+		        request.setAttribute("pageNum", pageNum);
 		        request.setAttribute("article", article);
-		        request.setAttribute("num", num);
+		        request.setAttribute("num", new Integer(num));
 		        
 		} catch (Exception e) {
 			e.printStackTrace();

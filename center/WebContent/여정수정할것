@@ -51,10 +51,10 @@ teacherInputForm.jsp
 1) classList.kiki   : 검색시 강좌기간 안보임
 2) classUpdatePro.kiki  : 수정안됨(여정)
 //3) noticeList.kiki   : 내림차순으로 수정(민영) 완료★
-4) qnaUpdatePro.kiki   : 글수정 X
+//4) qnaUpdatePro.kiki   : 글수정 X 완료★
 //5) qnaWritePro.kiki   : 글작성 X 완료★
-6) qnaDeletePro.kiki   : 글삭제 X
-7) qna         : 검색 X
+//6) qnaDeletePro.kiki   : 글삭제 X 완료★
+//7) qna         : 검색 X 완료★
 //8) teacherUpdateForm.kik: 강사정보 수정X 완료★
 9) 관리자 페이지 >>> 강좌 목록 추가 - 글쓰기, 글수정, 글삭제 가능하도록 구현(민영)
 10) myClassList.kiki   : 수강상태 확인하는 탭 한개 더 만들기

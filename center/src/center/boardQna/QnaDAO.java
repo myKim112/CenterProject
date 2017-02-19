@@ -77,6 +77,49 @@ private static QnaDAO instance = new QnaDAO();
 		return articleList;
 	}
 	
+	public List getArticles(int start, int end, int n, String searchKeyword) throws Exception {
+		List<QnaDTO> articleList = null;
+		String column_name[] = {"title", "content", "center", "writer"};
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select num, center, title, content, writer, pw, regDate, readCount, ref, reLevel, reStep, r from"+
+					"(select num, center, title, content, writer, pw, regDate, readCount, ref, reLevel, reStep, rownum r from"+ 
+					"(select * from qna order by ref desc, reStep asc) where "+column_name[n]+" like '%"+searchKeyword+"%' order by ref desc, reStep asc)"+
+					"where r>=? and r<=?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				articleList = new ArrayList(end);
+				
+				do {
+					QnaDTO article = new QnaDTO();
+					article.setNum(rs.getInt("num"));
+					article.setCenter(rs.getString("center"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content"));
+					article.setWriter(rs.getString("writer"));
+					article.setPw(rs.getString("pw"));
+					article.setRegDate(rs.getTimestamp("regDate"));
+					article.setReadCount(rs.getInt("readCount"));
+					article.setRef(rs.getInt("ref"));
+					article.setReStep(rs.getInt("reStep"));
+					article.setReLevel(rs.getInt("reLevel"));
+					articleList.add(article);
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) try {rs.close();} catch(SQLException ex){}
+   			if(pstmt != null) try {pstmt.close();} catch(SQLException ex){}
+   			if(conn != null) try {conn.close();} catch(SQLException ex){}
+		}
+		return articleList;
+	}
+	
     //qnawritePro.jsp
 	public void insertArticle(QnaDTO article) throws Exception{
 		
@@ -162,6 +205,25 @@ private static QnaDAO instance = new QnaDAO();
 		return x; 
 	}
 	
+	public int getArticleCount(int n, String searchKeyword) throws Exception { // 검색 기능
+		String [] column_name = {"title", "content", "center", "writer"};
+		int x = 0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count (*) from qna where "+column_name[n]+" like '%"+searchKeyword+"%'");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch(Exception e){
+			if(rs != null) try {rs.close();} catch(SQLException ex){}
+			if(pstmt != null) try {pstmt.close();} catch(SQLException ex){}
+			if(conn != null) try {conn.close();} catch(SQLException ex){}
+		}
+		return x;
+	}
+	
     //qnaContentAction.java : DB로부터 한줄의 데이터를 가져온다.
     public QnaDTO getArticle(int num) throws Exception {
         QnaDTO article=null;
@@ -202,14 +264,14 @@ private static QnaDAO instance = new QnaDAO();
 	return article;
     }
     
-	public boolean deleteId(String num, String pw) {
-		boolean result = false;
+	public int deleteId(int num, String pw) {
+		int result = -1;
 		String dbpw="";
 		try{
 			conn = getConnection();
 			String sql="select pw from qna where num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, num);
+			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();			
 			
 			if(rs.next()) {
@@ -217,11 +279,11 @@ private static QnaDAO instance = new QnaDAO();
 				if(dbpw.equals(pw)) {
 					String delsql="delete from qna where num=?";
 					pstmt = conn.prepareStatement(delsql);
-					pstmt.setString(1, num);
+					pstmt.setInt(1, num);
 					pstmt.executeUpdate();		
-					result = true;
+					result = 1;
 				}else{
-					result=false;
+					result = 0;
 				}
 			}			
 		} catch(Exception e) {

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp" flush="false" /> 
 
 <html>
@@ -13,12 +14,12 @@
 <article>
 <h2>고객상담 글수정</h2>
 <form id="searchbbs" method="post" name="writeform" action="qnaUpdatePro.kiki?pageNum=${pageNum}" onsubmit="return writeSave()">
-<input type="hidden" name="pageNum" value="${pageNum}"></td>
+<input type="hidden" name="pageNum" value="${pageNum}">
 <table id="cbbs_f">
   <tr>
     <td>이 름</td>
     <td>
-    	${sessionScope.centerId}
+    	${article.writer}
        <input type="hidden" size="10" maxlength="50" name="writer" value="${article.writer}">
 	   <input type="hidden" name="num" value="${article.num}"></td>
   </tr>

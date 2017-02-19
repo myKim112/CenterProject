@@ -29,35 +29,46 @@ public class QnaListAction implements SuperAction {
 	        int number=0;
 	        
 	        List articleList = null;
+	        
+	        String search = request.getParameter("search");
+	        int searchn = 0;
+	        
+	        if(search == null) {
+	        	search = "";
+	        } else {
+	        	searchn = Integer.parseInt(request.getParameter("searchn"));
+	        }
+	        
 	        QnaDAO dao = QnaDAO.getInstance();
 	        
-			try {
-				count = dao.getArticleCount();
-		        if (count > 0) {
-			    			try {
-								articleList = dao.getArticles(startRow, endRow);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-			        } else {
-			            articleList = Collections.EMPTY_LIST;
-			        }
+	        if(search.equals("") || search == null) {
+	        	count = dao.getArticleCount();
+	        } else {
+	        	count = dao.getArticleCount(searchn ,search);
+	        }
+	        
+	        if (count > 0) {
+	        	if(search.equals("") || search ==null) {
+	        		articleList = dao.getArticles(startRow, endRow);
+	        	} else {
+	        		articleList = dao.getArticles(startRow, endRow, searchn, search);
+	        	}
+		    } else {
+			     articleList = Collections.EMPTY_LIST;
+			}
 				
-			        number = count - (currentPage - 1)*pageSize;	//글목록에 표시할 글번호
+			number = count - (currentPage - 1)*pageSize;	//글목록에 표시할 글번호
 			        
-			        request.setAttribute("pageNum", new Integer(pageNum));
-			        request.setAttribute("currentPage", currentPage);
-			        request.setAttribute("startRow", new Integer(startRow));
-			        request.setAttribute("endRow", new Integer(endRow));
-			        request.setAttribute("count", new Integer(count));
-			        request.setAttribute("pageSize", new Integer(pageSize));
-			        request.setAttribute("number", new Integer(number));
-			        request.setAttribute("articleList", articleList); 	
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}  
-		        
-		} catch (UnsupportedEncodingException e) {
+			request.setAttribute("pageNum", new Integer(pageNum));
+			request.setAttribute("currentPage", currentPage);
+			request.setAttribute("startRow", new Integer(startRow));
+			request.setAttribute("endRow", new Integer(endRow));
+			request.setAttribute("count", new Integer(count));
+			request.setAttribute("pageSize", new Integer(pageSize));
+			request.setAttribute("number", new Integer(number));
+			request.setAttribute("articleList", articleList); 	
+						        
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "/boardQna/qnaList.jsp";

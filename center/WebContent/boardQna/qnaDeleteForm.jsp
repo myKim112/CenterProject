@@ -22,8 +22,7 @@
 <jsp:include page="sidebar_customer.jsp" flush="false" />
 <article>
 <h2>고객상담 글삭제</h2>
-<form id="searchbbs" method="POST" name="delForm"  action="qnaDeletePro.kiki?pageNum=${pageNum}" 
-   onsubmit="return deleteSave()"> 
+<form id="searchbbs" method="POST" name="delForm"  action="qnaDeletePro.kiki?pageNum=${pageNum}" onsubmit="return deleteSave()"> 
  <table id="cbbs_f">
   	<tr>
      	<td align="center">
@@ -42,8 +41,7 @@
  <tr>
     <td>
       <input type="submit" value="글삭제" >
-      <input type="button" value="글목록" 
-       onclick="document.location.href='qnaList.kiki?pageNum=${pageNum}'">     
+      <input type="button" value="글목록" onclick="document.location.href='qnaList.kiki?pageNum=${pageNum}'">     
    </td>
  </tr>  
 </table> 

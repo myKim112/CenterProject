@@ -18,13 +18,14 @@ public class QnaUpdateProAction implements SuperAction {
 		}
 
         String pageNum = request.getParameter("pageNum");
+        int num = Integer.parseInt(request.getParameter("num"));
         //int ref = Integer.parseInt(request.getParameter("ref"));
        // System.out.println(ref);
         //int reLevel = Integer.parseInt(request.getParameter("reLevel"));
         //int reStep = Integer.parseInt(request.getParameter("reStep"));
 
         QnaDTO article = new QnaDTO();
-//      article.setNum(Integer.parseInt(request.getParameter("num")));
+        article.setNum(num);
         article.setWriter(request.getParameter("writer"));
         article.setCenter(request.getParameter("center"));
         article.setTitle(request.getParameter("title"));
