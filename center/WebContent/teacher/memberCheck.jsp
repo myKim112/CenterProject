@@ -45,13 +45,6 @@
 </table>
 </c:if>
 
-<table id="cbbs_f" align="center" width="700">
-	<tr>
-		<td align="right">
-			<input type="button" value="목록" onclick="window.location='teacherClassList.kiki?id=${id}'" />
-		</td>
-	</tr>
-</table>
 </article>
 <jsp:include page="footer.jsp" flush="false" />
 </body>

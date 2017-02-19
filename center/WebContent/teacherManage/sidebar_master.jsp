@@ -7,6 +7,7 @@
   				<li><a href="teacherList.kiki">강사 목록</a></li>
   				<li><a href="teacherQuitList.kiki">퇴사자 관리</a></li>
   				<li><a href="memList.kiki">회원 목록</a></li>
+  				<li><a href="classManage.kiki">강좌 목록</a></li>
   			</ul>
   		</aside>
 

@@ -46,7 +46,7 @@
 <jsp:include page="sidebar_lecture.jsp" flush="false" />
 <article>
 <h2>강좌소개</h2>
-	<form form id="searchbbs method="post" name="classFile"  >
+	<form form id="searchbbs" method="post" name="classFile"  >
 		<input type="hidden" name="num" value="${num}"> </br> </br>
 		<input type="hidden" name="id" value="${id }">
 

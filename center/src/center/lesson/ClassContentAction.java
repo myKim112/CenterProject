@@ -40,7 +40,7 @@ public class ClassContentAction implements SuperAction {
 		}
 		
 		request.setAttribute("num", new Integer(num));
-		request.setAttribute("pageNum", new Integer(pageNum));
+		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("dto", dto);
 		request.setAttribute("id", id);
 		request.setAttribute("staff", staff);

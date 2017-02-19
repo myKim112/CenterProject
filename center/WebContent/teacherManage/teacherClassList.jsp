@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header.jsp" flush="false" /> 
 <head>
-<title>강사 관리</title>
+<title>관리 페이지</title>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
 		<td>${staff.center}</td>
 		<td>${staff.classCode}</td>
 		<td>
-			<a href="memberCheck.kiki?classCode=${staff.classCode}&id=${id}">${staff.className}</a>
+			<a href="teacherChoice.kiki?classCode=${staff.classCode}&id=${id}&num=${staff.num}">${staff.className}</a>
 		</td>
 		<td>${staff.teacher}</td>
 		<td>${staff.classDate}</td>

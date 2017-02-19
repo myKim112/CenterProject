@@ -12,7 +12,7 @@
 </center>
 
 <body>
-<h1 id="customer"><div>customer center</div></h1>
+<h1 id="customer"><div>master center</div></h1>
 <jsp:include page="sidebar_master.jsp" flush="false" />
 <article>
 <h2>퇴사자 목록</h2>

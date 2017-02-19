@@ -30,7 +30,7 @@ public class ClassUpdateAction implements SuperAction{
 		}
 		
 		request.setAttribute("num", new Integer(num));
-		request.setAttribute("pageNum", new Integer(pageNum));
+		request.setAttribute("pageNum", pageNum);
 		
 		
 		

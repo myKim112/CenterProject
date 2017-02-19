@@ -56,8 +56,12 @@ teacherInputForm.jsp
 //6) qnaDeletePro.kiki   : 글삭제 X 완료★
 //7) qna         : 검색 X 완료★
 //8) teacherUpdateForm.kik: 강사정보 수정X 완료★
-9) 관리자 페이지 >>> 강좌 목록 추가 - 글쓰기, 글수정, 글삭제 가능하도록 구현(민영)
+//9) 관리자 페이지 >>> 강좌 목록 추가 - 글쓰기, 글수정, 글삭제 가능하도록 구현(민영) 완료★
 10) myClassList.kiki   : 수강상태 확인하는 탭 한개 더 만들기
 
+
+-----------------------------------
+memDelete.kiki 디자인
+memDeletePro.kiki 회원탈퇴x
 
 

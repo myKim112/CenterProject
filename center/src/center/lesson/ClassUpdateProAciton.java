@@ -78,7 +78,7 @@ public class ClassUpdateProAciton implements SuperAction {
 				check = dao.updateClass2(dto);
 			}
 
-			request.setAttribute("pageNum", new Integer(pageNum));
+			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("check", check);
 
 		} catch (Exception e) {

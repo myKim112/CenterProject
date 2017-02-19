@@ -554,4 +554,18 @@ public class ClassDAO {
 		return x;
 
 	}
+	
+	public void classManageDelete(String classCode) throws Exception { // 관리자가 강의 삭제
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("delete from class where classCode=?");
+			pstmt.setString(1, classCode);
+			pstmt.executeQuery();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
 }
