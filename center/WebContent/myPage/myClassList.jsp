@@ -28,6 +28,7 @@
     <td align="center"  width="50" >강좌시간</td>
     <td align="center"  width="50" >결제금액</td>
     <td align="center"  width="50" >인원</td>
+    <td align="center"  width="50" >수강상태</td>
     <td align="center"  width="50" >수강취소</td>
     
     </tr>
@@ -53,6 +54,7 @@
    	  <td align="center"  width="50" >${dto.classTime}</td>
    	  <td align="center"  width="50" >${dto.sum}</td>
       <td align="center"  width="50" >${dto.memberCount}</td>
+      <td align="center"  width="50" >${dto.position}</td>
       <td align="center"  width="50" ><input type="button" value="수강취소"onclick="javascript:window.location='myAppListDel.kiki?classCode=${dto.classCode}'"></td>
 	</tr>
 </table>

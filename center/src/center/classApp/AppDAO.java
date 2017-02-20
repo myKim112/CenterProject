@@ -137,9 +137,10 @@ public class AppDAO {
 		 List<AppDTO> articleList = null;
 		 try {
 			 conn = getConnection();
-	 		 pstmt= conn.prepareStatement("select a.num ,c.center, c.classcode,c.className, c.teacher,c.classDate,c.classTime,a.sum,a.memberCount,a.reg_Date,a.status from class c ,app a where c.classcode = a.classcode and a.id=? order by a.reg_Date desc");
+	 		 pstmt= conn.prepareStatement("select a.num ,c.center, c.classcode,c.className, c.teacher,c.classDate,c.classTime,a.sum,a.memberCount,a.reg_Date,a.status,s.position from class c ,app a, appStatus s where c.classcode = a.classcode and a.status=s.status and a.id=? order by a.reg_Date desc");
 	 		 pstmt.setString(1, id);
-	 	     rs= pstmt.executeQuery(); 
+	 	     rs = pstmt.executeQuery();
+	 	     	 	     
 	 	     articleList = new ArrayList<AppDTO>();
 	 				
 	 					while(rs.next()){
@@ -154,6 +155,7 @@ public class AppDAO {
 	 						dto.setSum(rs.getString("sum"));
 	 						dto.setMemberCount(rs.getInt("memberCount"));
 	 						dto.setStatus(rs.getInt("status"));
+	 						dto.setPosition(rs.getString("position"));
 	 			
 	 						articleList.add(dto);
 	 					}

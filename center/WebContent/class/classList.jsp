@@ -81,7 +81,7 @@
 		<td align="center">
 			<select name="search">
 				<option value="0">강사</option>
-				<option value="1">강좌</option>
+				<option value="1">제목</option>
 				<option value="2">지점</option>
 			</select>
 			<input type="text" name="searchContent" size="15" maxlength="50" />

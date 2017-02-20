@@ -37,19 +37,19 @@ teacherInputForm.jsp
 * 최종적으로 노트북에서 작동되게만 하면 됨!!!!
 
 1. 디자인 수정
-1) myClassList.kiki    : 헤드라인 작성(여정)
-2) classContent.kiki    : 사진만 따로 놈
-3) classUpdate.kiki    : 디자인 추가 및 즉시결제/강좌바구 버튼 삭제(주석처리)(여정)
-4) classUpdatePro.kiki  : 디자인 추가(여정)
-6) reviewUpdateForm.kik : 상단 헤드라인 텍스트 변경>수강후기 글수정으로
-7) memberCheck.kiki   : 디자인 추가
-8) memClassList.kiki   : 상단 헤드라인 작성
+//1) myClassList.kiki    : 헤드라인 작성(여정) 완료★
+2) classContent.kiki    : 사진만 따로 놈 
+//3) classUpdate.kiki    : 디자인 추가 및 즉시결제/강좌바구 버튼 삭제(주석처리)(여정) 완료★
+//4) classUpdatePro.kiki  : 디자인 추가(여정) 완료★
+//6) reviewUpdateForm.kik : 상단 헤드라인 텍스트 변경>수강후기 글수정으로 완료★
+//7) memberCheck.kiki   : 디자인 추가 완료★
+//8) memClassList.kiki   : 상단 헤드라인 작성 완료★
 -----------------------------------------------------------------------------------
 5) classList.kiki   : 하단 페이지 번호 디자인 수정 / 상단 빨간 줄 삭제하기
 
 2. 코드 수정
 1) classList.kiki   : 검색시 강좌기간 안보임
-2) classUpdatePro.kiki  : 수정안됨(여정)
+//2) classUpdatePro.kiki  : 수정안됨(여정) 완료★
 //3) noticeList.kiki   : 내림차순으로 수정(민영) 완료★
 //4) qnaUpdatePro.kiki   : 글수정 X 완료★
 //5) qnaWritePro.kiki   : 글작성 X 완료★
@@ -60,8 +60,5 @@ teacherInputForm.jsp
 10) myClassList.kiki   : 수강상태 확인하는 탭 한개 더 만들기
 
 
------------------------------------
-memDelete.kiki 디자인
-memDeletePro.kiki 회원탈퇴x
 
 

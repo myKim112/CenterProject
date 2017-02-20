@@ -6,7 +6,7 @@
   				<li><a href="#">ceo 인사말</a></li>
   				<li><a href="#">회사연혁</a></li>
   				<li><a href="#">회사비전</a></li>
-  				<li><a href="#">찾아오시는길</a></li>
+  				<li><a href="maps.kiki">찾아오시는길</a></li>
   			</ul>
   		</aside>
 
