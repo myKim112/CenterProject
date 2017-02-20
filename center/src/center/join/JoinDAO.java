@@ -32,7 +32,7 @@ public class JoinDAO {
 	public void insertJoin(JoinDTO dto) throws Exception { // 회원가입
 		try {
 			conn = getConnection();
-			pstmt=conn.prepareStatement("insert into join values(?,?,?,?,?,?,?,?,sysdate)");
+			pstmt=conn.prepareStatement("insert into join values(?,?,?,?,?,?,?,10,sysdate)");
 			pstmt.setString(1,dto.getId());
 			pstmt.setString(2,dto.getPw());
 			pstmt.setString(3,dto.getName());
@@ -40,7 +40,6 @@ public class JoinDAO {
 			pstmt.setInt(5,dto.getPhone());
 			pstmt.setString(6,dto.getAddress());
 			pstmt.setString(7,dto.getEmail());
-			pstmt.setString(8,dto.getLev());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -64,11 +63,11 @@ public class JoinDAO {
 					
 				dto.setId(rs.getString("id"));
   				dto.setPw(rs.getString("pw"));
+  				dto.setName(rs.getString("name"));
   				dto.setBirth(rs.getInt("birth"));	
   				dto.setPhone(rs.getInt("phone"));
   				dto.setAddress(rs.getString("address"));  					
   				dto.setEmail(rs.getString("email"));
-  				dto.setLev(rs.getString("lev"));
   				dto.setRegDate(rs.getTimestamp("regDate"));
   				
   				pstmt.executeQuery();
@@ -87,15 +86,14 @@ public class JoinDAO {
 		
 		try{
 			conn=getConnection();
-			pstmt=conn.prepareStatement("update join set pw=?, name=?, birth=?, phone=?, address=?, email=?, lev=? where id=?");
+			pstmt=conn.prepareStatement("update join set pw=?, name=?, birth=?, phone=?, address=?, email=? where id=?");
 			pstmt.setString(1, dto.getPw());
 			pstmt.setString(2, dto.getName());
 			pstmt.setInt(3, dto.getBirth());
 			pstmt.setInt(4, dto.getPhone());
 			pstmt.setString(5, dto.getAddress());
 			pstmt.setString(6, dto.getEmail());
-			pstmt.setString(7, dto.getLev());
-			pstmt.setString(8, dto.getId());
+			pstmt.setString(7, dto.getId());
 			pstmt.executeUpdate();
 		} catch(Exception e){
 			e.printStackTrace();
@@ -110,12 +108,16 @@ public class JoinDAO {
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select id from join where id = ?");
+			pstmt = conn.prepareStatement("select j.id jid,s.id sid from join j , staff s where s.id=? or j.id=?");
 			pstmt.setString(1, id);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) x=1;
-			else x=-1;
+			if(rs.next()) {
+				x=1;
+			} else {
+				x=-1;
+			}
 		} catch(Exception e) { 
 			e.printStackTrace();	
 		}
@@ -160,22 +162,29 @@ public class JoinDAO {
 	}
 	
 	public int userCheck(String id, String pw) throws Exception { // 로그인시 id, pw 확인
-		String dbpw="";
+		String dbpw_staff ="";
+		String dbpw_join ="";
 		int result = -1;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select pw from join where id = ?");
+			pstmt = conn.prepareStatement("select j.pw jpw,s.pw spw from join j , staff s where s.id=? or j.id=?");
 			pstmt.setString(1, id);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next())
 			{
-				dbpw = rs.getString("pw");
-				if(pw.equals(pw)) {
+				dbpw_join = rs.getString("jpw");
+				dbpw_staff = rs.getString("spw");
+				if(dbpw_join.equals(pw)) {
+					result = 1;
+				} else if(dbpw_staff.equals(pw)) {
 					result = 1;
 				} else {
 					result = 0;
 				}
+			} else {
+				result = -1;
 			}
 		} catch(Exception e) { e.printStackTrace(); }
 		 finally {
@@ -224,7 +233,7 @@ public class JoinDAO {
 			if(rs.next()) {
 				articleList = new ArrayList(end);
 				
-				while(rs.next()) {
+				do {
 					JoinDTO article = new JoinDTO();
 					
 					article.setId(rs.getString("id"));
@@ -234,10 +243,10 @@ public class JoinDAO {
 					article.setPhone(rs.getInt("phone"));
 					article.setAddress(rs.getString("address"));
 					article.setEmail(rs.getString("email"));
-					article.setLev(rs.getString("lev"));
+					article.setLev(rs.getInt("lev"));
 					article.setRegDate(rs.getTimestamp("regDate"));
 					articleList.add(article);
-				}
+				}while(rs.next());
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -248,4 +257,96 @@ public class JoinDAO {
 		}
 		return articleList;
 	}
+	
+	public JoinDTO getLev(String id) throws Exception { // 회원의 권한 불러오기
+		JoinDTO join = new JoinDTO();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select lev from join where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+						
+			if(rs.next()) {
+				join.setLev(rs.getInt("lev"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return join; 
+		
+	}
+	
+	public void memberDelete(String id) throws Exception {
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("delete from join where id=?");
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
+
+	public String idFind(String name,String phone) {
+		String sql = null;
+		String id =null;
+		try {
+			conn = getConnection();
+			sql = "select id from join where name=? and phone=?"; 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery(); // 실행
+			if(rs.next()){
+				id = rs.getString("id");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) { try { rs.close(); } catch(SQLException s) { } }
+			if(pstmt != null) { try { pstmt.close(); } catch(SQLException s) { } }
+			if(conn != null) { try { conn.close(); } catch(SQLException s) { } }
+		}
+		return id;
+	}
+
+
+public String pwFind(String name,String phone,String id) {
+	String sql = null;
+	String pw =null;
+	
+
+
+	try {
+		conn = getConnection();
+		sql = "select id from join where id=? and name=? and phone=?"; 
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.setString(2, name);
+		pstmt.setString(3, phone);
+		rs = pstmt.executeQuery(); // 실행
+		if(rs.next()){
+			pw = rs.getString("pw");
+			pw = rs.getString("id");
+			
+		}
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+	return pw;
 }
+}
+
+
+
+
+
+
+

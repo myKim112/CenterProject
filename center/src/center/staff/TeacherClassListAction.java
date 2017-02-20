@@ -5,20 +5,26 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import center.action.SuperAction;
-import center.lesson.ClassDAO;
+import center.staff.StaffDAO;
 
 public class TeacherClassListAction implements SuperAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
 		String pageNum = request.getParameter("pageNum");
-		int num = Integer.parseInt(request.getParameter("num"));
+//		int num = Integer.parseInt(request.getParameter("num"));
 		
 		if(pageNum == null) {
 			pageNum = "1";
 		}
 		
+		if(id == null) {
+			HttpSession session = request.getSession();
+			id = (String)session.getAttribute("centerId");
+		}
+				
 		int pageSize = 10;
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage-1)*pageSize+1;
@@ -26,17 +32,17 @@ public class TeacherClassListAction implements SuperAction {
 		int count = 0;
 		int number = 0;
 		
-		List staffList = null;
-		ClassDAO dbPro = ClassDAO.getInstance();
+		List classList = null;
+		StaffDAO dbPro = StaffDAO.getInstance();
 		
 		try {
-//			count = dbPro.getTeacherClassCount(); // 해당 강사의 강좌 수
-			// 해당 강사의 아이디를 입력 받은 것으로 검색 해야한다.
+			count = dbPro.getTeacherClassCount(id); // 해당 강사의 강좌 수
+
 			
 			if(count > 0) {
-//				staffList = dbPro.getTeacherClassArticle(); // 해당 강사의 강의 목록
+				classList = dbPro.getTeacherClassArticle(startRow, endRow, id); // 해당 강사의 강좌 목록
 			} else {
-				staffList = Collections.EMPTY_LIST;
+				classList = Collections.EMPTY_LIST;
 			}					
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -50,8 +56,8 @@ public class TeacherClassListAction implements SuperAction {
 		request.setAttribute("count", new Integer(count));
 		request.setAttribute("pageSize", new Integer(pageSize));
 		request.setAttribute("number", new Integer(number));
-		request.setAttribute("num", new Integer(num));
-		request.setAttribute("staffList", staffList);
+//		request.setAttribute("num", new Integer(num));
+		request.setAttribute("classList", classList);
 		request.setAttribute("id", id);
 		
 		return "/teacherManage/teacherClassList.jsp";

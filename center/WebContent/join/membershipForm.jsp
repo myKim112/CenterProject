@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp" flush="false" />
 
 <head>
 <title>회원가입</title>
 </head>
 
-<link href="style.css" rel="stylesheet" type="text/css">
-
-<script>
+<script language="JavaScript">
 	function checkIt()
 	{
 		var userinput = eval("document.userinput");
@@ -46,87 +45,78 @@
 			return;
 		}
 		url = "confirmId.kiki?id="+userinput.id.value;
-		
 		open(url,"confirmId", "toolbar=no, location=no, status=no, menubar=no, scroollbar=no, resizable=no, width=300, height=200");
 	}
 </script>
 
-<center>
-<font face="impact" color="gray" size="20">
-Membership Application</font>
-</center>
-
 <body>
-<form action="membershipPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
-<table align="center" border="0">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_mypage.jsp" flush="false" />
+<article>
+<h2>회원가입</h2>  
+<form id="searchbbs" action="membershipPro.kiki" method="post" name="userinput" onSubmit="return checkIt()">
+<table id="cbbs_f">
 	<tr>
-	<td width="150">ID</td>
-	<td align="left">
-		<input type="text" name="id" placeholder="아이디" />
-		&nbsp;&nbsp;
-		<input type="button" value="중복확인" />
-		<br><br>
-	</td></tr>
+		<td>ID</td>
+		<td>
+			<input type="text" name="id" placeholder="아이디" />
+		</td>
+		<td>
+			<input type="button" value="중복확인" OnClick="openConfirmId(this.form)"/>
+		</td>
+	</tr>
 	<tr>
-	<td width="150">비밀번호</td>
-	<td align="left">
-		<input type="password" name="pw" />
-		<br><br>
-	</td></tr>
+		<td>비밀번호</td>
+		<td>
+			<input type="password" name="pw" />
+		</td>
+	</tr>
 	<tr>
-	<td width="150">비밀번호 재입력</td>
-	<td align="left">
-		<input type="password" name="pwcheck" />
-		<br><br>
-	</td>></tr>
+		<td>비밀번호 재입력</td>
+		<td>
+			<input type="password" name="pwcheck" ><br> *동일한 비밀번호를 입력하시오.
+		</td>
+	</tr>
 	<tr>
-	<td width="150">이름</td>
-	<td align="left">
-		<input type="text" name="name" />
-		<br><br>
-	</td></tr>
+		<td>이름</td>
+		<td>
+			<input type="text" name="name" />
+		</td>
+	</tr>
 	<tr>
-	<td width="150">생년월일</td>
-	<td align="left">
-		<input type="text" name="birth" />
-		<br><br>
-	</td></tr>
+		<td>생년월일</td>
+		<td>
+			<input type="text" name="birth" placeholder="ex>19990909"/>
+		</td>
+	</tr>
 	<tr>
-	<td width="150">전화번호</td>
-	<td align="left">
-		<input type="text" name="phone" />
-		<br><br>
-	</td></tr>
+		<td>전화번호</td>
+		<td>
+			<input type="text" name="phone" placeholder="숫자만 입력해주세요"/>
+		</td>
+	</tr>
 	<tr>
-	<td width="150">주소</td>
-	<td align="left">
-		<input type="text" name="address" />
-		<br><br/>
-	</td></tr>
+		<td>주소</td>
+		<td>
+			<input type="text" name="address" />
+		</td>
+	</tr>
 	<tr>
-	<td width="150">E-mail</td>
-	<td align="left">
-		<input type=text name="email">
-		<br><br>
-	</td></tr>
+		<td>E-mail</td>
+		<td>
+			<input type=text name="email">
+		</td>
+	</tr>
 	<tr>
-	<td width="150">등급</td>
-	<td align="left">
-		<select name="lev">
-			<option value="주니어">주니어</option>
-			<option value="어덜트">어덜트</option>
-			<option value="실버">실버</option>
-			<option value="선택안함">선택안함</option>
-		</select>
-		<br><br>
-	</td></tr>
-	<tr>
-	<td align="center" colspan="2">
-		<br><br><br><br>
+	<td>
 		<input type="submit" value="회원가입" />
-		<input type="reset" value="다시작성" />
-		<input type="button" value="메인으로" onclick="window.location='main.kiki'" />
+	</td>
+	<td>&nbsp;&nbsp;&nbsp;</td>
+	<td>
+		<input type="button" value="메인으로" onclick="window.location='index.jsp'" />
 	</td></tr>
 </table>
 </form>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />   

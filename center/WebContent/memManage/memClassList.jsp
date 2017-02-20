@@ -2,19 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:include page="header.jsp" flush="false" /> 
 
 <head>
 <title>회원 관리</title>
 </head>
 
-<center>
-<font size="20" face="impact">
-MEMBER CLASS
-</font>
-</center>
-
 <body>
-<table align="center" width="700">
+<h1 id="customer"><div>customer center</div></h1>
+<jsp:include page="sidebar_master.jsp" flush="false" />
+<article>
+<table align="center" width="700" id="cbbs_f">
 	<tr>
 	<td>번호</td>
 	<td>지점</td>
@@ -29,17 +27,25 @@ MEMBER CLASS
 </table>
 
 <c:if test="${count == 0}">
-<table align="center" width="700">
-	수강한 강좌가 없습니다.
+<table align="center" width="700" id="cbbs_f">
+	<tr>
+		<td align="center">
+			수강한 내역이 없습니다.
+		</td>
+	</tr>
 </table>
 </c:if>
 
 <c:if test="${count > 0}">
-<table align="center" width="700">
-<c:forEach var="article" items="${articleList}">
+<table align="center" width="700" id="cbbs_f">
+<c:forEach var="article" items="${articleList}" varStatus="i">
 	<tr>
-	<td><c:out value="${number}" />
-		<c:set var="number" value="${number-1}"/></td>
+	<td>${i.count}
+	<%--	
+	<c:out value="${number}" />
+		<c:set var="number" value="${number-1}"/>
+	 --%>
+	</td>
 	<td>${article.center}</td>
 	<td>${article.classCode}</td>
 	<td>${article.className}</td>
@@ -53,8 +59,12 @@ MEMBER CLASS
 </table>
 </c:if>
 </body>
+</article>
+<jsp:include page="footer.jsp" flush="false" />
 
 <center>
+<div id="page">
+<ul class="paging">
 <c:if test="${count>0}">
 	<c:set var="pageCount" value="${count/pageSize+(count%pageSize == 0 ? 0 : 1)}" />
 	<c:set var="pageBlock" value="${10 }"/>
@@ -77,4 +87,5 @@ MEMBER CLASS
 		<a href="/memList.kiki?pageNum=${startPage+10}">[다음]</a>
 	</c:if>
 </c:if>
+</ul></div>
 </center>

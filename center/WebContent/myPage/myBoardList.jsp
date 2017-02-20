@@ -56,7 +56,7 @@
 <c:if test="${article.re_level == 0}">
 	<img src="images/level.gif" width="${5 * article.re_level}" height="16">
 </c:if>
-	<a href="content.do?num=${article.num}&pageNum=${currentPage}">${article.title}</a> 
+	<a href="myClassContent.kiki?num=${article.num}&pageNum=${currentPage}">${article.title}</a> 
 <c:if test="${article.readcount >= 20}">
 	<img src="images/hot.gif" border="0"  height="16">
 </c:if>
@@ -72,17 +72,19 @@
 </body>
 
 <center>
+<c:if test="${count > 0}">
 <c:set var="pageCount" value="${count/pageSize + ( count % pageSize == 0 ? 0 : 1)}"/> 
 <c:set var="pageBlock" value="${10}"/>
 
-<fmt:parseNumber var="result" value="${currentPage /10 }" intergerOnly="true"/>
+<fmt:parseNumber var="result" value="${currentPage /10 }" integerOnly="true"/>
 
 <c:set var="startPage" value="${result*10+1}"/>
 <c:set var="endPage" value="${startPage*pageBlock-1}"/>
+</c:if>
 
-<c:if test="${endPage > pageCount}"/>
+<c:if test="${endPage > pageCount}">
 <c:set var="endPage" value="${pageCount }"/>
-	<input type="button" value="강좌취소" onclick="document.location.href='classDelete.kiki?num=${dto.Num}&pageNum=${pageNum}>'">
+</c:if>
 
 <c:if test="${startPage > 10}">
 <a href="myBoardList.kiki?pageNum=${startPage - 10 }">[이전]</a>

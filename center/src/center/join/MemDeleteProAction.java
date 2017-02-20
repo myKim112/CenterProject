@@ -18,6 +18,8 @@ public class MemDeleteProAction implements SuperAction {
 				        
 	        JoinDAO dao = JoinDAO.getInstance();
 	        check = dao.deleteMem(id, pw);
+	        
+	        session.invalidate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

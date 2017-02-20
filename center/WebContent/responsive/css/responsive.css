@@ -1,0 +1,21 @@
+
+/* 스마트 폰 */
+@import url("smartphone.css") only screen and (min-width:200px) and (max-width:480px);
+
+/* 아이폰 */
+@import url("smartphone.css") only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5);
+
+
+/* 소형 타블렛 */
+@import url("pad.css") only screen and (min-width:480px) and (max-width:768px);
+
+/* 일반 타블렛 */
+/*@import url("desktop.css") only screen and (min-width:768px) and (max-width:1100px);*/
+
+/* 아이패드 */
+/*@import url("desktop.css") only screen and (min-width:768px) and (max-width:1000px) and (orientation : portrait);
+@import url("desktop.css") only screen and (min-width:768px) and (max-width:1000px) and (orientation : landscape);*/
+
+/* 데스크탑 */
+/*@import url("desktop.css") only screen and (min-width:1100px) and (max-width:1600px);*/
+
